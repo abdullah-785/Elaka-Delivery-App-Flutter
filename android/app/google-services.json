@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "822475851728",
+    "project_id": "elaka-delivery-app",
+    "storage_bucket": "elaka-delivery-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:822475851728:android:20a11914db6902ce455bd5",
+        "android_client_info": {
+          "package_name": "com.example.elaka_delivery_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "822475851728-77mq0djcd8j2ahc8cvvbp0hdidbq4u5e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUD8eN0xQ_EViBpl9OMC19n3o9bIO4R78"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "822475851728-77mq0djcd8j2ahc8cvvbp0hdidbq4u5e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
