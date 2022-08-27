@@ -1,3 +1,5 @@
+import 'package:elaka_delivery_app/pages/opt_verification.dart';
+// import 'package:elaka_delivery_app/widgets/opt.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -45,6 +47,7 @@ class _LoginState extends State<Login> {
                 child: const Image(image: AssetImage("images/logo.png"))),
                   ],
                 )
+                
               ],
              ),
            ),
@@ -167,7 +170,9 @@ class _LoginState extends State<Login> {
                         primary: Colors.green,
                         onPrimary: Colors.white,
                       ),
-                      onPressed: (){}, child: const Text("Sign In", style: TextStyle(
+                      onPressed: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => const OptVerification()));
+                      }, child: const Text("Sign In", style: TextStyle(
                         fontSize: 22,
                         fontWeight: FontWeight.bold
                       ),)),
