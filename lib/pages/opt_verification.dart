@@ -86,7 +86,7 @@ class _OptVerificationState extends State<OptVerification> {
                             }
                           },
                           decoration: const InputDecoration(
-                              hintText: "0",
+                              // hintText: "",
                               border: UnderlineInputBorder(
                                   borderSide: BorderSide(
                                 color: Colors.green,
@@ -116,7 +116,7 @@ class _OptVerificationState extends State<OptVerification> {
                             }
                           },
                           decoration: const InputDecoration(
-                              hintText: "0",
+                              // hintText: "0",
                               border: UnderlineInputBorder(
                                   borderSide: BorderSide(
                                 color: Colors.green,
@@ -147,7 +147,7 @@ class _OptVerificationState extends State<OptVerification> {
                             }
                           },
                           decoration: const InputDecoration(
-                              hintText: "0",
+                              // hintText: "0",
                               border: UnderlineInputBorder(
                                   borderSide: BorderSide(
                                 color: Colors.green,
@@ -177,7 +177,7 @@ class _OptVerificationState extends State<OptVerification> {
                             }
                           },
                           decoration: const InputDecoration(
-                              hintText: "0",
+                              // hintText: "0",
                               border: UnderlineInputBorder(
                                   borderSide: BorderSide(
                                 color: Colors.green,

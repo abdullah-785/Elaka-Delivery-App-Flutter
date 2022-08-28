@@ -1,6 +1,7 @@
 // import 'dart:html';
 
 import 'package:badges/badges.dart';
+import 'package:elaka_delivery_app/pages/circularProgress.dart';
 import 'package:flutter/material.dart';
 
 class NewPassword extends StatefulWidget {
@@ -11,6 +12,8 @@ class NewPassword extends StatefulWidget {
 }
 
 class _NewPasswordState extends State<NewPassword> {
+  bool _obscureText = true;
+  bool _obscureText2 = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -101,7 +104,7 @@ class _NewPasswordState extends State<NewPassword> {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: TextFormField(
-                          obscureText: true,
+                          obscureText: _obscureText,
                           style: const TextStyle(
                             fontSize: 20,
                           ),
@@ -127,7 +130,18 @@ class _NewPasswordState extends State<NewPassword> {
                                   color: Colors.white,
                                   size: 30,
                                 ),
-                              ))),
+                              ),
+                              suffixIcon: GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  _obscureText = !_obscureText;
+                                });
+                              },
+                              child: Icon(_obscureText
+                                  ? Icons.visibility
+                                  : Icons.visibility_off, color: Colors.green,),
+                            ),
+                              ),),
                     ),
                     const SizedBox(
                       height: 30,
@@ -149,7 +163,7 @@ class _NewPasswordState extends State<NewPassword> {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: TextFormField(
-                          obscureText: true,
+                          obscureText: _obscureText2,
                           style: const TextStyle(
                             fontSize: 20,
                           ),
@@ -175,7 +189,19 @@ class _NewPasswordState extends State<NewPassword> {
                                   color: Colors.white,
                                   size: 30,
                                 ),
-                              ))),
+                              ),
+                              suffixIcon: GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  _obscureText2 = !_obscureText2;
+                                });
+                              },
+                              child: Icon(_obscureText
+                                  ? Icons.visibility
+                                  : Icons.visibility_off, color: Colors.green,),
+                            ),
+
+                              ),),
                     ),
                 
                     const SizedBox(height: 28,),
@@ -187,7 +213,9 @@ class _NewPasswordState extends State<NewPassword> {
                           primary: Colors.green,
                           onPrimary: Colors.white,
                         ),
-                        onPressed: (){}, child: const Text("Submit", style: TextStyle(
+                        onPressed: (){
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => ProgressBar()));
+                        }, child: const Text("Submit", style: TextStyle(
                           fontSize: 22,
                           fontWeight: FontWeight.bold
                         ),)),

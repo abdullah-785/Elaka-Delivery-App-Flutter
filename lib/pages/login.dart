@@ -1,6 +1,7 @@
 import 'package:elaka_delivery_app/pages/opt_verification.dart';
 // import 'package:elaka_delivery_app/widgets/opt.dart';
 import 'package:flutter/material.dart';
+// import 'package:flutter/services.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class Login extends StatefulWidget {
@@ -11,10 +12,9 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-
+  bool _obscureText = true;
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-
 
   @override
   Widget build(BuildContext context) {
@@ -22,36 +22,33 @@ class _LoginState extends State<Login> {
       backgroundColor: const Color.fromARGB(255, 243, 247, 255),
       body: Column(
         children: [
-           Expanded(
-             child: Column(
+          Expanded(
+            child: Column(
               children: [
                 const HeightBox(85),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(
-                width: MediaQuery.of(context).size.width * 0.4,
-                // height: 30,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(150),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.1),
-                      blurRadius: 35,
-                      spreadRadius: 30,
-                      offset: const Offset(3, 3)
-                    )
-                  ]
-                ),
-                child: const Image(image: AssetImage("images/logo.png"))),
+                        width: MediaQuery.of(context).size.width * 0.4,
+                        // height: 30,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(150),
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Colors.grey.withOpacity(0.1),
+                                  blurRadius: 35,
+                                  spreadRadius: 30,
+                                  offset: const Offset(3, 3))
+                            ]),
+                        child:
+                            const Image(image: AssetImage("images/logo.png"))),
                   ],
                 )
-                
               ],
-             ),
-           ),
-          
+            ),
+          ),
           Expanded(
               child: Container(
             height: 30,
@@ -75,33 +72,43 @@ class _LoginState extends State<Login> {
                   const SizedBox(
                     height: 40,
                   ),
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 16),
-                    child: Align(
-                      alignment: Alignment.topLeft,
-                      child: Text("Email", style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      )),
-                    ),
+                  // const Padding(
+                  //   padding: EdgeInsets.symmetric(horizontal: 16),
+                  //   child: Align(
+                  //     alignment: Alignment.topLeft,
+                  //     child: Text("Email",
+                  //         style: TextStyle(
+                  //           fontSize: 18,
+                  //           fontWeight: FontWeight.bold,
+                  //         )),
+                  //   ),
+                  // ),
+                  const SizedBox(
+                    height: 5,
                   ),
-                  const SizedBox(height: 5,),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16),
                     child: TextFormField(
-                      controller: _emailController,
-                      style: const TextStyle(
-                        fontSize: 20,
-                      ),
+                        controller: _emailController,
+                        keyboardType: TextInputType.emailAddress,
+                        style: const TextStyle(
+                          fontSize: 20,
+                        ),
                         decoration: InputDecoration(
-                          focusedBorder: const OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.green)
-                          ),
+                            label: const Text("Email"),
+                            hintText: "Enter Email",
+                            focusedBorder: const OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.green)),
                             border: const OutlineInputBorder(),
                             prefixIcon: Container(
                               width: 50,
                               height: 50,
-                              margin: const EdgeInsets.only(top: 11, bottom: 11, right: 8 ,left: 11,),
+                              margin: const EdgeInsets.only(
+                                top: 11,
+                                bottom: 11,
+                                right: 8,
+                                left: 11,
+                              ),
                               decoration: BoxDecoration(
                                 color: Colors.green,
                                 borderRadius: BorderRadius.circular(50),
@@ -113,36 +120,47 @@ class _LoginState extends State<Login> {
                               ),
                             ))),
                   ),
-                  const SizedBox(height: 15,),
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 16),
-                    child: Align(
-                      alignment: Alignment.topLeft,
-                      child: Text("Password", style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      )),
-                    ),
+                  const SizedBox(
+                    height: 15,
                   ),
-                  const SizedBox(height: 5,),
+                  // const Padding(
+                  //   padding: EdgeInsets.symmetric(horizontal: 16),
+                  //   child: Align(
+                  //     alignment: Alignment.topLeft,
+                  //     child: Text("Password",
+                  //         style: TextStyle(
+                  //           fontSize: 18,
+                  //           fontWeight: FontWeight.bold,
+                  //         )),
+                  //   ),
+                  // ),
+                  const SizedBox(
+                    height: 5,
+                  ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16),
                     child: TextFormField(
-                      controller: _passwordController,
-                      style: const TextStyle(
-                        fontSize: 20,
-                      ),
-                      obscureText: true,
-                      keyboardType: TextInputType.text,
+                        controller: _passwordController,
+                        style: const TextStyle(
+                          fontSize: 20,
+                        ),
+                        obscureText: _obscureText,
+                        keyboardType: TextInputType.text,
                         decoration: InputDecoration(
-                          focusedBorder: const OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.green)
-                          ),
-                            border:const OutlineInputBorder(),
+                            label: const Text("Passsword"),
+                            hintText: "Enter Password",
+                            focusedBorder: const OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.green)),
+                            border: const OutlineInputBorder(),
                             prefixIcon: Container(
                               width: 50,
                               height: 50,
-                              margin: const EdgeInsets.only(top: 11, bottom: 11, right: 8 ,left: 11,),
+                              margin: const EdgeInsets.only(
+                                top: 11,
+                                bottom: 11,
+                                right: 8,
+                                left: 11,
+                              ),
                               decoration: BoxDecoration(
                                 color: Colors.green,
                                 borderRadius: BorderRadius.circular(50),
@@ -152,30 +170,49 @@ class _LoginState extends State<Login> {
                                 color: Colors.white,
                                 size: 30,
                               ),
+                            ),
+                            suffixIcon: GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  _obscureText = !_obscureText;
+                                });
+                              },
+                              child: Icon(_obscureText
+                                  ? Icons.visibility
+                                  : Icons.visibility_off, color: Colors.green,),
                             ))),
                   ),
-                  const SizedBox(height: 15,),
-                  const Text("Forget Password?", style: TextStyle(
-                    fontSize: 20,
-                    color: Colors.green,
-                    fontWeight: FontWeight.bold
-                  ) ),
-              
-                  const SizedBox(height: 28,),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  const Text("Forget Password?",
+                      style: TextStyle(
+                          fontSize: 20,
+                          color: Colors.green,
+                          fontWeight: FontWeight.bold)),
+                  const SizedBox(
+                    height: 28,
+                  ),
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.9,
                     height: 50,
                     child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        primary: Colors.green,
-                        onPrimary: Colors.white,
-                      ),
-                      onPressed: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => const OptVerification()));
-                      }, child: const Text("Sign In", style: TextStyle(
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold
-                      ),)),
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.green,
+                          onPrimary: Colors.white,
+                        ),
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const OptVerification()));
+                        },
+                        child: const Text(
+                          "Sign In",
+                          style: TextStyle(
+                              fontSize: 22, fontWeight: FontWeight.bold),
+                        )),
                   ),
                 ],
               ),
