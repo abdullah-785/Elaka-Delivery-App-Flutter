@@ -214,7 +214,7 @@ class _NewPasswordState extends State<NewPassword> {
                           onPrimary: Colors.white,
                         ),
                         onPressed: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => ProgressBar()));
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => const ProgressBar()));
                         }, child: const Text("Submit", style: TextStyle(
                           fontSize: 22,
                           fontWeight: FontWeight.bold
@@ -225,7 +225,6 @@ class _NewPasswordState extends State<NewPassword> {
               ),
             ),
           ),
-      
         ],
       ),
     );

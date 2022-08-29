@@ -1,5 +1,6 @@
 import 'package:elaka_delivery_app/pages/current_no_order.dart';
 import 'package:elaka_delivery_app/pages/current_order.dart';
+import 'package:elaka_delivery_app/pages/setting.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 
@@ -76,7 +77,7 @@ class _ProgressBarState extends State<ProgressBar> {
                 ),
                 child: Column(
                   children: [
-                    HeightBox(50),
+                    const HeightBox(50),
                     const Padding(
                       padding:
                           EdgeInsets.symmetric(horizontal: 64, vertical: 25),
@@ -110,7 +111,7 @@ class _ProgressBarState extends State<ProgressBar> {
                         style: TextStyle(fontSize: 18, color: Colors.grey),
                       ),
                     ),
-                    HeightBox(100),
+                    const HeightBox(100),
                     SizedBox(
                         width: MediaQuery.of(context).size.width * 0.8,
                         child: ElevatedButton(
@@ -118,9 +119,9 @@ class _ProgressBarState extends State<ProgressBar> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => CurrentOrder()));
+                                      builder: (context) => const CurrentOrder()));
                             },
-                            child: Text("Accept"))),
+                            child: const Text("Accept"))),
                     SizedBox(
                         width: MediaQuery.of(context).size.width * 0.8,
                         child: ElevatedButton(
@@ -128,9 +129,9 @@ class _ProgressBarState extends State<ProgressBar> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => CurrentNoOrder()));
+                                      builder: (context) => const CurrentNoOrder()));
                             },
-                            child: Text("Reject"))),
+                            child: const Text("Reject"))),
                   ],
                 )),
           ),
@@ -148,7 +149,7 @@ class _ProgressBarState extends State<ProgressBar> {
           BottomNavigationBarItem(
             icon: GestureDetector(
                 onTap: () {
-                  // Navigator.push(context, MaterialPageRoute(builder: (context)=> HomeToo()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> Setting()));
                 },
                 child: const Icon(Icons.settings)),
             label: 'Setting',

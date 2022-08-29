@@ -1,6 +1,7 @@
 // import 'dart:html';
 
 import 'package:badges/badges.dart';
+import 'package:elaka_delivery_app/pages/setting.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -85,7 +86,7 @@ class _CurrentNoOrderState extends State<CurrentNoOrder> {
           BottomNavigationBarItem(
             icon: GestureDetector(
               onTap: (){
-                // Navigator.push(context, MaterialPageRoute(builder: (context)=> HomeToo()));
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> Setting()));
               },
               child: const Icon(Icons.settings)),
             label: 'Setting',

@@ -1,6 +1,7 @@
 // import 'dart:html';
 
 import 'package:badges/badges.dart';
+import 'package:elaka_delivery_app/pages/setting.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -63,7 +64,7 @@ class _CurrentOrderState extends State<CurrentOrder> {
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
-                      HeightBox(20),
+                      const HeightBox(20),
                       SizedBox(
                         width: MediaQuery.of(context).size.width * 0.8,
                         child: const Image(
@@ -92,7 +93,7 @@ class _CurrentOrderState extends State<CurrentOrder> {
                           ],
                         ),
                       ),
-                      HeightBox(20),
+                      const HeightBox(20),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 20),
                         child: Row(
@@ -139,7 +140,7 @@ class _CurrentOrderState extends State<CurrentOrder> {
                               )),
                         ),
                       ),
-                      SizedBox(height: 20,),
+                      const SizedBox(height: 20,),
                       SizedBox(
                         width: MediaQuery.of(context).size.width * 0.85,
                         height: 50,
@@ -147,7 +148,7 @@ class _CurrentOrderState extends State<CurrentOrder> {
                           style: ElevatedButton.styleFrom(
                             primary: Colors.green,
                           ),
-                          onPressed: (){}, child: Text("Start Route", style: TextStyle(
+                          onPressed: (){}, child: const Text("Start Route", style: TextStyle(
                           fontSize: 22,
                           fontWeight: FontWeight.bold,
                         ),))),
@@ -161,25 +162,25 @@ class _CurrentOrderState extends State<CurrentOrder> {
         currentIndex: currentIndex,
         onTap: (index) => setState(() => currentIndex = index),
         type: BottomNavigationBarType.fixed,
-        selectedItemColor: Color.fromARGB(255, 23, 69, 103),
-        unselectedItemColor: Color.fromARGB(255, 23, 69, 103),
+        selectedItemColor: const Color.fromARGB(255, 23, 69, 103),
+        unselectedItemColor: const Color.fromARGB(255, 23, 69, 103),
         iconSize: 30,
 
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: GestureDetector(
                 onTap: () {
-                  // Navigator.push(context, MaterialPageRoute(builder: (context)=> HomeToo()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> Setting()));
                 },
-                child: Icon(Icons.settings)),
+                child: const Icon(Icons.settings)),
             label: 'Setting',
           ),
           BottomNavigationBarItem(
             icon: GestureDetector(
               onTap: () {
-                // Navigator.push(context, MaterialPageRoute(builder: (context)=> Dashboard()));
+                // Navigator.push(context, MaterialPageRoute(builder: (context)=> Setting()));
               },
-              child: FaIcon(
+              child: const FaIcon(
                 FontAwesomeIcons.gift,
                 size: 26,
               ),
@@ -191,7 +192,7 @@ class _CurrentOrderState extends State<CurrentOrder> {
                 onTap: () {
                   // Navigator.push(context, MaterialPageRoute(builder: (context)=> ProfilePage()));
                 },
-                child: Icon(Icons.account_balance_wallet)),
+                child: const Icon(Icons.account_balance_wallet)),
             label: 'Wallet',
           ),
         ],
