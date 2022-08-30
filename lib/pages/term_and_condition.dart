@@ -1,8 +1,11 @@
 import 'package:badges/badges.dart';
-import 'package:elaka_delivery_app/pages/circularProgress.dart';
-import 'package:elaka_delivery_app/pages/new_password.dart';
-import 'package:elaka_delivery_app/pages/profile.dart';
+// import 'package:elaka_delivery_app/pages/circularProgress.dart';
+import 'package:elaka_delivery_app/pages/current_order.dart';
+import 'package:elaka_delivery_app/pages/notification_page.dart';
+// import 'package:elaka_delivery_app/pages/new_password.dart';
+// import 'package:elaka_delivery_app/pages/profile.dart';
 import 'package:elaka_delivery_app/pages/setting.dart';
+import 'package:elaka_delivery_app/pages/wallet.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -60,8 +63,13 @@ class _TermConditionState extends State<TermCondition> {
                         style: TextStyle(color: Colors.white),
                       ),
                     ),
-                    child: const Icon(Icons.notifications,
-                        size: 30, color: Color.fromARGB(255, 23, 69, 103))),
+                    child: GestureDetector(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => NotificationPage()));
+                      },
+                      child: Icon(Icons.notifications,
+                          size: 30, color: Color.fromARGB(255, 23, 69, 103)),
+                    )),
               ],
             ),
           ),
@@ -88,13 +96,13 @@ class _TermConditionState extends State<TermCondition> {
               ),
               child: SingleChildScrollView(
                 child: Column(
-                  children: [
-                    const SizedBox(
+                  children: const [
+                    SizedBox(
                       height: 50,
                     ),
 
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      padding: EdgeInsets.symmetric(horizontal: 16),
                       child: Text("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.", 
                       style: TextStyle(
                         fontSize: 18,
@@ -123,7 +131,7 @@ class _TermConditionState extends State<TermCondition> {
           BottomNavigationBarItem(
             icon: GestureDetector(
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=> Setting()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> const Setting()));
                 },
                 child: const Icon(Icons.settings)),
             label: 'Setting',
@@ -131,7 +139,7 @@ class _TermConditionState extends State<TermCondition> {
           BottomNavigationBarItem(
             icon: GestureDetector(
               onTap: () {
-                // Navigator.push(context, MaterialPageRoute(builder: (context)=> Setting()));
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> const CurrentOrder()));
               },
               child: const FaIcon(
                 FontAwesomeIcons.gift,
@@ -143,7 +151,7 @@ class _TermConditionState extends State<TermCondition> {
           BottomNavigationBarItem(
             icon: GestureDetector(
                 onTap: () {
-                  // Navigator.push(context, MaterialPageRoute(builder: (context)=> ProfilePage()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> const Wallet()));
                 },
                 child: const Icon(Icons.account_balance_wallet)),
             label: 'Wallet',

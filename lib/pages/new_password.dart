@@ -2,6 +2,7 @@
 
 import 'package:badges/badges.dart';
 import 'package:elaka_delivery_app/pages/circularProgress.dart';
+import 'package:elaka_delivery_app/pages/notification_page.dart';
 import 'package:flutter/material.dart';
 
 class NewPassword extends StatefulWidget {
@@ -55,8 +56,13 @@ class _NewPasswordState extends State<NewPassword> {
                         style: TextStyle(color: Colors.white),
                       ),
                     ),
-                    child: const Icon(Icons.notifications,
-                        size: 30, color: Color.fromARGB(255, 23, 69, 103))),
+                    child: GestureDetector(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => NotificationPage()));
+                      },
+                      child: Icon(Icons.notifications,
+                          size: 30, color: Color.fromARGB(255, 23, 69, 103)),
+                    )),
               ],
             ),
           ),

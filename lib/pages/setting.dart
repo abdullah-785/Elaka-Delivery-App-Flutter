@@ -2,12 +2,15 @@
 
 import 'package:badges/badges.dart';
 import 'package:elaka_delivery_app/pages/circularProgress.dart';
+import 'package:elaka_delivery_app/pages/current_order.dart';
 import 'package:elaka_delivery_app/pages/language.dart';
 import 'package:elaka_delivery_app/pages/login.dart';
 import 'package:elaka_delivery_app/pages/new_password.dart';
+import 'package:elaka_delivery_app/pages/notification_page.dart';
 import 'package:elaka_delivery_app/pages/privcy_policy.dart';
 import 'package:elaka_delivery_app/pages/profile.dart';
 import 'package:elaka_delivery_app/pages/term_and_condition.dart';
+import 'package:elaka_delivery_app/pages/wallet.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -86,8 +89,13 @@ class _SettingState extends State<Setting> {
                         style: TextStyle(color: Colors.white),
                       ),
                     ),
-                    child: const Icon(Icons.notifications,
-                        size: 30, color: Color.fromARGB(255, 23, 69, 103))),
+                    child: GestureDetector(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => NotificationPage()));
+                      },
+                      child: Icon(Icons.notifications,
+                          size: 30, color: Color.fromARGB(255, 23, 69, 103)),
+                    )),
               ],
             ),
           ),
@@ -320,7 +328,7 @@ class _SettingState extends State<Setting> {
           BottomNavigationBarItem(
             icon: GestureDetector(
               onTap: () {
-                // Navigator.push(context, MaterialPageRoute(builder: (context)=> Setting()));
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> CurrentOrder()));
               },
               child: const FaIcon(
                 FontAwesomeIcons.gift,
@@ -332,7 +340,7 @@ class _SettingState extends State<Setting> {
           BottomNavigationBarItem(
             icon: GestureDetector(
                 onTap: () {
-                  // Navigator.push(context, MaterialPageRoute(builder: (context)=> ProfilePage()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> Wallet()));
                 },
                 child: const Icon(Icons.account_balance_wallet)),
             label: 'Wallet',

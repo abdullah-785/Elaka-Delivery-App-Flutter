@@ -2,6 +2,8 @@
 
 import 'package:badges/badges.dart';
 import 'package:elaka_delivery_app/pages/setting.dart';
+import 'package:elaka_delivery_app/pages/start_routing.dart';
+import 'package:elaka_delivery_app/pages/wallet.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -148,7 +150,9 @@ class _CurrentOrderState extends State<CurrentOrder> {
                           style: ElevatedButton.styleFrom(
                             primary: Colors.green,
                           ),
-                          onPressed: (){}, child: const Text("Start Route", style: TextStyle(
+                          onPressed: (){
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => StartRounting()));
+                          }, child: const Text("Start Route", style: TextStyle(
                           fontSize: 22,
                           fontWeight: FontWeight.bold,
                         ),))),
@@ -178,7 +182,7 @@ class _CurrentOrderState extends State<CurrentOrder> {
           BottomNavigationBarItem(
             icon: GestureDetector(
               onTap: () {
-                // Navigator.push(context, MaterialPageRoute(builder: (context)=> Setting()));
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> CurrentOrder()));
               },
               child: const FaIcon(
                 FontAwesomeIcons.gift,
@@ -190,7 +194,7 @@ class _CurrentOrderState extends State<CurrentOrder> {
           BottomNavigationBarItem(
             icon: GestureDetector(
                 onTap: () {
-                  // Navigator.push(context, MaterialPageRoute(builder: (context)=> ProfilePage()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> Wallet()));
                 },
                 child: const Icon(Icons.account_balance_wallet)),
             label: 'Wallet',

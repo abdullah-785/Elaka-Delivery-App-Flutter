@@ -1,4 +1,7 @@
+import 'package:elaka_delivery_app/pages/current_no_order.dart';
+import 'package:elaka_delivery_app/pages/current_order.dart';
 import 'package:elaka_delivery_app/pages/setting.dart';
+import 'package:elaka_delivery_app/pages/wallet.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -371,7 +374,7 @@ class _EditProfileState extends State<EditProfile> {
           BottomNavigationBarItem(
             icon: GestureDetector(
               onTap: () {
-                // Navigator.push(context, MaterialPageRoute(builder: (context)=> Setting()));
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> CurrentOrder()));
               },
               child: const FaIcon(
                 FontAwesomeIcons.gift,
@@ -383,7 +386,7 @@ class _EditProfileState extends State<EditProfile> {
           BottomNavigationBarItem(
             icon: GestureDetector(
                 onTap: () {
-                  // Navigator.push(context, MaterialPageRoute(builder: (context)=> ProfilePage()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> Wallet()));
                 },
                 child: const Icon(Icons.account_balance_wallet)),
             label: 'Wallet',

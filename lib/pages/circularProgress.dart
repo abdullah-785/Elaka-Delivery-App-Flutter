@@ -75,64 +75,66 @@ class _ProgressBarState extends State<ProgressBar> {
                     ),
                   ],
                 ),
-                child: Column(
-                  children: [
-                    const HeightBox(50),
-                    const Padding(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 64, vertical: 25),
-                      child: Text(
-                        "Hy John you just received new order request it will be auto accepted within given time.",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 18, color: Colors.grey),
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      const HeightBox(50),
+                      const Padding(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 64, vertical: 25),
+                        child: Text(
+                          "Hy John you just received new order request it will be auto accepted within given time.",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontSize: 18, color: Colors.grey),
+                        ),
                       ),
-                    ),
-                    CircularPercentIndicator(
-                        // fillColor: Colors.green,
-                        backgroundColor: Colors.green,
-                        progressColor: Colors.grey,
-                        // arcBackgroundColor: Colors.green,
-                        radius: 60.0,
-                        lineWidth: 15.0,
-                        percent: 100 / 100,
-                        animation: true,
-                        animationDuration: 40000,
-                        center: Text("$_timecounter",
-                            style: const TextStyle(
-                              fontSize: 20,
-                              color: Colors.green,
-                            ))),
-                    const Padding(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 64, vertical: 25),
-                      child: Text(
-                        "Specify a reason for rejection",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 18, color: Colors.grey),
+                      CircularPercentIndicator(
+                          // fillColor: Colors.green,
+                          backgroundColor: Colors.green,
+                          progressColor: Colors.grey,
+                          // arcBackgroundColor: Colors.green,
+                          radius: 60.0,
+                          lineWidth: 15.0,
+                          percent: 100 / 100,
+                          animation: true,
+                          animationDuration: 40000,
+                          center: Text("$_timecounter",
+                              style: const TextStyle(
+                                fontSize: 20,
+                                color: Colors.green,
+                              ))),
+                      const Padding(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 64, vertical: 25),
+                        child: Text(
+                          "Specify a reason for rejection",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontSize: 18, color: Colors.grey),
+                        ),
                       ),
-                    ),
-                    const HeightBox(100),
-                    SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.8,
-                        child: ElevatedButton(
-                            onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => const CurrentOrder()));
-                            },
-                            child: const Text("Accept"))),
-                    SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.8,
-                        child: ElevatedButton(
-                            onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => const CurrentNoOrder()));
-                            },
-                            child: const Text("Reject"))),
-                  ],
+                      const HeightBox(80),
+                      SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.8,
+                          child: ElevatedButton(
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => const CurrentOrder()));
+                              },
+                              child: const Text("Accept"))),
+                      SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.8,
+                          child: ElevatedButton(
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => const CurrentNoOrder()));
+                              },
+                              child: const Text("Reject"))),
+                    ],
+                  ),
                 )),
           ),
         ],

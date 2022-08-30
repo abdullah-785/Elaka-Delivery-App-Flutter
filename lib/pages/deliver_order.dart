@@ -6,17 +6,20 @@ import 'package:elaka_delivery_app/pages/notification_page.dart';
 import 'package:elaka_delivery_app/pages/profile.dart';
 import 'package:elaka_delivery_app/pages/setting.dart';
 import 'package:elaka_delivery_app/pages/wallet.dart';
+import 'package:elaka_delivery_app/widgets/notifications_list.dart';
+import 'package:elaka_delivery_app/widgets/transection_list.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:velocity_x/velocity_x.dart';
 
-class PrivacyPolice extends StatefulWidget {
-  const PrivacyPolice({Key? key}) : super(key: key);
+class DeliveryOrder extends StatefulWidget {
+  const DeliveryOrder({Key? key}) : super(key: key);
 
   @override
-  State<PrivacyPolice> createState() => _PrivacyPoliceState();
+  State<DeliveryOrder> createState() => _DeliveryOrderState();
 }
 
-class _PrivacyPoliceState extends State<PrivacyPolice> {
+class _DeliveryOrderState extends State<DeliveryOrder> {
   int currentIndex = 0;
   // bool isChecked = false;
 
@@ -46,7 +49,7 @@ class _PrivacyPoliceState extends State<PrivacyPolice> {
                     ),
                 Spacer(),
                 const Text(
-                  "Privacy Police",
+                  "Your Comment",
                   style: TextStyle(
                     fontSize: 25,
                     fontWeight: FontWeight.bold,
@@ -97,20 +100,82 @@ class _PrivacyPoliceState extends State<PrivacyPolice> {
               child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    const SizedBox(
+                    SizedBox(
                       height: 50,
                     ),
 
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      child: Text("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.", 
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w500,
-                        color: Color.fromARGB(255, 91, 91, 91),
-                      ),
+                      padding: const EdgeInsets.only(left: 16, bottom: 10),
+                      child: Align(
+                        alignment: Alignment.topLeft,
+                        child: const Text(
+                                        "Amount",
+                                        style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
                       ),
                     ),
+
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: TextFormField(
+                          style: const TextStyle(
+                            fontSize: 20,
+                          ),
+                          decoration: InputDecoration(
+                            hintText: "Enter Amount",
+                              focusedBorder: const OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.green)),
+                              border: const OutlineInputBorder(),
+                              prefixIcon: Container(
+                                width: 50,
+                                height: 50,
+                                margin: const EdgeInsets.only(
+                                  top: 11,
+                                  bottom: 11,
+                                  right: 8,
+                                  left: 11,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: Colors.green,
+                                  borderRadius: BorderRadius.circular(50),
+                                ),
+                                child: const Icon(
+                                  Icons.money,
+                                  color: Colors.white,
+                                  size: 30,
+                                ),
+                              ),
+                              
+
+                              ),),
+                    ),
+                    HeightBox(40),
+
+                    SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.9,
+                    height: 50,
+                    child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          primary: Color.fromARGB(255, 78,206,113),
+                          onPrimary: Colors.white,
+                        ),
+                        onPressed: () {
+                          // Navigator.push(
+                          //     context,
+                          //     MaterialPageRoute(
+                          //         builder: (context) =>
+                          //             const OptVerification()));
+                        },
+                        child: const Text(
+                          "Submit",
+                          style: TextStyle(
+                              fontSize: 22, fontWeight: FontWeight.bold),
+                        )),
+                  ),
+                
                     
                   ],
                 ),
@@ -131,7 +196,8 @@ class _PrivacyPoliceState extends State<PrivacyPolice> {
           BottomNavigationBarItem(
             icon: GestureDetector(
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=> Setting()));
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Setting()));
                 },
                 child: const Icon(Icons.settings)),
             label: 'Setting',
@@ -139,7 +205,8 @@ class _PrivacyPoliceState extends State<PrivacyPolice> {
           BottomNavigationBarItem(
             icon: GestureDetector(
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> CurrentOrder()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => CurrentOrder()));
               },
               child: const FaIcon(
                 FontAwesomeIcons.gift,
@@ -157,9 +224,6 @@ class _PrivacyPoliceState extends State<PrivacyPolice> {
             label: 'Wallet',
           ),
         ],
-        // currentIndex: _selectedIndex,
-        // selectedItemColor: Colors.amber[800],
-        // onTap: _onItemTapped,
       ),
     );
   }

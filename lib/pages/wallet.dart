@@ -5,18 +5,19 @@ import 'package:elaka_delivery_app/pages/new_password.dart';
 import 'package:elaka_delivery_app/pages/notification_page.dart';
 import 'package:elaka_delivery_app/pages/profile.dart';
 import 'package:elaka_delivery_app/pages/setting.dart';
-import 'package:elaka_delivery_app/pages/wallet.dart';
+import 'package:elaka_delivery_app/widgets/transection_list.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:velocity_x/velocity_x.dart';
 
-class PrivacyPolice extends StatefulWidget {
-  const PrivacyPolice({Key? key}) : super(key: key);
+class Wallet extends StatefulWidget {
+  const Wallet({Key? key}) : super(key: key);
 
   @override
-  State<PrivacyPolice> createState() => _PrivacyPoliceState();
+  State<Wallet> createState() => _WalletState();
 }
 
-class _PrivacyPoliceState extends State<PrivacyPolice> {
+class _WalletState extends State<Wallet> {
   int currentIndex = 0;
   // bool isChecked = false;
 
@@ -46,7 +47,7 @@ class _PrivacyPoliceState extends State<PrivacyPolice> {
                     ),
                 Spacer(),
                 const Text(
-                  "Privacy Police",
+                  "My Wallet",
                   style: TextStyle(
                     fontSize: 25,
                     fontWeight: FontWeight.bold,
@@ -98,19 +99,69 @@ class _PrivacyPoliceState extends State<PrivacyPolice> {
                 child: Column(
                   children: [
                     const SizedBox(
-                      height: 50,
+                      height: 30,
                     ),
+                    Container(
+                      width: MediaQuery.of(context).size.width * 0.9,
+                      height: MediaQuery.of(context).size.height * 0.14,
+                      decoration: BoxDecoration(
+                        color: Color.fromARGB(255, 78, 206, 113),
+                        borderRadius: BorderRadius.circular(25),
+                      ),
+                      child: Column(
+                        children: const [
+                          HeightBox(10),
+                          Text(
+                            "Total Earning",
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: Color.fromARGB(255, 248, 245, 245),
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          HeightBox(16),
+                          Text(
+                            "\$2000",
+                            style: TextStyle(
+                              fontSize: 40,
+                              color: Color.fromARGB(255, 248, 245, 245),
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const HeightBox(30),
+                    const Padding(
+                      padding: EdgeInsets.only(left: 20),
+                      child: Align(
+                        alignment: Alignment.topLeft,
+                        child: Text("Recent Transections", style: TextStyle(
+                          fontSize: 23,
+                          fontWeight: FontWeight.bold,
+                        ),),
+                      ),
+                    ),
+                    const HeightBox(10),
 
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      child: Text("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.", 
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w500,
-                        color: Color.fromARGB(255, 91, 91, 91),
+                    SingleChildScrollView(
+                      child: Container(
+                        child: Column(
+                          children: const [
+                            TransectionList(),
+                        TransectionList(),
+                        TransectionList(),
+                        TransectionList(),
+                        TransectionList(),
+                        TransectionList(),
+                        TransectionList(),
+                        TransectionList(),
+                        TransectionList(),
+                        TransectionList(),
+                          ],
+                        ),
                       ),
-                      ),
-                    ),
+                    )
                     
                   ],
                 ),
@@ -131,7 +182,8 @@ class _PrivacyPoliceState extends State<PrivacyPolice> {
           BottomNavigationBarItem(
             icon: GestureDetector(
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=> Setting()));
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Setting()));
                 },
                 child: const Icon(Icons.settings)),
             label: 'Setting',

@@ -2,21 +2,23 @@ import 'package:badges/badges.dart';
 import 'package:elaka_delivery_app/pages/circularProgress.dart';
 import 'package:elaka_delivery_app/pages/current_order.dart';
 import 'package:elaka_delivery_app/pages/new_password.dart';
-import 'package:elaka_delivery_app/pages/notification_page.dart';
 import 'package:elaka_delivery_app/pages/profile.dart';
 import 'package:elaka_delivery_app/pages/setting.dart';
 import 'package:elaka_delivery_app/pages/wallet.dart';
+import 'package:elaka_delivery_app/widgets/notifications_list.dart';
+import 'package:elaka_delivery_app/widgets/transection_list.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:velocity_x/velocity_x.dart';
 
-class PrivacyPolice extends StatefulWidget {
-  const PrivacyPolice({Key? key}) : super(key: key);
+class NotificationPage extends StatefulWidget {
+  const NotificationPage({Key? key}) : super(key: key);
 
   @override
-  State<PrivacyPolice> createState() => _PrivacyPoliceState();
+  State<NotificationPage> createState() => _NotificationPageState();
 }
 
-class _PrivacyPoliceState extends State<PrivacyPolice> {
+class _NotificationPageState extends State<NotificationPage> {
   int currentIndex = 0;
   // bool isChecked = false;
 
@@ -46,7 +48,7 @@ class _PrivacyPoliceState extends State<PrivacyPolice> {
                     ),
                 Spacer(),
                 const Text(
-                  "Privacy Police",
+                  "Notifications",
                   style: TextStyle(
                     fontSize: 25,
                     fontWeight: FontWeight.bold,
@@ -96,21 +98,23 @@ class _PrivacyPoliceState extends State<PrivacyPolice> {
               ),
               child: SingleChildScrollView(
                 child: Column(
-                  children: [
-                    const SizedBox(
-                      height: 50,
+                  children: const [
+                    SizedBox(
+                      height: 30,
                     ),
 
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      child: Text("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.", 
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w500,
-                        color: Color.fromARGB(255, 91, 91, 91),
-                      ),
-                      ),
-                    ),
+
+
+                    NotificationList(),
+                    NotificationList(),
+                    NotificationList(),
+                    NotificationList(),
+                    NotificationList(),
+                    NotificationList(),
+                    NotificationList(),
+                    NotificationList(),
+                    NotificationList(),
+                    NotificationList(),
                     
                   ],
                 ),
@@ -131,7 +135,8 @@ class _PrivacyPoliceState extends State<PrivacyPolice> {
           BottomNavigationBarItem(
             icon: GestureDetector(
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=> Setting()));
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Setting()));
                 },
                 child: const Icon(Icons.settings)),
             label: 'Setting',
@@ -139,7 +144,8 @@ class _PrivacyPoliceState extends State<PrivacyPolice> {
           BottomNavigationBarItem(
             icon: GestureDetector(
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> CurrentOrder()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => CurrentOrder()));
               },
               child: const FaIcon(
                 FontAwesomeIcons.gift,
@@ -157,9 +163,6 @@ class _PrivacyPoliceState extends State<PrivacyPolice> {
             label: 'Wallet',
           ),
         ],
-        // currentIndex: _selectedIndex,
-        // selectedItemColor: Colors.amber[800],
-        // onTap: _onItemTapped,
       ),
     );
   }
