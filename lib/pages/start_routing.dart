@@ -1,17 +1,14 @@
 import 'package:elaka_delivery_app/pages/deliver_order.dart';
-import 'package:elaka_delivery_app/pages/opt_verification.dart';
 import 'package:elaka_delivery_app/pages/setting.dart';
 import 'package:elaka_delivery_app/pages/wallet.dart';
-// import 'package:elaka_delivery_app/widgets/opt.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-// import 'package:flutter/services.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class StartRounting extends StatefulWidget {
   const StartRounting({Key? key}) : super(key: key);
 
-  @override
+  @override 
   State<StartRounting> createState() => _StartRountingState();
 }
 
@@ -20,16 +17,14 @@ class _StartRountingState extends State<StartRounting> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 243, 247, 255),
       body: Column(
         children: [
           Expanded(
             child: Column(
-              children: [
-
-
-
+              children: const [
 
 
               ],
@@ -82,7 +77,7 @@ class _StartRountingState extends State<StartRounting> {
                       Text(" 5:30 PM", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),)
                     ],),
                   ),
-                  HeightBox(10),
+                  const HeightBox(10),
                   Padding(
                     padding: const EdgeInsets.only(top: 25, left: 18),
                     child: Row(children: const [
@@ -109,14 +104,14 @@ class _StartRountingState extends State<StartRounting> {
                       Text(" 5:30 PM", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),)
                     ],),
                   ),
-                  HeightBox(40),
+                  const HeightBox(40),
 
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.9,
                     height: 55,
                     child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          primary: Color.fromARGB(255, 78,206,113),
+                          primary: const Color.fromARGB(255, 78,206,113),
                           onPrimary: Colors.white,
                         ),
                         onPressed: () {
@@ -151,7 +146,7 @@ class _StartRountingState extends State<StartRounting> {
           BottomNavigationBarItem(
             icon: GestureDetector(
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=> Setting()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> const Setting()));
                 },
                 child: const Icon(Icons.settings)),
             label: 'Setting',
@@ -171,7 +166,7 @@ class _StartRountingState extends State<StartRounting> {
           BottomNavigationBarItem(
             icon: GestureDetector(
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=> Wallet()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> const Wallet()));
                 },
                 child: const Icon(Icons.account_balance_wallet)),
             label: 'Wallet',

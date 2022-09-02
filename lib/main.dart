@@ -1,25 +1,48 @@
-import 'package:elaka_delivery_app/pages/circularProgress.dart';
-import 'package:elaka_delivery_app/pages/current_no_order.dart';
-import 'package:elaka_delivery_app/pages/current_order.dart';
-import 'package:elaka_delivery_app/pages/deliver_order.dart';
-import 'package:elaka_delivery_app/pages/language.dart';
+// import 'package:elaka_delivery_app/pages/circularProgress.dart';
+// import 'package:elaka_delivery_app/pages/current_no_order.dart';
+// import 'package:elaka_delivery_app/pages/current_order.dart';
+// import 'package:elaka_delivery_app/pages/deliver_order.dart';
+// import 'package:elaka_delivery_app/pages/language.dart';
 import 'package:elaka_delivery_app/pages/login.dart';
-import 'package:elaka_delivery_app/pages/new_password.dart';
-import 'package:elaka_delivery_app/pages/notification_page.dart';
-import 'package:elaka_delivery_app/pages/privcy_policy.dart';
-import 'package:elaka_delivery_app/pages/profile.dart';
-import 'package:elaka_delivery_app/pages/setting.dart';
-import 'package:elaka_delivery_app/pages/start_routing.dart';
-import 'package:elaka_delivery_app/pages/term_and_condition.dart';
-import 'package:elaka_delivery_app/pages/wallet.dart';
+import 'package:firebase_core/firebase_core.dart';
+// import 'package:elaka_delivery_app/pages/new_password.dart';
+// import 'package:elaka_delivery_app/pages/notification_page.dart';
+// import 'package:elaka_delivery_app/pages/privcy_policy.dart';
+// import 'package:elaka_delivery_app/pages/profile.dart';
+// import 'package:elaka_delivery_app/pages/setting.dart';
+// import 'package:elaka_delivery_app/pages/start_routing.dart';
+// import 'package:elaka_delivery_app/pages/term_and_condition.dart';
+// import 'package:elaka_delivery_app/pages/wallet.dart';
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const MaterialApp(
+// void main() {
+//   runApp(const MaterialApp(
+//     debugShowCheckedModeBanner: false,
+//     home: MyApp(),
+//   ));
+// }
+Future main() async {                                         
+
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+
+  runApp( MaterialApp(
+    theme: ThemeData(fontFamily: 'Releway'),
     debugShowCheckedModeBanner: false,
+    title: "Ealaka",
     home: MyApp(),
+    
+    // initialRoute: '/',
+    // routes: {
+    //   '/': (context) => DetailPage()
+    // },
   ));
 }
+
+
+
+
+
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -36,12 +59,14 @@ class MyApp extends StatelessWidget {
 // import 'package:flutter/material.dart';
 // import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-// void main() => runApp(MyApp());
+// void main() => runApp(const MyApp());
 
 // class MyApp extends StatelessWidget {
+//   const MyApp({Key? key}) : super(key: key);
+
 //   @override
 //   Widget build(BuildContext context) {
-//     return MaterialApp(
+//     return const MaterialApp(
 //       title: 'Flutter Google Maps Demo',
 //       home: MapSample(),
 //     );
@@ -49,19 +74,21 @@ class MyApp extends StatelessWidget {
 // }
 
 // class MapSample extends StatefulWidget {
+//   const MapSample({Key? key}) : super(key: key);
+
 //   @override
 //   State<MapSample> createState() => MapSampleState();
 // }
 
 // class MapSampleState extends State<MapSample> {
-//   Completer<GoogleMapController> _controller = Completer();
+//   late final Completer<GoogleMapController> _controller = Completer();
 
-//   static final CameraPosition _kGooglePlex = CameraPosition(
+//   static const CameraPosition _kGooglePlex = CameraPosition(
 //     target: LatLng(37.42796133580664, -122.085749655962),
 //     zoom: 14.4746,
 //   );
 
-//   static final CameraPosition _kLake = CameraPosition(
+//   static const CameraPosition _kLake = CameraPosition(
 //       bearing: 192.8334901395799,
 //       target: LatLng(37.43296265331129, -122.08832357078792),
 //       tilt: 59.440717697143555,
@@ -69,7 +96,7 @@ class MyApp extends StatelessWidget {
 
 //   @override
 //   Widget build(BuildContext context) {
-//     return new Scaffold(
+//     return Scaffold(
 //       body: GoogleMap(
 //         mapType: MapType.normal,
 //         initialCameraPosition: _kGooglePlex,
@@ -79,8 +106,8 @@ class MyApp extends StatelessWidget {
 //       ),
 //       floatingActionButton: FloatingActionButton.extended(
 //         onPressed: _goToTheLake,
-//         label: Text('To the lake!'),
-//         icon: Icon(Icons.directions_boat),
+//         label: const Text('To the lake!'),
+//         icon: const Icon(Icons.directions_boat),
 //       ),
 //     );
 //   }

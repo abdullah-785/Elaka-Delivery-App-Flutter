@@ -1,9 +1,9 @@
 import 'package:badges/badges.dart';
-import 'package:elaka_delivery_app/pages/circularProgress.dart';
+// import 'package:elaka_delivery_app/pages/circularProgress.dart';
 import 'package:elaka_delivery_app/pages/current_order.dart';
-import 'package:elaka_delivery_app/pages/new_password.dart';
+// import 'package:elaka_delivery_app/pages/new_password.dart';
 import 'package:elaka_delivery_app/pages/notification_page.dart';
-import 'package:elaka_delivery_app/pages/profile.dart';
+// import 'package:elaka_delivery_app/pages/profile.dart';
 import 'package:elaka_delivery_app/pages/setting.dart';
 import 'package:elaka_delivery_app/widgets/transection_list.dart';
 import 'package:flutter/material.dart';
@@ -45,7 +45,7 @@ class _WalletState extends State<Wallet> {
                 const SizedBox(
                     // width: 50,
                     ),
-                Spacer(),
+                const Spacer(),
                 const Text(
                   "My Wallet",
                   style: TextStyle(
@@ -55,7 +55,7 @@ class _WalletState extends State<Wallet> {
                 ),
                 const Spacer(),
                 Badge(
-                    badgeColor: Colors.green,
+                    badgeColor: Color.fromARGB(255, 78,206,113),
                     animationType: BadgeAnimationType.slide,
                     badgeContent: const Padding(
                       padding: EdgeInsets.all(1.0),
@@ -68,7 +68,7 @@ class _WalletState extends State<Wallet> {
                       onTap: (){
                         Navigator.push(context, MaterialPageRoute(builder: (context) => NotificationPage()));
                       },
-                      child: Icon(Icons.notifications,
+                      child: const Icon(Icons.notifications,
                           size: 30, color: Color.fromARGB(255, 23, 69, 103)),
                     )),
               ],
@@ -105,7 +105,7 @@ class _WalletState extends State<Wallet> {
                       width: MediaQuery.of(context).size.width * 0.9,
                       height: MediaQuery.of(context).size.height * 0.14,
                       decoration: BoxDecoration(
-                        color: Color.fromARGB(255, 78, 206, 113),
+                        color: const Color.fromARGB(255, 78, 206, 113),
                         borderRadius: BorderRadius.circular(25),
                       ),
                       child: Column(
@@ -145,21 +145,19 @@ class _WalletState extends State<Wallet> {
                     const HeightBox(10),
 
                     SingleChildScrollView(
-                      child: Container(
-                        child: Column(
-                          children: const [
-                            TransectionList(),
-                        TransectionList(),
-                        TransectionList(),
-                        TransectionList(),
-                        TransectionList(),
-                        TransectionList(),
-                        TransectionList(),
-                        TransectionList(),
-                        TransectionList(),
-                        TransectionList(),
-                          ],
-                        ),
+                      child: Column(
+                        children: const [
+                          TransectionList(),
+                      TransectionList(),
+                      TransectionList(),
+                      TransectionList(),
+                      TransectionList(),
+                      TransectionList(),
+                      TransectionList(),
+                      TransectionList(),
+                      TransectionList(),
+                      TransectionList(),
+                        ],
                       ),
                     )
                     
@@ -183,7 +181,7 @@ class _WalletState extends State<Wallet> {
             icon: GestureDetector(
                 onTap: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => Setting()));
+                      MaterialPageRoute(builder: (context) => const Setting()));
                 },
                 child: const Icon(Icons.settings)),
             label: 'Setting',
@@ -191,7 +189,7 @@ class _WalletState extends State<Wallet> {
           BottomNavigationBarItem(
             icon: GestureDetector(
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> CurrentOrder()));
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> const CurrentOrder()));
               },
               child: const FaIcon(
                 FontAwesomeIcons.gift,
@@ -203,7 +201,7 @@ class _WalletState extends State<Wallet> {
           BottomNavigationBarItem(
             icon: GestureDetector(
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=> Wallet()));
+                  // Navigator.push(context, MaterialPageRoute(builder: (context)=> const Wallet()));
                 },
                 child: const Icon(Icons.account_balance_wallet)),
             label: 'Wallet',

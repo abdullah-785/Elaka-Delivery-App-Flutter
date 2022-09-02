@@ -1,7 +1,3 @@
-// import 'dart:html';
-
-import 'package:badges/badges.dart';
-import 'package:elaka_delivery_app/pages/current_order.dart';
 import 'package:elaka_delivery_app/pages/setting.dart';
 import 'package:elaka_delivery_app/pages/wallet.dart';
 import 'package:flutter/material.dart';
@@ -88,7 +84,7 @@ class _CurrentNoOrderState extends State<CurrentNoOrder> {
           BottomNavigationBarItem(
             icon: GestureDetector(
               onTap: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> Setting()));
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> const Setting()));
               },
               child: const Icon(Icons.settings)),
             label: 'Setting',
@@ -97,7 +93,7 @@ class _CurrentNoOrderState extends State<CurrentNoOrder> {
           BottomNavigationBarItem(
             icon: GestureDetector(
               onTap: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> CurrentNoOrder()));
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> const CurrentNoOrder()));
               },
               child: const FaIcon(FontAwesomeIcons.gift, size: 26,), ),
             label: 'Order',
@@ -105,7 +101,7 @@ class _CurrentNoOrderState extends State<CurrentNoOrder> {
           BottomNavigationBarItem(
             icon: GestureDetector(
               onTap: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> Wallet()));
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> const Wallet()));
               },
               child: const Icon(Icons.account_balance_wallet)),
             label: 'Wallet',

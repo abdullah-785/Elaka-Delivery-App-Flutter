@@ -47,7 +47,7 @@ class _NewPasswordState extends State<NewPassword> {
                 ),
                 const Spacer(),
                 Badge(
-                    badgeColor: Colors.green,
+                    badgeColor: const Color.fromARGB(255, 78,206,113),
                     animationType: BadgeAnimationType.slide,
                     badgeContent: const Padding(
                       padding: EdgeInsets.all(1.0),
@@ -58,9 +58,9 @@ class _NewPasswordState extends State<NewPassword> {
                     ),
                     child: GestureDetector(
                       onTap: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => NotificationPage()));
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => const NotificationPage()));
                       },
-                      child: Icon(Icons.notifications,
+                      child: const Icon(Icons.notifications,
                           size: 30, color: Color.fromARGB(255, 23, 69, 103)),
                     )),
               ],
@@ -116,7 +116,7 @@ class _NewPasswordState extends State<NewPassword> {
                           ),
                           decoration: InputDecoration(
                               focusedBorder: const OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.green)),
+                                  borderSide: BorderSide(color: Color.fromARGB(255, 78,206,113))),
                               border: const OutlineInputBorder(),
                               prefixIcon: Container(
                                 width: 50,
@@ -128,7 +128,7 @@ class _NewPasswordState extends State<NewPassword> {
                                   left: 11,
                                 ),
                                 decoration: BoxDecoration(
-                                  color: Colors.green,
+                                  color: const Color.fromARGB(255, 78,206,113),
                                   borderRadius: BorderRadius.circular(50),
                                 ),
                                 child: const Icon(
@@ -145,7 +145,7 @@ class _NewPasswordState extends State<NewPassword> {
                               },
                               child: Icon(_obscureText
                                   ? Icons.visibility
-                                  : Icons.visibility_off, color: Colors.green,),
+                                  : Icons.visibility_off, color: const Color.fromARGB(255, 78,206,113),),
                             ),
                               ),),
                     ),
@@ -175,7 +175,7 @@ class _NewPasswordState extends State<NewPassword> {
                           ),
                           decoration: InputDecoration(
                               focusedBorder: const OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.green)),
+                                  borderSide: BorderSide(color: Color.fromARGB(255, 78,206,113))),
                               border: const OutlineInputBorder(),
                               prefixIcon: Container(
                                 width: 50,
@@ -187,7 +187,7 @@ class _NewPasswordState extends State<NewPassword> {
                                   left: 11,
                                 ),
                                 decoration: BoxDecoration(
-                                  color: Colors.green,
+                                  color: const Color.fromARGB(255, 78,206,113),
                                   borderRadius: BorderRadius.circular(50),
                                 ),
                                 child: const Icon(
@@ -204,7 +204,7 @@ class _NewPasswordState extends State<NewPassword> {
                               },
                               child: Icon(_obscureText
                                   ? Icons.visibility
-                                  : Icons.visibility_off, color: Colors.green,),
+                                  : Icons.visibility_off, color: const Color.fromARGB(255, 78,206,113),),
                             ),
 
                               ),),
@@ -216,7 +216,7 @@ class _NewPasswordState extends State<NewPassword> {
                       height: 50,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          primary: Colors.green,
+                          primary: const Color.fromARGB(255, 78,206,113),
                           onPrimary: Colors.white,
                         ),
                         onPressed: (){

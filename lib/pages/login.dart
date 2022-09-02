@@ -1,8 +1,11 @@
 import 'package:elaka_delivery_app/pages/opt_verification.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 // import 'package:elaka_delivery_app/widgets/opt.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 // import 'package:flutter/services.dart';
 import 'package:velocity_x/velocity_x.dart';
+import 'package:email_auth/email_auth.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -15,11 +18,24 @@ class _LoginState extends State<Login> {
   bool _obscureText = true;
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final _auth = FirebaseAuth.instance;
+
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   // Initialize the package
+  //   emailAuth = new EmailAuth(
+  //     sessionName: "Ealaka App",
+  //   );
+
+  // }
+
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 243, 247, 255),
+      backgroundColor: Color.fromARGB(255, 243, 247, 255),
       body: Column(
         children: [
           Expanded(
@@ -51,7 +67,7 @@ class _LoginState extends State<Login> {
           ),
           Expanded(
               child: Container(
-            height: 30,
+            // height: 30,
             width: MediaQuery.of(context).size.width * 1,
             decoration: BoxDecoration(
               color: Colors.white,
@@ -95,10 +111,13 @@ class _LoginState extends State<Login> {
                           fontSize: 20,
                         ),
                         decoration: InputDecoration(
-                            label: const Text("Email"),
+                            label: const Text("Email", style: TextStyle(
+                              color: Colors.grey,
+                            ),),
                             hintText: "Enter Email",
                             focusedBorder: const OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.green)),
+                                borderSide: BorderSide(
+                                    color: Color.fromARGB(255, 78, 206, 113))),
                             border: const OutlineInputBorder(),
                             prefixIcon: Container(
                               width: 50,
@@ -110,7 +129,7 @@ class _LoginState extends State<Login> {
                                 left: 11,
                               ),
                               decoration: BoxDecoration(
-                                color: Colors.green,
+                                color: const Color.fromARGB(255, 78, 206, 113),
                                 borderRadius: BorderRadius.circular(50),
                               ),
                               child: const Icon(
@@ -147,10 +166,13 @@ class _LoginState extends State<Login> {
                         obscureText: _obscureText,
                         keyboardType: TextInputType.text,
                         decoration: InputDecoration(
-                            label: const Text("Passsword"),
+                            label: const Text("Passsword", style: TextStyle(
+                              color: Colors.grey,
+                            ),),
                             hintText: "Enter Password",
                             focusedBorder: const OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.green)),
+                                borderSide: BorderSide(
+                                    color: Color.fromARGB(255, 78, 206, 113))),
                             border: const OutlineInputBorder(),
                             prefixIcon: Container(
                               width: 50,
@@ -162,7 +184,7 @@ class _LoginState extends State<Login> {
                                 left: 11,
                               ),
                               decoration: BoxDecoration(
-                                color: Colors.green,
+                                color: const Color.fromARGB(255, 78, 206, 113),
                                 borderRadius: BorderRadius.circular(50),
                               ),
                               child: const Icon(
@@ -177,9 +199,12 @@ class _LoginState extends State<Login> {
                                   _obscureText = !_obscureText;
                                 });
                               },
-                              child: Icon(_obscureText
-                                  ? Icons.visibility
-                                  : Icons.visibility_off, color: Colors.green,),
+                              child: Icon(
+                                _obscureText
+                                    ? Icons.visibility
+                                    : Icons.visibility_off,
+                                color: const Color.fromARGB(255, 78, 206, 113),
+                              ),
                             ))),
                   ),
                   const SizedBox(
@@ -188,25 +213,45 @@ class _LoginState extends State<Login> {
                   const Text("Forget Password?",
                       style: TextStyle(
                           fontSize: 20,
-                          color: Colors.green,
+                          color: Color.fromARGB(255, 78, 206, 113),
                           fontWeight: FontWeight.bold)),
                   const SizedBox(
                     height: 28,
                   ),
+
+                  // TextFormField(
+                  //   // controller: _optController,
+                  // ),
+                  // ElevatedButton(onPressed: (){
+                  //   // verify();
+                  // }, child: Text("verify")),
+
+
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.9,
                     height: 50,
                     child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          primary: Colors.green,
+                          primary: const Color.fromARGB(255, 78, 206, 113),
                           onPrimary: Colors.white,
                         ),
                         onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      const OptVerification()));
+                          _auth
+                              .signInWithEmailAndPassword(
+                                  email: _emailController.text,
+                                  password: _passwordController.text)
+                              .then((uid) => {
+                                    // Fluttertoast.showToast(
+                                    //     msg: ""),
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                OptVerification())),
+                                  })
+                              .catchError((e) {
+                            Fluttertoast.showToast(msg: e!.message);
+                          });
                         },
                         child: const Text(
                           "Sign In",

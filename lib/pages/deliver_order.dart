@@ -1,13 +1,8 @@
 import 'package:badges/badges.dart';
-import 'package:elaka_delivery_app/pages/circularProgress.dart';
 import 'package:elaka_delivery_app/pages/current_order.dart';
-import 'package:elaka_delivery_app/pages/new_password.dart';
 import 'package:elaka_delivery_app/pages/notification_page.dart';
-import 'package:elaka_delivery_app/pages/profile.dart';
 import 'package:elaka_delivery_app/pages/setting.dart';
 import 'package:elaka_delivery_app/pages/wallet.dart';
-import 'package:elaka_delivery_app/widgets/notifications_list.dart';
-import 'package:elaka_delivery_app/widgets/transection_list.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -47,7 +42,7 @@ class _DeliveryOrderState extends State<DeliveryOrder> {
                 const SizedBox(
                     // width: 50,
                     ),
-                Spacer(),
+                const Spacer(),
                 const Text(
                   "Your Comment",
                   style: TextStyle(
@@ -57,7 +52,7 @@ class _DeliveryOrderState extends State<DeliveryOrder> {
                 ),
                 const Spacer(),
                 Badge(
-                    badgeColor: Colors.green,
+                    badgeColor: const Color.fromARGB(255, 78,206,113),
                     animationType: BadgeAnimationType.slide,
                     badgeContent: const Padding(
                       padding: EdgeInsets.all(1.0),
@@ -68,9 +63,9 @@ class _DeliveryOrderState extends State<DeliveryOrder> {
                     ),
                     child: GestureDetector(
                       onTap: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => NotificationPage()));
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => const NotificationPage()));
                       },
-                      child: Icon(Icons.notifications,
+                      child: const Icon(Icons.notifications,
                           size: 30, color: Color.fromARGB(255, 23, 69, 103)),
                     )),
               ],
@@ -100,15 +95,15 @@ class _DeliveryOrderState extends State<DeliveryOrder> {
               child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       height: 50,
                     ),
 
-                    Padding(
-                      padding: const EdgeInsets.only(left: 16, bottom: 10),
+                    const Padding(
+                      padding: EdgeInsets.only(left: 16, bottom: 10),
                       child: Align(
                         alignment: Alignment.topLeft,
-                        child: const Text(
+                        child: Text(
                                         "Amount",
                                         style: TextStyle(
                         fontSize: 24,
@@ -139,7 +134,7 @@ class _DeliveryOrderState extends State<DeliveryOrder> {
                                   left: 11,
                                 ),
                                 decoration: BoxDecoration(
-                                  color: Colors.green,
+                                  color: const Color.fromARGB(255, 78,206,113),
                                   borderRadius: BorderRadius.circular(50),
                                 ),
                                 child: const Icon(
@@ -152,14 +147,14 @@ class _DeliveryOrderState extends State<DeliveryOrder> {
 
                               ),),
                     ),
-                    HeightBox(40),
+                    const HeightBox(40),
 
                     SizedBox(
                     width: MediaQuery.of(context).size.width * 0.9,
                     height: 50,
                     child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          primary: Color.fromARGB(255, 78,206,113),
+                          primary: const Color.fromARGB(255, 78,206,113),
                           onPrimary: Colors.white,
                         ),
                         onPressed: () {
@@ -197,7 +192,7 @@ class _DeliveryOrderState extends State<DeliveryOrder> {
             icon: GestureDetector(
                 onTap: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => Setting()));
+                      MaterialPageRoute(builder: (context) => const Setting()));
                 },
                 child: const Icon(Icons.settings)),
             label: 'Setting',
@@ -206,7 +201,7 @@ class _DeliveryOrderState extends State<DeliveryOrder> {
             icon: GestureDetector(
               onTap: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => CurrentOrder()));
+                    MaterialPageRoute(builder: (context) => const CurrentOrder()));
               },
               child: const FaIcon(
                 FontAwesomeIcons.gift,
@@ -218,7 +213,7 @@ class _DeliveryOrderState extends State<DeliveryOrder> {
           BottomNavigationBarItem(
             icon: GestureDetector(
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=> Wallet()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> const Wallet()));
                 },
                 child: const Icon(Icons.account_balance_wallet)),
             label: 'Wallet',

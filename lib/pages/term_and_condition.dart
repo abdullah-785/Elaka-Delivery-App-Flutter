@@ -44,7 +44,7 @@ class _TermConditionState extends State<TermCondition> {
                 const SizedBox(
                     // width: 50,
                     ),
-                Spacer(),
+                const Spacer(),
                 const Text(
                   "Term & Condition",
                   style: TextStyle(
@@ -65,9 +65,9 @@ class _TermConditionState extends State<TermCondition> {
                     ),
                     child: GestureDetector(
                       onTap: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => NotificationPage()));
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => const NotificationPage()));
                       },
-                      child: Icon(Icons.notifications,
+                      child: const Icon(Icons.notifications,
                           size: 30, color: Color.fromARGB(255, 23, 69, 103)),
                     )),
               ],

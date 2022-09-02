@@ -3,11 +3,11 @@
 // ignore_for_file: unnecessary_const
 
 import 'package:badges/badges.dart';
-import 'package:elaka_delivery_app/pages/circularProgress.dart';
+// import 'package:elaka_delivery_app/pages/circularProgress.dart';
 import 'package:elaka_delivery_app/pages/current_order.dart';
-import 'package:elaka_delivery_app/pages/new_password.dart';
+// import 'package:elaka_delivery_app/pages/new_password.dart';
 import 'package:elaka_delivery_app/pages/notification_page.dart';
-import 'package:elaka_delivery_app/pages/profile.dart';
+// import 'package:elaka_delivery_app/pages/profile.dart';
 import 'package:elaka_delivery_app/pages/setting.dart';
 import 'package:elaka_delivery_app/pages/wallet.dart';
 import 'package:flutter/material.dart';
@@ -51,7 +51,7 @@ class _LanguageState extends State<Language> {
                 const SizedBox(
                     // width: 50,
                     ),
-                Spacer(),
+                const Spacer(),
                 const Text(
                   "Switch Language",
                   style: TextStyle(
@@ -61,7 +61,7 @@ class _LanguageState extends State<Language> {
                 ),
                 const Spacer(),
                 Badge(
-                    badgeColor: Colors.green,
+                    badgeColor: const Color.fromARGB(255, 78,206,113),
                     animationType: BadgeAnimationType.slide,
                     badgeContent: const Padding(
                       padding: EdgeInsets.all(1.0),
@@ -72,9 +72,9 @@ class _LanguageState extends State<Language> {
                     ),
                     child: GestureDetector(
                       onTap: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => NotificationPage()));
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => const NotificationPage()));
                       },
-                      child: Icon(Icons.notifications,
+                      child: const Icon(Icons.notifications,
                           size: 30, color: Color.fromARGB(255, 23, 69, 103)),
                     )),
               ],
@@ -126,7 +126,7 @@ class _LanguageState extends State<Language> {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          Spacer(),
+                          const Spacer(),
                           Checkbox(
                               value: isChecked1,
                               onChanged: (bool? value) {
@@ -137,8 +137,8 @@ class _LanguageState extends State<Language> {
                         ],
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 32),
+                    const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 32),
                       child: Divider(),
                     ),
 
@@ -161,7 +161,7 @@ class _LanguageState extends State<Language> {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          Spacer(),
+                          const Spacer(),
                           Checkbox(
                               value: isChecked2,
                               onChanged: (bool? value) {
@@ -172,8 +172,8 @@ class _LanguageState extends State<Language> {
                         ],
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 32),
+                    const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 32),
                       child: Divider(),
                     ),
 
@@ -196,7 +196,7 @@ class _LanguageState extends State<Language> {
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          Spacer(),
+                          const Spacer(),
                           Checkbox(
                               value: isChecked3,
                               onChanged: (bool? value) {
@@ -208,13 +208,13 @@ class _LanguageState extends State<Language> {
                       ),
                     ),
 
-                    HeightBox(40),
+                    const HeightBox(40),
                     SizedBox(
                     width: MediaQuery.of(context).size.width * 0.9,
                     height: 50,
                     child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          primary: Colors.green,
+                          primary: const Color.fromARGB(255, 78,206,113),
                           onPrimary: Colors.white,
                         ),
                         onPressed: () {
@@ -251,7 +251,7 @@ class _LanguageState extends State<Language> {
           BottomNavigationBarItem(
             icon: GestureDetector(
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=> Setting()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> const Setting()));
                 },
                 child: const Icon(Icons.settings)),
             label: 'Setting',
@@ -259,7 +259,7 @@ class _LanguageState extends State<Language> {
           BottomNavigationBarItem(
             icon: GestureDetector(
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> CurrentOrder()));
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> const CurrentOrder()));
               },
               child: const FaIcon(
                 FontAwesomeIcons.gift,
@@ -271,7 +271,7 @@ class _LanguageState extends State<Language> {
           BottomNavigationBarItem(
             icon: GestureDetector(
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=> Wallet()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> const Wallet()));
                 },
                 child: const Icon(Icons.account_balance_wallet)),
             label: 'Wallet',

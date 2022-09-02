@@ -46,7 +46,7 @@ class TransectionList extends StatelessWidget {
                   color: Colors.grey,
                 ),)),
             ),
-            HeightBox(20),
+            const HeightBox(20),
           ]),
       ),
     );

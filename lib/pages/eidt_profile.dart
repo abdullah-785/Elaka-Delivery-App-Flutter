@@ -1,4 +1,4 @@
-import 'package:elaka_delivery_app/pages/current_no_order.dart';
+// import 'package:elaka_delivery_app/pages/current_no_order.dart';
 import 'package:elaka_delivery_app/pages/current_order.dart';
 import 'package:elaka_delivery_app/pages/setting.dart';
 import 'package:elaka_delivery_app/pages/wallet.dart';
@@ -101,7 +101,7 @@ class _EditProfileState extends State<EditProfile> {
                           ),
                           decoration: InputDecoration(
                               focusedBorder: const OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.green)),
+                                  borderSide: BorderSide(color: Color.fromARGB(255, 78,206,113))),
                               border: const OutlineInputBorder(),
                               prefixIcon: Container(
                                 width: 39,
@@ -113,7 +113,7 @@ class _EditProfileState extends State<EditProfile> {
                                   left: 8,
                                 ),
                                 decoration: BoxDecoration(
-                                  color: Colors.green,
+                                  color: Color.fromARGB(255, 78,206,113),
                                   borderRadius: BorderRadius.circular(50),
                                 ),
                                 child: const Icon(
@@ -150,7 +150,7 @@ class _EditProfileState extends State<EditProfile> {
                           ),
                           decoration: InputDecoration(
                               focusedBorder: const OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.green)),
+                                  borderSide: BorderSide(color: Color.fromARGB(255, 78,206,113))),
                               border: const OutlineInputBorder(),
                               prefixIcon: Container(
                                 width: 39,
@@ -162,7 +162,7 @@ class _EditProfileState extends State<EditProfile> {
                                   left: 8,
                                 ),
                                 decoration: BoxDecoration(
-                                  color: Colors.green,
+                                  color: Color.fromARGB(255, 78,206,113),
                                   borderRadius: BorderRadius.circular(50),
                                 ),
                                 child: const Icon(
@@ -199,7 +199,7 @@ class _EditProfileState extends State<EditProfile> {
                           ),
                           decoration: InputDecoration(
                               focusedBorder: const OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.green)),
+                                  borderSide: BorderSide(color: Color.fromARGB(255, 78,206,113))),
                               border: const OutlineInputBorder(),
                               prefixIcon: Container(
                                 width: 39,
@@ -211,7 +211,7 @@ class _EditProfileState extends State<EditProfile> {
                                   left: 8,
                                 ),
                                 decoration: BoxDecoration(
-                                  color: Colors.green,
+                                  color: Color.fromARGB(255, 78,206,113),
                                   borderRadius: BorderRadius.circular(50),
                                 ),
                                 child: const Icon(
@@ -248,7 +248,7 @@ class _EditProfileState extends State<EditProfile> {
                           ),
                           decoration: InputDecoration(
                               focusedBorder: const OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.green)),
+                                  borderSide: BorderSide(color: Color.fromARGB(255, 78,206,113))),
                               border: const OutlineInputBorder(),
                               prefixIcon: Container(
                                 width: 39,
@@ -260,7 +260,7 @@ class _EditProfileState extends State<EditProfile> {
                                   left: 8,
                                 ),
                                 decoration: BoxDecoration(
-                                  color: Colors.green,
+                                  color: const Color.fromARGB(255, 78,206,113),
                                   borderRadius: BorderRadius.circular(50),
                                 ),
                                 child: const Icon(
@@ -297,7 +297,7 @@ class _EditProfileState extends State<EditProfile> {
                           ),
                           decoration: InputDecoration(
                               focusedBorder: const OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.green)),
+                                  borderSide: BorderSide(color: Color.fromARGB(255, 78,206,113))),
                               border: const OutlineInputBorder(),
                               prefixIcon: Container(
                                 width: 39,
@@ -309,7 +309,7 @@ class _EditProfileState extends State<EditProfile> {
                                   left: 8,
                                 ),
                                 decoration: BoxDecoration(
-                                  color: Colors.green,
+                                  color: const Color.fromARGB(255, 78,206,113),
                                   borderRadius: BorderRadius.circular(50),
                                 ),
                                 child: const Icon(
@@ -327,7 +327,7 @@ class _EditProfileState extends State<EditProfile> {
                       height: 50,
                       child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            primary: Colors.green,
+                            primary: const Color.fromARGB(255, 78,206,113),
                             onPrimary: Colors.white,
                           ),
                           onPressed: () {
@@ -374,7 +374,7 @@ class _EditProfileState extends State<EditProfile> {
           BottomNavigationBarItem(
             icon: GestureDetector(
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> CurrentOrder()));
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> const CurrentOrder()));
               },
               child: const FaIcon(
                 FontAwesomeIcons.gift,

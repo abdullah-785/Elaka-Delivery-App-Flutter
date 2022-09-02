@@ -41,6 +41,16 @@ dependencies:
   dio: ^4.0.6
   flutter_polyline_points: ^1.0.0
   google_maps_flutter: ^2.1.12
+  firebase_core: ^1.20.1
+  firebase_storage: ^10.3.5
+  firebase_auth: ^3.6.3
+  cloud_firestore: ^3.4.4
+  fluttertoast: ^8.0.9
+  email_auth: ^1.0.0
+  uuid: ^3.0.6
+  file_picker: ^5.0.1
+  twilio_flutter: ^0.0.9
+  pinput: ^2.2.12
 
 dev_dependencies:
   flutter_test:

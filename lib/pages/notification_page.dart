@@ -56,7 +56,7 @@ class _NotificationPageState extends State<NotificationPage> {
                 ),
                 const Spacer(),
                 Badge(
-                    badgeColor: Colors.green,
+                    badgeColor: Color.fromARGB(255, 78,206,113),
                     animationType: BadgeAnimationType.slide,
                     badgeContent: const Padding(
                       padding: EdgeInsets.all(1.0),

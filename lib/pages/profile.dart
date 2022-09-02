@@ -137,7 +137,7 @@ class _ProfileState extends State<Profile> {
                             children: const [
                               Icon(
                                 Icons.email,
-                                color: Colors.green,
+                                color: Color.fromARGB(255, 78,206,113), 
                                 size: 28,
                               ),
                               SizedBox(
@@ -179,7 +179,7 @@ class _ProfileState extends State<Profile> {
                             children: const [
                               Icon(
                                 Icons.phone,
-                                color: Colors.green,
+                                color: Color.fromARGB(255, 78,206,113),
                                 size: 28,
                               ),
                               SizedBox(
@@ -221,7 +221,7 @@ class _ProfileState extends State<Profile> {
                             children: const [
                               Icon(
                                 Icons.insert_drive_file,
-                                color: Colors.green,
+                                color: Color.fromARGB(255, 78,206,113),
                                 size: 28,
                               ),
                               SizedBox(
@@ -263,7 +263,7 @@ class _ProfileState extends State<Profile> {
                             children: const [
                               Icon(
                                 Icons.calendar_view_week_rounded,
-                                color: Colors.green,
+                                color: Color.fromARGB(255, 78,206,113),
                                 size: 28,
                               ),
                               SizedBox(
@@ -314,7 +314,7 @@ class _ProfileState extends State<Profile> {
             icon: GestureDetector(
                 onTap: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => Setting()));
+                      MaterialPageRoute(builder: (context) => const Setting()));
                 },
                 child: const Icon(Icons.settings)),
             label: 'Setting',
@@ -322,7 +322,7 @@ class _ProfileState extends State<Profile> {
           BottomNavigationBarItem(
             icon: GestureDetector(
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> CurrentOrder()));
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> const CurrentOrder()));
               },
               child: const FaIcon(
                 FontAwesomeIcons.gift,
@@ -334,7 +334,7 @@ class _ProfileState extends State<Profile> {
           BottomNavigationBarItem(
             icon: GestureDetector(
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=> Wallet()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> const Wallet()));
                 },
                 child: const Icon(Icons.account_balance_wallet)),
             label: 'Wallet',

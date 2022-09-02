@@ -1,7 +1,6 @@
 // import 'dart:html';
 
 import 'package:badges/badges.dart';
-import 'package:elaka_delivery_app/pages/circularProgress.dart';
 import 'package:elaka_delivery_app/pages/current_order.dart';
 import 'package:elaka_delivery_app/pages/language.dart';
 import 'package:elaka_delivery_app/pages/login.dart';
@@ -24,29 +23,9 @@ class Setting extends StatefulWidget {
 
 class _SettingState extends State<Setting> {
   int currentIndex = 0;
-  //   bool firstBuild = true;
-  // // show Open Dialog method
-  // _showOpenDialog(context) {
-  //   showDialog(
-  //       context: context,
-  //       builder: (context) {
-  //         return Dialog(
-            
-  //         );
-  //       });
-  // }
-
-
 
   @override
   Widget build(BuildContext context) {
-
-    // WidgetsBinding.instance.addPostFrameCallback((_) {
-    //   if (firstBuild) {
-    //     firstBuild = false;
-    //     _showOpenDialog(context);
-    //   }
-    // });
 
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 243, 247, 255),
@@ -70,7 +49,7 @@ class _SettingState extends State<Setting> {
                 const SizedBox(
                   // width: 50,
                 ),
-                Spacer(),
+                const Spacer(),
                 const Text(
                   "Setting",
                   style: TextStyle(
@@ -80,7 +59,7 @@ class _SettingState extends State<Setting> {
                 ),
                 const Spacer(),
                 Badge(
-                    badgeColor: Colors.green,
+                    badgeColor: const Color.fromARGB(255, 78,206,113),
                     animationType: BadgeAnimationType.slide,
                     badgeContent: const Padding(
                       padding: EdgeInsets.all(1.0),
@@ -91,9 +70,9 @@ class _SettingState extends State<Setting> {
                     ),
                     child: GestureDetector(
                       onTap: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => NotificationPage()));
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => const NotificationPage()));
                       },
-                      child: Icon(Icons.notifications,
+                      child: const Icon(Icons.notifications,
                           size: 30, color: Color.fromARGB(255, 23, 69, 103)),
                     )),
               ],
@@ -123,18 +102,18 @@ class _SettingState extends State<Setting> {
               child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    SizedBox(height: 50,),
+                    const SizedBox(height: 50,),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 8),
                       child: GestureDetector(
                         onTap: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => Profile() ));
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => const Profile() ));
                         },
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 32,),
                           child: Row(
                             children: const [
-                              Icon(Icons.person, size: 30, color: Colors.green,),
+                              Icon(Icons.person, size: 30, color: Color.fromARGB(255, 78,206,113),),
                               SizedBox(width: 20,),
                               Text("Profile", style: TextStyle(
                                 fontSize: 20,
@@ -147,18 +126,18 @@ class _SettingState extends State<Setting> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 8,),
+                    const SizedBox(height: 8,),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 8),
                       child: GestureDetector(
                         onTap: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => NewPassword()));
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => const NewPassword()));
                         },
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 32),
                           child: Row(
                             children: const [
-                              Icon(Icons.lock, size: 30, color: Colors.green,),
+                              Icon(Icons.lock, size: 30, color: Color.fromARGB(255, 78,206,113),),
                               SizedBox(width: 20,),
                               Text("Change Password", style: TextStyle(
                                 fontSize: 20,
@@ -171,19 +150,19 @@ class _SettingState extends State<Setting> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 8,),
+                    const SizedBox(height: 8,),
                     
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 8),
                       child: GestureDetector(
                         onTap: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => Language()));
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => const Language()));
                         },
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 32),
                           child: Row(
                             children: const [
-                              Icon(Icons.g_translate, size: 30, color: Colors.green,),
+                              Icon(Icons.g_translate, size: 30, color: Color.fromARGB(255, 78,206,113),),
                               SizedBox(width: 20,),
                               Text("Language", style: TextStyle(
                                 fontSize: 20,
@@ -196,18 +175,18 @@ class _SettingState extends State<Setting> {
                       ),
                     ),
                     
-                    SizedBox(height: 8,),
+                    const SizedBox(height: 8,),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 8),
                       child: GestureDetector(
                         onTap: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => PrivacyPolice() ));
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => const PrivacyPolice() ));
                         },
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 32),
                           child: Row(
                             children: const [
-                              Icon(Icons.policy, size: 30, color: Colors.green,),
+                              Icon(Icons.policy, size: 30, color: Color.fromARGB(255, 78,206,113),),
                               SizedBox(width: 20,),
                               Text("Privacy Police", style: TextStyle(
                                 fontSize: 20,
@@ -220,19 +199,19 @@ class _SettingState extends State<Setting> {
                       ),
                     ),
                    
-                    SizedBox(height: 8,),
+                    const SizedBox(height: 8,),
 
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 8),
                       child: GestureDetector(
                         onTap: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => TermCondition()));
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => const TermCondition()));
                         },
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 32),
                           child: Row(
                             children: const [
-                              Icon(Icons.insert_page_break_sharp, size: 30, color: Colors.green,),
+                              Icon(Icons.insert_page_break_sharp, size: 30, color: Color.fromARGB(255, 78,206,113),),
                               SizedBox(width: 20,),
                               Text("Term & Condition", style: TextStyle(
                                 fontSize: 20,
@@ -247,20 +226,20 @@ class _SettingState extends State<Setting> {
 
 
 
-                    SizedBox(height: 8,),
+                    const SizedBox(height: 8,),
 
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 8),
                       child: GestureDetector(
                         onTap: (){
-                          print("Clicked");
+                          
                         },
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 32),
                           child: Row(
                             children: const [
                               
-                              Icon(Icons.money, size: 30, color: Colors.green,),
+                              Icon(Icons.money, size: 30, color: Color.fromARGB(255, 78,206,113),),
                               SizedBox(width: 20,),
                               Text("Earning", style: TextStyle(
                                 fontSize: 20,
@@ -273,20 +252,20 @@ class _SettingState extends State<Setting> {
                       ),
                     ),
                     
-                    SizedBox(height: 8,),
+                    const SizedBox(height: 8,),
 
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 8),
                       child: GestureDetector(
                         onTap: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => Login()));
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => const Login()));
                         },
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 32),
                           child: Row(
                             children: const [
                               
-                              Icon(Icons.logout_outlined, size: 30, color: Colors.green,),
+                              Icon(Icons.logout_outlined, size: 30, color: Color.fromARGB(255, 78,206,113),),
                               SizedBox(width: 20,),
                               Text("Logout", style: TextStyle(
                                 fontSize: 20,
@@ -299,7 +278,7 @@ class _SettingState extends State<Setting> {
                       ),
                     ),
                     
-                    SizedBox(height: 8,),
+                    const SizedBox(height: 8,),
                     
                   ],
                 ),
@@ -328,7 +307,7 @@ class _SettingState extends State<Setting> {
           BottomNavigationBarItem(
             icon: GestureDetector(
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> CurrentOrder()));
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> const CurrentOrder()));
               },
               child: const FaIcon(
                 FontAwesomeIcons.gift,
@@ -340,7 +319,7 @@ class _SettingState extends State<Setting> {
           BottomNavigationBarItem(
             icon: GestureDetector(
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=> Wallet()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> const Wallet()));
                 },
                 child: const Icon(Icons.account_balance_wallet)),
             label: 'Wallet',

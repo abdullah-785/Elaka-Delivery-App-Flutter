@@ -1,6 +1,3 @@
-// import 'dart:html';
-
-import 'package:badges/badges.dart';
 import 'package:elaka_delivery_app/pages/setting.dart';
 import 'package:elaka_delivery_app/pages/start_routing.dart';
 import 'package:elaka_delivery_app/pages/wallet.dart';
@@ -111,7 +108,7 @@ class _CurrentOrderState extends State<CurrentOrder> {
                                 style: TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.w900,
-                                  color: Colors.green,
+                                  color: Color.fromARGB(255, 78,206,113),
                                 )),
                           ],
                         ),
@@ -148,10 +145,10 @@ class _CurrentOrderState extends State<CurrentOrder> {
                         height: 50,
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            primary: Colors.green,
+                            primary: const Color.fromARGB(255, 78,206,113),
                           ),
                           onPressed: (){
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => StartRounting()));
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => const StartRounting()));
                           }, child: const Text("Start Route", style: TextStyle(
                           fontSize: 22,
                           fontWeight: FontWeight.bold,
@@ -174,7 +171,7 @@ class _CurrentOrderState extends State<CurrentOrder> {
           BottomNavigationBarItem(
             icon: GestureDetector(
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=> Setting()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> const Setting()));
                 },
                 child: const Icon(Icons.settings)),
             label: 'Setting',
@@ -182,7 +179,7 @@ class _CurrentOrderState extends State<CurrentOrder> {
           BottomNavigationBarItem(
             icon: GestureDetector(
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> CurrentOrder()));
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> const CurrentOrder()));
               },
               child: const FaIcon(
                 FontAwesomeIcons.gift,
@@ -194,7 +191,7 @@ class _CurrentOrderState extends State<CurrentOrder> {
           BottomNavigationBarItem(
             icon: GestureDetector(
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=> Wallet()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> const Wallet()));
                 },
                 child: const Icon(Icons.account_balance_wallet)),
             label: 'Wallet',
