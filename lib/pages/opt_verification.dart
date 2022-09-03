@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:elaka_delivery_app/models/userModel.dart';
+import 'package:elaka_delivery_app/pages/circularProgress.dart';
 import 'package:elaka_delivery_app/pages/new_password.dart';
 import 'package:email_auth/email_auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -63,7 +64,7 @@ void verify() {
         userOtp: _optController.text);
 
         if(result == true){
-          Navigator.push(context, MaterialPageRoute(builder: (context) => NewPassword()));
+          // Navigator.push(context, MaterialPageRoute(builder: (context) => NewPassword()));
           Fluttertoast.showToast(msg: "Login Successfully");
         }else{
           Fluttertoast.showToast(msg: "OPT is not Correct");
@@ -360,7 +361,24 @@ void verify() {
                         ),
                         onPressed: () {
                           verify();
-                          // Navigator.push(context, MaterialPageRoute(builder: (context) => const NewPassword()));
+
+                          // FirebaseFirestore firebaseFirestore =
+                          //           FirebaseFirestore.instance;
+                          //       User? user = _auth.currentUser;
+
+
+                          //                 UserModel userModel = UserModel();
+
+                          if(loggedInUser.oldUser == true){
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => const ProgressBar()));
+
+                          }else{
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => const NewPassword()));
+                          }
+
+
+
+                          
                         },
                         child: const Text(
                           "Submit",

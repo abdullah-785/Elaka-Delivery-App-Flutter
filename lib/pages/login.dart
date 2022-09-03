@@ -1,4 +1,5 @@
 import 'package:elaka_delivery_app/pages/opt_verification.dart';
+import 'package:elaka_delivery_app/pages/reset_password.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 // import 'package:elaka_delivery_app/widgets/opt.dart';
 import 'package:flutter/material.dart';
@@ -210,11 +211,16 @@ class _LoginState extends State<Login> {
                   const SizedBox(
                     height: 15,
                   ),
-                  const Text("Forget Password?",
-                      style: TextStyle(
-                          fontSize: 20,
-                          color: Color.fromARGB(255, 78, 206, 113),
-                          fontWeight: FontWeight.bold)),
+                  GestureDetector(
+                    onTap: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => ResetPassword()));
+                    },
+                    child: const Text("Forget Password?",
+                        style: TextStyle(
+                            fontSize: 20,
+                            color: Color.fromARGB(255, 78, 206, 113),
+                            fontWeight: FontWeight.bold)),
+                  ),
                   const SizedBox(
                     height: 28,
                   ),

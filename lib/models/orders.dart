@@ -1,5 +1,3 @@
-import 'package:flutter/foundation.dart';
-
 class OrderModel{
   String? productImage;
   String? productName;

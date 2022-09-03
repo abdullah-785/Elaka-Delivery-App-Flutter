@@ -10,6 +10,7 @@ import 'package:elaka_delivery_app/pages/privcy_policy.dart';
 import 'package:elaka_delivery_app/pages/profile.dart';
 import 'package:elaka_delivery_app/pages/term_and_condition.dart';
 import 'package:elaka_delivery_app/pages/wallet.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -258,7 +259,8 @@ class _SettingState extends State<Setting> {
                       padding: const EdgeInsets.symmetric(vertical: 8),
                       child: GestureDetector(
                         onTap: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => const Login()));
+                          logout(context);
+
                         },
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 32),
@@ -330,5 +332,14 @@ class _SettingState extends State<Setting> {
         // onTap: _onItemTapped,
       ),
     );
+  }
+
+
+
+//logout Function
+   Future<void> logout(BuildContext context) async {
+    await FirebaseAuth.instance.signOut();
+    Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (context) => Login()));
   }
 }
