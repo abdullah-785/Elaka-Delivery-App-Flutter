@@ -1,8 +1,12 @@
+import 'dart:async';
+
 import 'package:elaka_delivery_app/pages/deliver_order.dart';
+import 'package:elaka_delivery_app/pages/maping.dart';
 import 'package:elaka_delivery_app/pages/setting.dart';
 import 'package:elaka_delivery_app/pages/wallet.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class StartRounting extends StatefulWidget {
@@ -14,6 +18,10 @@ class StartRounting extends StatefulWidget {
 
 class _StartRountingState extends State<StartRounting> {
   int currentIndex = 0;
+  final Completer<GoogleMapController> _controller =  Completer();
+
+  static const LatLng sourceLocation = LatLng(37.33500926, -122.03272188);
+  static const LatLng destination = LatLng(37.33429383, -122.06600055);
 
   @override
   Widget build(BuildContext context) {
@@ -23,13 +31,15 @@ class _StartRountingState extends State<StartRounting> {
       body: Column(
         children: [
           Expanded(
-            child: Column(
-              children: const [
-
-
-              ],
+            child: Image(image: AssetImage("images/map_picture1.png"), 
+            fit: BoxFit.cover,
             ),
           ),
+
+
+
+
+
           Expanded(
               child: Container(
             // height: 30,
@@ -119,10 +129,10 @@ class _StartRountingState extends State<StartRounting> {
                               context,
                               MaterialPageRoute(
                                   builder: (context) =>
-                                      const DeliveryOrder()));
+                                      const Maping()));
                         },
                         child: const Text(
-                          "Deliver Order",
+                          "Start Now",
                           style: TextStyle(
                               fontSize: 22, fontWeight: FontWeight.bold),
                         )),

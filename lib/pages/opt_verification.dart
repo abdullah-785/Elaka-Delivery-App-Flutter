@@ -14,18 +14,14 @@ import 'package:pinput/pinput.dart';
 class OptVerification extends StatefulWidget {
   const OptVerification({Key? key}) : super(key: key);
 
-
   @override
   State<OptVerification> createState() => _OptVerificationState();
 }
 
 class _OptVerificationState extends State<OptVerification> {
- 
-  
-
   User? user = FirebaseAuth.instance.currentUser;
   UserModel loggedInUser = UserModel();
-   @override
+  @override
   void initState() {
     super.initState();
     FirebaseFirestore.instance
@@ -40,10 +36,10 @@ class _OptVerificationState extends State<OptVerification> {
     });
   }
 
-late EmailAuth emailAuth;
-bool submitValid = false;
-final TextEditingController _optController = TextEditingController();
-  
+  late EmailAuth emailAuth;
+  bool submitValid = false;
+  final TextEditingController _optController = TextEditingController();
+
   void sendOtp() async {
     emailAuth = new EmailAuth(
       sessionName: "Ealaka App",
@@ -51,43 +47,29 @@ final TextEditingController _optController = TextEditingController();
     bool result = (await emailAuth.sendOtp(
         recipientMail: "${loggedInUser.email}", otpLength: 4));
 
-        if (result) {
+    if (result) {
       setState(() {
         submitValid = true;
       });
     }
   }
 
-void verify() {
+  void verify() {
     bool result = emailAuth.validateOtp(
-        recipientMail: "${loggedInUser.email}",
-        userOtp: _optController.text);
+        recipientMail: "${loggedInUser.email}", userOtp: _optController.text);
 
-        if(result == false){
-          Fluttertoast.showToast(msg: "OTP incorrect");
-          // Navigator.push(context, MaterialPageRoute(builder: (context) => const OptVerification()));
-        }else if(result == true && loggedInUser.oldUser == true){
-          Navigator.push(context, MaterialPageRoute(builder: (context) => ProgressBar()));
-          Fluttertoast.showToast(msg: "Login Successfully");
-        }else if(result == true && loggedInUser.oldUser == false){
-          Navigator.push(context, MaterialPageRoute(builder: (context) => const NewPassword()));
-        }
-
-
-
-
-        // if(loggedInUser.oldUser == true){
-        //                     Navigator.push(context, MaterialPageRoute(builder: (context) => const ProgressBar()));
-
-        //                   }else if(loggedInUser.oldUser == false){
-        //                     Navigator.push(context, MaterialPageRoute(builder: (context) => const NewPassword()));
-        //                   }
-
-
-
-        
+    if (result == false) {
+      Fluttertoast.showToast(msg: "OTP incorrect");
+      // Navigator.push(context, MaterialPageRoute(builder: (context) => const OptVerification()));
+    } else if (result == true && loggedInUser.oldUser == true) {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => ProgressBar()));
+      Fluttertoast.showToast(msg: "Login Successfully");
+    } else if (result == true && loggedInUser.oldUser == false) {
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => const NewPassword()));
+    }
   }
-
 
 //  @override
 //   void initState() {
@@ -98,11 +80,6 @@ void verify() {
 //     );
 
 //   }
-
-
-
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -159,11 +136,11 @@ void verify() {
                   //   padding: const EdgeInsets.symmetric(horizontal: 32),
                   //   child: TextFormField(
                   //         controller: _optController,
-                          
+
                   //       ),
                   // ),
 
- Padding(
+                  Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16),
                     child: TextFormField(
                         controller: _optController,
@@ -172,9 +149,12 @@ void verify() {
                           fontSize: 20,
                         ),
                         decoration: InputDecoration(
-                            label: const Text("OTP", style: TextStyle(
-                              color: Colors.grey,
-                            ),),
+                            label: const Text(
+                              "OTP",
+                              style: TextStyle(
+                                color: Colors.grey,
+                              ),
+                            ),
                             hintText: "Enter OTP",
                             focusedBorder: const OutlineInputBorder(
                                 borderSide: BorderSide(
@@ -200,17 +180,6 @@ void verify() {
                               ),
                             ))),
                   ),
-
-
-
-           
-
-
-
-
-
-
-
 
                   Row(
                     // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -244,7 +213,6 @@ void verify() {
                       //   ),
                       // ),
 
-
                       // //second Input line
                       // SizedBox(
                       //   width: 50,
@@ -274,8 +242,6 @@ void verify() {
                       //   ),
                       // ),
 
-
-
                       // //Three input line
                       // SizedBox(
                       //   width: 50,
@@ -304,7 +270,6 @@ void verify() {
                       //         ))),
                       //   ),
                       // ),
-
 
                       // //Fourth input Line
                       // SizedBox(
@@ -344,17 +309,17 @@ void verify() {
                     height: 50,
                     child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          primary: const Color.fromARGB(255, 78,206,113),
+                          primary: const Color.fromARGB(255, 78, 206, 113),
                           onPrimary: Colors.white,
                         ),
                         onPressed: () {
-                          try{
+                          try {
                             sendOtp();
-                          Fluttertoast.showToast(msg: "OTP Send Successfully");
-                          }catch(e){
+                            Fluttertoast.showToast(
+                                msg: "OTP Send Successfully");
+                          } catch (e) {
                             Fluttertoast.showToast(msg: "${e}");
                           }
-                          
                         },
                         child: const Text(
                           "Send OTP",
@@ -366,13 +331,12 @@ void verify() {
                     height: 10,
                   ),
 
-
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.9,
                     height: 50,
                     child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          primary: const Color.fromARGB(255, 78,206,113),
+                          primary: const Color.fromARGB(255, 78, 206, 113),
                           onPrimary: Colors.white,
                         ),
                         onPressed: () {
@@ -382,7 +346,6 @@ void verify() {
                           //           FirebaseFirestore.instance;
                           //       User? user = _auth.currentUser;
 
-
                           //                 UserModel userModel = UserModel();
 
                           // if(loggedInUser.oldUser == true){
@@ -391,10 +354,6 @@ void verify() {
                           // }else if(loggedInUser.oldUser == false){
                           //   Navigator.push(context, MaterialPageRoute(builder: (context) => const NewPassword()));
                           // }
-
-
-
-                          
                         },
                         child: const Text(
                           "Submit",
@@ -425,8 +384,6 @@ void verify() {
       ),
     );
   }
-
-
 
   // _verifyPhone() async {
   //   await FirebaseAuth.instance.verifyPhoneNumber(
@@ -461,8 +418,8 @@ void verify() {
 
   // @override
   // void initState() {
-    // TODO: implement initState
-    // super.initState();
-    // _verifyPhone();
+  // TODO: implement initState
+  // super.initState();
+  // _verifyPhone();
   // }
 }
