@@ -147,7 +147,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                          
                         },
                         child: const Text(
-                          "Reset Email",
+                          "Reset",
                           style: TextStyle(
                               fontSize: 22, fontWeight: FontWeight.bold),
                         )),

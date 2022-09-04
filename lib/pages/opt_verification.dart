@@ -35,7 +35,7 @@ class _OptVerificationState extends State<OptVerification> {
         .then((value) {
       loggedInUser = UserModel.fromMap(value.data());
 
-      // _verifyPhone();
+      // OptVerification();
       setState(() {});
     });
   }
@@ -63,13 +63,29 @@ void verify() {
         recipientMail: "${loggedInUser.email}",
         userOtp: _optController.text);
 
-        if(result == true){
-          // Navigator.push(context, MaterialPageRoute(builder: (context) => NewPassword()));
+        if(result == false){
+          Fluttertoast.showToast(msg: "OTP incorrect");
+          // Navigator.push(context, MaterialPageRoute(builder: (context) => const OptVerification()));
+        }else if(result == true && loggedInUser.oldUser == true){
+          Navigator.push(context, MaterialPageRoute(builder: (context) => ProgressBar()));
           Fluttertoast.showToast(msg: "Login Successfully");
-        }else{
-          Fluttertoast.showToast(msg: "OPT is not Correct");
-          print("Wrong OTP");
+        }else if(result == true && loggedInUser.oldUser == false){
+          Navigator.push(context, MaterialPageRoute(builder: (context) => const NewPassword()));
         }
+
+
+
+
+        // if(loggedInUser.oldUser == true){
+        //                     Navigator.push(context, MaterialPageRoute(builder: (context) => const ProgressBar()));
+
+        //                   }else if(loggedInUser.oldUser == false){
+        //                     Navigator.push(context, MaterialPageRoute(builder: (context) => const NewPassword()));
+        //                   }
+
+
+
+        
   }
 
 
@@ -369,12 +385,12 @@ void verify() {
 
                           //                 UserModel userModel = UserModel();
 
-                          if(loggedInUser.oldUser == true){
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => const ProgressBar()));
+                          // if(loggedInUser.oldUser == true){
+                          //   Navigator.push(context, MaterialPageRoute(builder: (context) => const ProgressBar()));
 
-                          }else{
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => const NewPassword()));
-                          }
+                          // }else if(loggedInUser.oldUser == false){
+                          //   Navigator.push(context, MaterialPageRoute(builder: (context) => const NewPassword()));
+                          // }
 
 
 
