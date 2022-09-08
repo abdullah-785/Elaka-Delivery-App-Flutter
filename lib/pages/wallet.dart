@@ -1,10 +1,12 @@
 import 'package:badges/badges.dart';
+import 'package:elaka_delivery_app/pages/current_no_order.dart';
 // import 'package:elaka_delivery_app/pages/circularProgress.dart';
 import 'package:elaka_delivery_app/pages/current_order.dart';
 // import 'package:elaka_delivery_app/pages/new_password.dart';
 import 'package:elaka_delivery_app/pages/notification_page.dart';
 // import 'package:elaka_delivery_app/pages/profile.dart';
 import 'package:elaka_delivery_app/pages/setting.dart';
+import 'package:elaka_delivery_app/resources/global_variable.dart';
 import 'package:elaka_delivery_app/widgets/transection_list.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -189,7 +191,7 @@ class _WalletState extends State<Wallet> {
           BottomNavigationBarItem(
             icon: GestureDetector(
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> const CurrentOrder()));
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> orderPage == true ? CurrentOrder(): CurrentNoOrder()));
               },
               child: const FaIcon(
                 FontAwesomeIcons.gift,

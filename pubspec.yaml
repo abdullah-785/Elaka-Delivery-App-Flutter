@@ -51,6 +51,9 @@ dependencies:
   file_picker: ^5.0.1
   twilio_flutter: ^0.0.9
   pinput: ^2.2.12
+  geolocator: ^9.0.1
+  shared_preferences: ^2.0.15
+  flutter_secure_storage: ^6.0.0
 
 dev_dependencies:
   flutter_test:

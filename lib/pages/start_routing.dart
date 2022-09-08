@@ -1,9 +1,13 @@
 import 'dart:async';
 
+import 'package:elaka_delivery_app/pages/current_no_order.dart';
+import 'package:elaka_delivery_app/pages/current_order.dart';
 import 'package:elaka_delivery_app/pages/deliver_order.dart';
+import 'package:elaka_delivery_app/pages/google_maping.dart';
 import 'package:elaka_delivery_app/pages/maping.dart';
 import 'package:elaka_delivery_app/pages/setting.dart';
 import 'package:elaka_delivery_app/pages/wallet.dart';
+import 'package:elaka_delivery_app/resources/global_variable.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -129,7 +133,7 @@ class _StartRountingState extends State<StartRounting> {
                               context,
                               MaterialPageRoute(
                                   builder: (context) =>
-                                      const Maping()));
+                                      const GoogleMapping()));
                         },
                         child: const Text(
                           "Start Now",
@@ -164,7 +168,7 @@ class _StartRountingState extends State<StartRounting> {
           BottomNavigationBarItem(
             icon: GestureDetector(
               onTap: () {
-                // Navigator.push(context, MaterialPageRoute(builder: (context)=> CurrentOrder()));
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> orderPage == true ? CurrentOrder(): CurrentNoOrder()));
               },
               child: const FaIcon(
                 FontAwesomeIcons.gift,

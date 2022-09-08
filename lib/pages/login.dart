@@ -1,9 +1,11 @@
+import 'package:elaka_delivery_app/pages/progress_bar.dart';
 import 'package:elaka_delivery_app/pages/opt_verification.dart';
 import 'package:elaka_delivery_app/pages/reset_password.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 // import 'package:elaka_delivery_app/widgets/opt.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 // import 'package:flutter/services.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:email_auth/email_auth.dart';
@@ -21,13 +23,33 @@ class _LoginState extends State<Login> {
   final TextEditingController _passwordController = TextEditingController();
   final _auth = FirebaseAuth.instance;
 
+
+
+  // getPrefranceData() async{
+  //   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+  //   String? sharedPreferencesEmail = sharedPreferences.getString("email");
+  //   return sharedPreferencesEmail;
+  // }
+
+  // setPrefranceData() async{
+  //   SharedPreferences pref = await SharedPreferences.getInstance();
+  //   pref.setString("email", "AlreadyLogedIn");
+  //   // print( _emailController.text);
+
+  // }
+
+
+  // checkPrefranceData(){
+  //   setState(() {
+  //   getPrefranceData() != null ? ProgressBar(): Login();    
+  //   });
+    
+  // }
+
   // @override
   // void initState() {
   //   super.initState();
-  //   // Initialize the package
-  //   emailAuth = new EmailAuth(
-  //     sessionName: "Ealaka App",
-  //   );
+  //   checkPrefranceData();
 
   // }
 
@@ -241,7 +263,7 @@ class _LoginState extends State<Login> {
                           primary: const Color.fromARGB(255, 78, 206, 113),
                           onPrimary: Colors.white,
                         ),
-                        onPressed: () {
+                        onPressed: () async {
                           _auth
                               .signInWithEmailAndPassword(
                                   email: _emailController.text,
@@ -249,15 +271,30 @@ class _LoginState extends State<Login> {
                               .then((uid) => {
                                     // Fluttertoast.showToast(
                                     //     msg: ""),
+                                    //  setPrefranceData(),
                                     Navigator.push(
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                OptVerification())),
+                                                const OptVerification())),
                                   })
                               .catchError((e) {
                             Fluttertoast.showToast(msg: e!.message);
                           });
+                          
+
+                          
+
+                          // final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+                          // sharedPreferences.setString("email", _emailController.text);
+                          // Navigator.push(
+                          //               context,
+                          //               MaterialPageRoute(
+                          //                   builder: (context) =>
+                          //                       OptVerification()));
+
+                          
+                          
                         },
                         child: const Text(
                           "Sign In",

@@ -1,6 +1,7 @@
 // import 'dart:html';
 
 import 'package:badges/badges.dart';
+import 'package:elaka_delivery_app/pages/current_no_order.dart';
 import 'package:elaka_delivery_app/pages/current_order.dart';
 import 'package:elaka_delivery_app/pages/language.dart';
 import 'package:elaka_delivery_app/pages/login.dart';
@@ -10,9 +11,11 @@ import 'package:elaka_delivery_app/pages/privcy_policy.dart';
 import 'package:elaka_delivery_app/pages/profile.dart';
 import 'package:elaka_delivery_app/pages/term_and_condition.dart';
 import 'package:elaka_delivery_app/pages/wallet.dart';
+import 'package:elaka_delivery_app/resources/global_variable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Setting extends StatefulWidget {
   const Setting({Key? key}) : super(key: key);
@@ -258,8 +261,12 @@ class _SettingState extends State<Setting> {
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 8),
                       child: GestureDetector(
-                        onTap: (){
+                        onTap: () async {
+                          final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+                          sharedPreferences.remove('email');
                           logout(context);
+                          
+
 
                         },
                         child: Padding(
@@ -309,7 +316,7 @@ class _SettingState extends State<Setting> {
           BottomNavigationBarItem(
             icon: GestureDetector(
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> const CurrentOrder()));
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> orderPage == true ? CurrentOrder(): CurrentNoOrder()));
               },
               child: const FaIcon(
                 FontAwesomeIcons.gift,

@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:elaka_delivery_app/models/userModel.dart';
-import 'package:elaka_delivery_app/pages/circularProgress.dart';
+import 'package:elaka_delivery_app/pages/progress_bar.dart';
 import 'package:elaka_delivery_app/pages/new_password.dart';
 import 'package:email_auth/email_auth.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:pinput/pinput.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 // import 'package:velocity_x/velocity_x.dart';
 
 class OptVerification extends StatefulWidget {
@@ -64,10 +65,12 @@ class _OptVerificationState extends State<OptVerification> {
     } else if (result == true && loggedInUser.oldUser == true) {
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => ProgressBar()));
+          setPrefranceData();
       Fluttertoast.showToast(msg: "Login Successfully");
     } else if (result == true && loggedInUser.oldUser == false) {
       Navigator.push(context,
           MaterialPageRoute(builder: (context) => const NewPassword()));
+          setPrefranceData();
     }
   }
 
@@ -80,6 +83,13 @@ class _OptVerificationState extends State<OptVerification> {
 //     );
 
 //   }
+setPrefranceData() async{
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    pref.setString("email", "AlreadyLogedIn");
+    // print( _emailController.text);
+
+  }
+
 
   @override
   Widget build(BuildContext context) {

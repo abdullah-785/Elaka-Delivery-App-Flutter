@@ -1,10 +1,12 @@
 import 'package:badges/badges.dart';
-import 'package:elaka_delivery_app/pages/circularProgress.dart';
+import 'package:elaka_delivery_app/pages/current_no_order.dart';
+import 'package:elaka_delivery_app/pages/progress_bar.dart';
 import 'package:elaka_delivery_app/pages/current_order.dart';
 import 'package:elaka_delivery_app/pages/new_password.dart';
 import 'package:elaka_delivery_app/pages/profile.dart';
 import 'package:elaka_delivery_app/pages/setting.dart';
 import 'package:elaka_delivery_app/pages/wallet.dart';
+import 'package:elaka_delivery_app/resources/global_variable.dart';
 import 'package:elaka_delivery_app/widgets/notifications_list.dart';
 import 'package:elaka_delivery_app/widgets/transection_list.dart';
 import 'package:flutter/material.dart';
@@ -145,7 +147,7 @@ class _NotificationPageState extends State<NotificationPage> {
             icon: GestureDetector(
               onTap: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => CurrentOrder()));
+                    MaterialPageRoute(builder: (context) => orderPage == true ? CurrentOrder(): CurrentNoOrder()));
               },
               child: const FaIcon(
                 FontAwesomeIcons.gift,

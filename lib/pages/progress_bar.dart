@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:velocity_x/velocity_x.dart';
+import '../resources/global_variable.dart';
 
 class ProgressBar extends StatefulWidget {
   const ProgressBar({Key? key}) : super(key: key);
@@ -121,6 +122,7 @@ class _ProgressBarState extends State<ProgressBar> {
                                                 1,
                                             child: TextButton(
                                                 onPressed: () {
+                                                  orderPage = false;
                                                   Navigator.push(
                                                       context,
                                                       MaterialPageRoute(
@@ -142,6 +144,7 @@ class _ProgressBarState extends State<ProgressBar> {
                                                 1,
                                             child: TextButton(
                                                 onPressed: () {
+                                                  orderPage = false;
                                                   Navigator.push(
                                                       context,
                                                       MaterialPageRoute(

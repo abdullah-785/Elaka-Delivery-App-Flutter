@@ -3,6 +3,7 @@
 import 'package:badges/badges.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:elaka_delivery_app/models/userModel.dart';
+import 'package:elaka_delivery_app/pages/progress_bar.dart';
 // import 'package:elaka_delivery_app/pages/circularProgress.dart';
 import 'package:elaka_delivery_app/pages/login.dart';
 import 'package:elaka_delivery_app/pages/notification_page.dart';
@@ -275,10 +276,11 @@ class _NewPasswordState extends State<NewPassword> {
 
                                 Fluttertoast.showToast(
                                     msg: "Password Updated Successfully");
+                                
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => const Login()));
+                                        builder: (context) => const ProgressBar()));
                               }
                             } catch (e) {
                               Fluttertoast.showToast(msg: "Successfully");
