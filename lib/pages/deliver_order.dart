@@ -165,11 +165,11 @@ class _DeliveryOrderState extends State<DeliveryOrder> {
                         onPressed: () {
                           orderPage = false;
                           Fluttertoast.showToast(msg: "Sumitted Successfully");
-                          // Navigator.push(
-                          //     context,
-                          //     MaterialPageRoute(
-                          //         builder: (context) =>
-                          //             const Setting()));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const CurrentNoOrder()));
                         },
                         child: const Text(
                           "Submit",

@@ -1,5 +1,6 @@
 import 'package:elaka_delivery_app/pages/current_no_order.dart';
 import 'package:elaka_delivery_app/pages/current_order.dart';
+import 'package:elaka_delivery_app/pages/current_order_details.dart';
 import 'package:elaka_delivery_app/pages/setting.dart';
 import 'package:flutter/material.dart';
 
@@ -149,7 +150,7 @@ class _ProgressBarState extends State<ProgressBar> {
                                                       context,
                                                       MaterialPageRoute(
                                                           builder: (context) =>
-                                                              const CurrentNoOrder()));
+                                                              const CurrentDetailOrder()));
                                                 },
                                                 child: const Text(
                                                   "No fuel",
