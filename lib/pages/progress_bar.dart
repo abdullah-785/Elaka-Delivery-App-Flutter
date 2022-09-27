@@ -150,7 +150,7 @@ class _ProgressBarState extends State<ProgressBar> {
                                                       context,
                                                       MaterialPageRoute(
                                                           builder: (context) =>
-                                                              const CurrentDetailOrder()));
+                                                              const CurrentNoOrder()));
                                                 },
                                                 child: const Text(
                                                   "No fuel",

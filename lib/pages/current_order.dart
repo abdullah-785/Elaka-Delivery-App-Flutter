@@ -1,6 +1,7 @@
 import 'package:elaka_delivery_app/pages/setting.dart';
 import 'package:elaka_delivery_app/pages/start_routing.dart';
 import 'package:elaka_delivery_app/pages/wallet.dart';
+import 'package:elaka_delivery_app/widgets/product_detail_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -29,13 +30,15 @@ class _CurrentOrderState extends State<CurrentOrder> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: const [
-                Text(
+                
+                 Text(
                   "Current Order",
                   style: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
+                
               ],
             ),
           ),
@@ -44,101 +47,104 @@ class _CurrentOrderState extends State<CurrentOrder> {
           ),
           Expanded(
             child: Container(
-                width: MediaQuery.of(context).size.width * 1,
-                // height: MediaQuery.of(context).size.height * 0.7,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(40),
-                      topRight: Radius.circular(40)),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.1),
-                      spreadRadius: 20,
-                      blurRadius: 15,
-                      offset: const Offset(0, 10), // changes position of shadow
+              width: MediaQuery.of(context).size.width * 1,
+              // height: MediaQuery.of(context).size.height * 0.7,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(40),
+                    topRight: Radius.circular(40)),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.1),
+                    spreadRadius: 20,
+                    blurRadius: 15,
+                    offset: const Offset(0, 10), // changes position of shadow
+                  ),
+                ],
+              ),
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    SizedBox(height: 30,),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 40, bottom: 10),
+                      child: Row(
+                        children: const [
+                          Text("Vender Name : ", style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Color.fromARGB(255, 78,206,113),
+                          ),),
+                          WidthBox(20),
+                          Text("John", style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Color.fromARGB(255, 78,206,113),
+                          ),),
+                        ],
+                      ),
                     ),
-                  ],
-                ),
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      const HeightBox(20),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.8,
-                        child: const Image(
-                          image: AssetImage(
-                            "images/product1.png",
-                          ),
-                          fit: BoxFit.cover,
-                        ),
+              
+                    Padding(
+                      padding: const EdgeInsets.only(left: 40),
+                      child: Row(
+                        children: const [
+                          Text("Order No : ", style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Color.fromARGB(255, 78,206,113),
+                          ),),
+                          WidthBox(20),
+                          Text("20", style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Color.fromARGB(255, 78,206,113),
+                          ),),
+                        ],
                       ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20),
-                        child: Row(
-                          children: const [
-                            Text("Fresh carrots with..",
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                )),
-                            Spacer(),
-                            Text("United Grocery",
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.pinkAccent,
-                                ))
-                          ],
-                        ),
+                    ),
+                    HeightBox(30),
+              
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20),
+                      child: Row(
+                        children: const [
+                          Text("Supplier 1", style: TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                            color: Color.fromARGB(255, 78,206,113),
+                          ),),
+                          
+                        ],
                       ),
-                      const HeightBox(20),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20),
-                        child: Row(
-                          children: const [
-                            Text("500kg",
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.grey,
-                                )),
-                            Spacer(),
-                            Text("\$200",
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w900,
-                                  color: Color.fromARGB(255, 78,206,113),
-                                )),
-                          ],
-                        ),
+                    ),
+                    const HeightBox(10),
+              
+                    Container(
+                      width: MediaQuery.of(context).size.width * 0.9,
+                      height: 38,
+                      decoration: const BoxDecoration(
+                        // 12,21,100
+                        color: Color.fromARGB(255, 12,21,100),
                       ),
-                      const HeightBox(15),
-                      const Padding(
-                        padding: EdgeInsets.only(left: 20),
-                        child: Align(
-                          alignment: Alignment.topLeft,
-                          child: Text("Description",
-                              style: TextStyle(
-                                fontSize: 24,
-                                fontWeight: FontWeight.w900,
-                                color: Color.fromARGB(255, 24, 39, 51),
-                              )),
-                        ),
+                    ),
+              
+              
+                    ProductDetailWidget(),
+                    ProductDetailWidget(),
+              
+                    Container(
+                      width: MediaQuery.of(context).size.width * 0.9,
+                      height: 38,
+                      decoration: const BoxDecoration(
+                        // 12,21,100
+                        color: Color.fromARGB(255, 12,21,100),
                       ),
-                
-                      const HeightBox(10),
-                      const Padding(
-                        padding: EdgeInsets.only(left: 20),
-                        child: Align(
-                          alignment: Alignment.topLeft,
-                          child: Text("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-                              style: TextStyle(
-                                fontSize: 18,
-                                color: Color.fromARGB(255, 141, 139, 139),
-                              )),
-                        ),
-                      ),
+                    ),
+                    ProductDetailWidget(),
+                    ProductDetailWidget(),
+                    ProductDetailWidget(),
                       const SizedBox(height: 20,),
                       SizedBox(
                         width: MediaQuery.of(context).size.width * 0.85,

@@ -4,7 +4,7 @@ import 'package:elaka_delivery_app/pages/wallet.dart';
 import 'package:elaka_delivery_app/widgets/product_detail_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:velocity_x/velocity_x.dart';
+import 'package:velocity_x/velocity_x.dart'; 
 
 class CurrentDetailOrder extends StatefulWidget {
   const CurrentDetailOrder({Key? key}) : super(key: key);
