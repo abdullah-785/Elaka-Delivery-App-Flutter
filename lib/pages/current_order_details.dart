@@ -178,7 +178,7 @@ class _CurrentDetailOrderState extends State<CurrentDetailOrder> {
           BottomNavigationBarItem(
             icon: GestureDetector(
               onTap: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> const CurrentNoOrder()));
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>  CurrentNoOrder("")));
               },
               child: const FaIcon(FontAwesomeIcons.gift, size: 26,), ),
             label: 'Order',

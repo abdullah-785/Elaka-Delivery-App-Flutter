@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class CurrentNoOrder extends StatefulWidget {
-  const CurrentNoOrder({Key? key}) : super(key: key);
+  final String userId;
+  CurrentNoOrder(this.userId);
 
   @override
   State<CurrentNoOrder> createState() => _CurrentNoOrderState();
@@ -27,15 +28,13 @@ class _CurrentNoOrderState extends State<CurrentNoOrder> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: const [
-                
-                 Text(
+                Text(
                   "Current Order",
                   style: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                
               ],
             ),
           ),
@@ -61,49 +60,55 @@ class _CurrentNoOrderState extends State<CurrentNoOrder> {
                 ],
               ),
               child: const Center(
-                child: Text("No Current Order", style: TextStyle(
-                 fontSize: 25,
-                 fontWeight: FontWeight.bold
-                ),),
+                child: Text(
+                  "No Current Order",
+                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                ),
               ),
             ),
           ),
-      
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentIndex,
-        onTap: (index) => setState(()=>  currentIndex = index),
+        onTap: (index) => setState(() => currentIndex = index),
         type: BottomNavigationBarType.fixed,
-        selectedItemColor:const Color.fromARGB(255, 23, 69, 103),
+        selectedItemColor: const Color.fromARGB(255, 23, 69, 103),
         unselectedItemColor: const Color.fromARGB(255, 23, 69, 103),
         iconSize: 30,
-        
-        
+
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: GestureDetector(
-              onTap: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> const Setting()));
-              },
-              child: const Icon(Icons.settings)),
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => const Setting()));
+                },
+                child: const Icon(Icons.settings)),
             label: 'Setting',
-            
           ),
           BottomNavigationBarItem(
             icon: GestureDetector(
-              onTap: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> const CurrentNoOrder()));
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => CurrentNoOrder("")));
               },
-              child: const FaIcon(FontAwesomeIcons.gift, size: 26,), ),
+              child: const FaIcon(
+                FontAwesomeIcons.gift,
+                size: 26,
+              ),
+            ),
             label: 'Order',
           ),
           BottomNavigationBarItem(
             icon: GestureDetector(
-              onTap: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> const Wallet()));
-              },
-              child: const Icon(Icons.account_balance_wallet)),
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => const Wallet()));
+                },
+                child: const Icon(Icons.account_balance_wallet)),
             label: 'Wallet',
           ),
         ],

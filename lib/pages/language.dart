@@ -39,7 +39,7 @@ class _LanguageState extends State<Language> {
             padding: const EdgeInsets.only(
               top: 70,
               left: 16,
-              right: 20, 
+              right: 20,
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -63,7 +63,7 @@ class _LanguageState extends State<Language> {
                 ),
                 const Spacer(),
                 Badge(
-                    badgeColor: const Color.fromARGB(255, 78,206,113),
+                    badgeColor: const Color.fromARGB(255, 78, 206, 113),
                     animationType: BadgeAnimationType.slide,
                     badgeContent: const Padding(
                       padding: EdgeInsets.all(1.0),
@@ -73,8 +73,12 @@ class _LanguageState extends State<Language> {
                       ),
                     ),
                     child: GestureDetector(
-                      onTap: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => const NotificationPage()));
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    const NotificationPage()));
                       },
                       child: const Icon(Icons.notifications,
                           size: 30, color: Color.fromARGB(255, 23, 69, 103)),
@@ -134,6 +138,8 @@ class _LanguageState extends State<Language> {
                               onChanged: (bool? value) {
                                 setState(() {
                                   isChecked1 = value!;
+                                  isChecked2 = false;
+                                  isChecked3 = false;
                                 });
                               }),
                         ],
@@ -143,7 +149,6 @@ class _LanguageState extends State<Language> {
                       padding: EdgeInsets.symmetric(horizontal: 32),
                       child: Divider(),
                     ),
-
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16),
                       child: Row(
@@ -169,6 +174,8 @@ class _LanguageState extends State<Language> {
                               onChanged: (bool? value) {
                                 setState(() {
                                   isChecked2 = value!;
+                                  isChecked1 = false;
+                                  isChecked3 = false;
                                 });
                               }),
                         ],
@@ -178,7 +185,6 @@ class _LanguageState extends State<Language> {
                       padding: EdgeInsets.symmetric(horizontal: 32),
                       child: Divider(),
                     ),
-
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16),
                       child: Row(
@@ -204,36 +210,37 @@ class _LanguageState extends State<Language> {
                               onChanged: (bool? value) {
                                 setState(() {
                                   isChecked3 = value!;
+                                  isChecked1 = false;
+                                  isChecked2 = false;
                                 });
                               }),
                         ],
                       ),
                     ),
-
                     const HeightBox(40),
                     SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.9,
-                    height: 50,
-                    child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          primary: const Color.fromARGB(255, 78,206,113),
-                          onPrimary: Colors.white,
-                        ),
-                        onPressed: () {
-                          // Navigator.push(
-                          //     context,
-                          //     MaterialPageRoute(
-                          //         builder: (context) =>
-                          //             const OptVerification()
-                          //             )
-                          //             );
-                        },
-                        child: const Text(
-                          "Save",
-                          style: TextStyle(
-                              fontSize: 22, fontWeight: FontWeight.bold),
-                        )),
-                  ),
+                      width: MediaQuery.of(context).size.width * 0.9,
+                      height: 50,
+                      child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            primary: const Color.fromARGB(255, 78, 206, 113),
+                            onPrimary: Colors.white,
+                          ),
+                          onPressed: () {
+                            // Navigator.push(
+                            //     context,
+                            //     MaterialPageRoute(
+                            //         builder: (context) =>
+                            //             const OptVerification()
+                            //             )
+                            //             );
+                          },
+                          child: const Text(
+                            "Save",
+                            style: TextStyle(
+                                fontSize: 22, fontWeight: FontWeight.bold),
+                          )),
+                    ),
                   ],
                 ),
               ),
@@ -253,7 +260,8 @@ class _LanguageState extends State<Language> {
           BottomNavigationBarItem(
             icon: GestureDetector(
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=> const Setting()));
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => const Setting()));
                 },
                 child: const Icon(Icons.settings)),
             label: 'Setting',
@@ -261,7 +269,12 @@ class _LanguageState extends State<Language> {
           BottomNavigationBarItem(
             icon: GestureDetector(
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> orderPage == true ? CurrentOrder(): CurrentNoOrder()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => orderPage == true
+                            ? CurrentOrder()
+                            : CurrentNoOrder("")));
               },
               child: const FaIcon(
                 FontAwesomeIcons.gift,
@@ -273,7 +286,8 @@ class _LanguageState extends State<Language> {
           BottomNavigationBarItem(
             icon: GestureDetector(
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=> const Wallet()));
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => const Wallet()));
                 },
                 child: const Icon(Icons.account_balance_wallet)),
             label: 'Wallet',

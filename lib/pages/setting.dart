@@ -3,6 +3,7 @@
 import 'package:badges/badges.dart';
 import 'package:elaka_delivery_app/pages/current_no_order.dart';
 import 'package:elaka_delivery_app/pages/current_order.dart';
+import 'package:elaka_delivery_app/pages/earning.dart';
 import 'package:elaka_delivery_app/pages/language.dart';
 import 'package:elaka_delivery_app/pages/login.dart';
 import 'package:elaka_delivery_app/pages/new_password.dart';
@@ -19,7 +20,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class Setting extends StatefulWidget {
   const Setting({Key? key}) : super(key: key);
-  
 
   @override
   State<Setting> createState() => _SettingState();
@@ -30,7 +30,6 @@ class _SettingState extends State<Setting> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 243, 247, 255),
       body: Column(
@@ -51,8 +50,8 @@ class _SettingState extends State<Setting> {
                     child: const Icon(Icons.arrow_back_ios,
                         size: 28.0, color: Color.fromARGB(255, 23, 69, 103))),
                 const SizedBox(
-                  // width: 50,
-                ),
+                    // width: 50,
+                    ),
                 const Spacer(),
                 const Text(
                   "Setting",
@@ -63,7 +62,7 @@ class _SettingState extends State<Setting> {
                 ),
                 const Spacer(),
                 Badge(
-                    badgeColor: const Color.fromARGB(255, 78,206,113),
+                    badgeColor: const Color.fromARGB(255, 78, 206, 113),
                     animationType: BadgeAnimationType.slide,
                     badgeContent: const Padding(
                       padding: EdgeInsets.all(1.0),
@@ -73,8 +72,12 @@ class _SettingState extends State<Setting> {
                       ),
                     ),
                     child: GestureDetector(
-                      onTap: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => const NotificationPage()));
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    const NotificationPage()));
                       },
                       child: const Icon(Icons.notifications,
                           size: 30, color: Color.fromARGB(255, 23, 69, 103)),
@@ -106,189 +109,260 @@ class _SettingState extends State<Setting> {
               child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    const SizedBox(height: 50,),
+                    const SizedBox(
+                      height: 50,
+                    ),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 8),
                       child: GestureDetector(
-                        onTap: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => const Profile() ));
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(              
+                                  builder: (context) => Profile("")));
                         },
                         child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 32,),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 32,
+                          ),
                           child: Row(
                             children: const [
-                              Icon(Icons.person, size: 30, color: Color.fromARGB(255, 78,206,113),),
-                              SizedBox(width: 20,),
-                              Text("Profile", style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.grey
-                              ),),
-                              
+                              Icon(
+                                Icons.person,
+                                size: 30,
+                                color: Color.fromARGB(255, 78, 206, 113),
+                              ),
+                              SizedBox(
+                                width: 20,
+                              ),
+                              Text(
+                                "Profile",
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.grey),
+                              ),
                             ],
                           ),
                         ),
                       ),
                     ),
-                    const SizedBox(height: 8,),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 8),
-                      child: GestureDetector(
-                        onTap: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => const NewPassword()));
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 32),
-                          child: Row(
-                            children: const [
-                              Icon(Icons.lock, size: 30, color: Color.fromARGB(255, 78,206,113),),
-                              SizedBox(width: 20,),
-                              Text("Change Password", style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.grey
-                              ),),
-                              
-                            ],
-                          ),
-                        ),
-                      ),
+                    const SizedBox(
+                      height: 8,
                     ),
-                    const SizedBox(height: 8,),
-                    
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 8),
                       child: GestureDetector(
-                        onTap: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => const Language()));
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => NewPassword("")));
                         },
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 32),
                           child: Row(
                             children: const [
-                              Icon(Icons.g_translate, size: 30, color: Color.fromARGB(255, 78,206,113),),
-                              SizedBox(width: 20,),
-                              Text("Language", style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.grey
-                              ),),
+                              Icon(
+                                Icons.lock,
+                                size: 30,
+                                color: Color.fromARGB(255, 78, 206, 113),
+                              ),
+                              SizedBox(
+                                width: 20,
+                              ),
+                              Text(
+                                "Change Password",
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.grey),
+                              ),
                             ],
                           ),
                         ),
                       ),
                     ),
-                    
-                    const SizedBox(height: 8,),
+                    const SizedBox(
+                      height: 8,
+                    ),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 8),
                       child: GestureDetector(
-                        onTap: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => const PrivacyPolice() ));
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const Language()));
                         },
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 32),
                           child: Row(
                             children: const [
-                              Icon(Icons.policy, size: 30, color: Color.fromARGB(255, 78,206,113),),
-                              SizedBox(width: 20,),
-                              Text("Privacy Police", style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.grey
-                              ),),
+                              Icon(
+                                Icons.g_translate,
+                                size: 30,
+                                color: Color.fromARGB(255, 78, 206, 113),
+                              ),
+                              SizedBox(
+                                width: 20,
+                              ),
+                              Text(
+                                "Language",
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.grey),
+                              ),
                             ],
                           ),
                         ),
                       ),
                     ),
-                   
-                    const SizedBox(height: 8,),
-
+                    const SizedBox(
+                      height: 8,
+                    ),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 8),
                       child: GestureDetector(
-                        onTap: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => const TermCondition()));
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const PrivacyPolice()));
                         },
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 32),
                           child: Row(
                             children: const [
-                              Icon(Icons.insert_page_break_sharp, size: 30, color: Color.fromARGB(255, 78,206,113),),
-                              SizedBox(width: 20,),
-                              Text("Term & Condition", style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.grey
-                              ),),
+                              Icon(
+                                Icons.policy,
+                                size: 30,
+                                color: Color.fromARGB(255, 78, 206, 113),
+                              ),
+                              SizedBox(
+                                width: 20,
+                              ),
+                              Text(
+                                "Privacy Police",
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.grey),
+                              ),
                             ],
                           ),
                         ),
                       ),
                     ),
-
-
-
-                    const SizedBox(height: 8,),
-
+                    const SizedBox(
+                      height: 8,
+                    ),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 8),
                       child: GestureDetector(
-                        onTap: (){
-                          
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const TermCondition()));
                         },
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 32),
                           child: Row(
                             children: const [
-                              
-                              Icon(Icons.money, size: 30, color: Color.fromARGB(255, 78,206,113),),
-                              SizedBox(width: 20,),
-                              Text("Earning", style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.grey
-                              ),),
+                              Icon(
+                                Icons.insert_page_break_sharp,
+                                size: 30,
+                                color: Color.fromARGB(255, 78, 206, 113),
+                              ),
+                              SizedBox(
+                                width: 20,
+                              ),
+                              Text(
+                                "Term & Condition",
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.grey),
+                              ),
                             ],
                           ),
                         ),
                       ),
                     ),
-                    
-                    const SizedBox(height: 8,),
-
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 8),
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => Earning()));
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 32),
+                          child: Row(
+                            children: const [
+                              Icon(
+                                Icons.money,
+                                size: 30,
+                                color: Color.fromARGB(255, 78, 206, 113),
+                              ),
+                              SizedBox(
+                                width: 20,
+                              ),
+                              Text(
+                                "Earning",
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.grey),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 8,
+                    ),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 8),
                       child: GestureDetector(
                         onTap: () async {
-                          final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+                          final SharedPreferences sharedPreferences =
+                              await SharedPreferences.getInstance();
                           sharedPreferences.remove('email');
                           logout(context);
-                          
-
-
                         },
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 32),
                           child: Row(
                             children: const [
-                              
-                              Icon(Icons.logout_outlined, size: 30, color: Color.fromARGB(255, 78,206,113),),
-                              SizedBox(width: 20,),
-                              Text("Logout", style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.grey
-                              ),),
+                              Icon(
+                                Icons.logout_outlined,
+                                size: 30,
+                                color: Color.fromARGB(255, 78, 206, 113),
+                              ),
+                              SizedBox(
+                                width: 20,
+                              ),
+                              Text(
+                                "Logout",
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.grey),
+                              ),
                             ],
                           ),
                         ),
                       ),
                     ),
-                    
-                    const SizedBox(height: 8,),
-                    
+                    const SizedBox(
+                      height: 8,
+                    ),
                   ],
                 ),
               ),
@@ -316,7 +390,12 @@ class _SettingState extends State<Setting> {
           BottomNavigationBarItem(
             icon: GestureDetector(
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> orderPage == true ? CurrentOrder(): CurrentNoOrder()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => orderPage == true
+                            ? CurrentOrder()
+                            : CurrentNoOrder("")));
               },
               child: const FaIcon(
                 FontAwesomeIcons.gift,
@@ -328,7 +407,8 @@ class _SettingState extends State<Setting> {
           BottomNavigationBarItem(
             icon: GestureDetector(
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=> const Wallet()));
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => const Wallet()));
                 },
                 child: const Icon(Icons.account_balance_wallet)),
             label: 'Wallet',
@@ -341,12 +421,10 @@ class _SettingState extends State<Setting> {
     );
   }
 
-
-
 //logout Function
-   Future<void> logout(BuildContext context) async {
+  Future<void> logout(BuildContext context) async {
     await FirebaseAuth.instance.signOut();
-    Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => Login()));
+    Navigator.of(context)
+        .pushReplacement(MaterialPageRoute(builder: (context) => Login()));
   }
 }

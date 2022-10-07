@@ -7,6 +7,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 // import 'package:flutter/services.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:email_auth/email_auth.dart';
+import 'package:elaka_delivery_app/services/Auth.dart';
 
 class ResetPassword extends StatefulWidget {
   const ResetPassword({Key? key}) : super(key: key);
@@ -18,7 +19,7 @@ class ResetPassword extends StatefulWidget {
 class _ResetPasswordState extends State<ResetPassword> {
   bool _obscureText = true;
   final TextEditingController _resetEmailController = TextEditingController();
-  final _auth = FirebaseAuth.instance;
+  // final _auth = FirebaseAuth.instance;
 
   // @override
   // void initState() {
@@ -29,8 +30,6 @@ class _ResetPasswordState extends State<ResetPassword> {
   //   );
 
   // }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -97,9 +96,12 @@ class _ResetPasswordState extends State<ResetPassword> {
                           fontSize: 20,
                         ),
                         decoration: InputDecoration(
-                            label: const Text("Email", style: TextStyle(
-                              color: Colors.grey,
-                            ),),
+                            label: const Text(
+                              "Email",
+                              style: TextStyle(
+                                color: Colors.grey,
+                              ),
+                            ),
                             hintText: "Enter Email",
                             focusedBorder: const OutlineInputBorder(
                                 borderSide: BorderSide(
@@ -125,13 +127,9 @@ class _ResetPasswordState extends State<ResetPassword> {
                               ),
                             ))),
                   ),
-                  
-                  
                   const SizedBox(
                     height: 28,
                   ),
-
-
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.9,
                     height: 50,
@@ -140,11 +138,15 @@ class _ResetPasswordState extends State<ResetPassword> {
                           primary: const Color.fromARGB(255, 78, 206, 113),
                           onPrimary: Colors.white,
                         ),
-                        onPressed: () {
+                        onPressed: () async {
                           print(_resetEmailController.text);
-                          _auth.sendPasswordResetEmail(email: _resetEmailController.text);
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => Login()));
-                         
+
+                          forgotPass(_resetEmailController.text);
+                          //  _auth.sendPasswordResetEmail(email: _resetEmailController.text);
+                          Fluttertoast.showToast(
+                              msg: "Please check your mailbox");
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) => Login()));
                         },
                         child: const Text(
                           "Reset",

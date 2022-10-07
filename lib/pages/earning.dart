@@ -13,14 +13,14 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-class Wallet extends StatefulWidget {
-  const Wallet({Key? key}) : super(key: key);
+class Earning extends StatefulWidget {
+  const Earning({Key? key}) : super(key: key);
 
   @override
-  State<Wallet> createState() => _WalletState();
+  State<Earning> createState() => _EarningState();
 }
 
-class _WalletState extends State<Wallet> {
+class _EarningState extends State<Earning> {
   int currentIndex = 0;
   // bool isChecked = false;
 
@@ -50,7 +50,7 @@ class _WalletState extends State<Wallet> {
                     ),
                 const Spacer(),
                 const Text(
-                  "My Wallet",
+                  "My Earning",
                   style: TextStyle(
                     fontSize: 25,
                     fontWeight: FontWeight.bold,
@@ -118,7 +118,7 @@ class _WalletState extends State<Wallet> {
                         children: const [
                           HeightBox(10),
                           Text(
-                            "Total Amount",
+                            "Total Earning",
                             style: TextStyle(
                               fontSize: 20,
                               color: Color.fromARGB(255, 248, 245, 245),
@@ -127,7 +127,7 @@ class _WalletState extends State<Wallet> {
                           ),
                           HeightBox(16),
                           Text(
-                            "\$2000",
+                            "-\$1500",
                             style: TextStyle(
                               fontSize: 40,
                               color: Color.fromARGB(255, 248, 245, 245),
@@ -143,7 +143,7 @@ class _WalletState extends State<Wallet> {
                       child: Align(
                         alignment: Alignment.topLeft,
                         child: Text(
-                          "Recent Orders",
+                          "Recent Delivered Orders",
                           style: TextStyle(
                             fontSize: 23,
                             fontWeight: FontWeight.bold,
@@ -222,9 +222,6 @@ class _WalletState extends State<Wallet> {
             label: 'Wallet',
           ),
         ],
-        // currentIndex: _selectedIndex,
-        // selectedItemColor: Colors.amber[800],
-        // onTap: _onItemTapped,
       ),
     );
   }

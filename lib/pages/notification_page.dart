@@ -8,7 +8,7 @@ import 'package:elaka_delivery_app/pages/setting.dart';
 import 'package:elaka_delivery_app/pages/wallet.dart';
 import 'package:elaka_delivery_app/resources/global_variable.dart';
 import 'package:elaka_delivery_app/widgets/notifications_list.dart';
-import 'package:elaka_delivery_app/widgets/transection_list.dart';
+import 'package:elaka_delivery_app/widgets/recent_order_list.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -58,7 +58,7 @@ class _NotificationPageState extends State<NotificationPage> {
                 ),
                 const Spacer(),
                 Badge(
-                    badgeColor: Color.fromARGB(255, 78,206,113),
+                    badgeColor: Color.fromARGB(255, 78, 206, 113),
                     animationType: BadgeAnimationType.slide,
                     badgeContent: const Padding(
                       padding: EdgeInsets.all(1.0),
@@ -68,8 +68,11 @@ class _NotificationPageState extends State<NotificationPage> {
                       ),
                     ),
                     child: GestureDetector(
-                      onTap: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => NotificationPage()));
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => NotificationPage()));
                       },
                       child: Icon(Icons.notifications,
                           size: 30, color: Color.fromARGB(255, 23, 69, 103)),
@@ -104,9 +107,6 @@ class _NotificationPageState extends State<NotificationPage> {
                     SizedBox(
                       height: 30,
                     ),
-
-
-
                     NotificationList(),
                     NotificationList(),
                     NotificationList(),
@@ -117,7 +117,6 @@ class _NotificationPageState extends State<NotificationPage> {
                     NotificationList(),
                     NotificationList(),
                     NotificationList(),
-                    
                   ],
                 ),
               ),
@@ -132,7 +131,6 @@ class _NotificationPageState extends State<NotificationPage> {
         selectedItemColor: const Color.fromARGB(255, 23, 69, 103),
         unselectedItemColor: const Color.fromARGB(255, 23, 69, 103),
         iconSize: 30,
-
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: GestureDetector(
@@ -146,8 +144,12 @@ class _NotificationPageState extends State<NotificationPage> {
           BottomNavigationBarItem(
             icon: GestureDetector(
               onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => orderPage == true ? CurrentOrder(): CurrentNoOrder()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => orderPage == true
+                            ? CurrentOrder()
+                            : CurrentNoOrder("")));
               },
               child: const FaIcon(
                 FontAwesomeIcons.gift,
@@ -159,7 +161,8 @@ class _NotificationPageState extends State<NotificationPage> {
           BottomNavigationBarItem(
             icon: GestureDetector(
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=> Wallet()));
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Wallet()));
                 },
                 child: const Icon(Icons.account_balance_wallet)),
             label: 'Wallet',

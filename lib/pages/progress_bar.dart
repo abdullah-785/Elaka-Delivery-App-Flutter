@@ -128,7 +128,8 @@ class _ProgressBarState extends State<ProgressBar> {
                                                       context,
                                                       MaterialPageRoute(
                                                           builder: (context) =>
-                                                              const CurrentNoOrder()));
+                                                              CurrentNoOrder(
+                                                                  "")));
                                                 },
                                                 child: const Text(
                                                   "Not Working",
@@ -150,7 +151,8 @@ class _ProgressBarState extends State<ProgressBar> {
                                                       context,
                                                       MaterialPageRoute(
                                                           builder: (context) =>
-                                                              const CurrentNoOrder()));
+                                                              CurrentNoOrder(
+                                                                  "")));
                                                 },
                                                 child: const Text(
                                                   "No fuel",

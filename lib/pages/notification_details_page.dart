@@ -1,3 +1,4 @@
+import 'package:elaka_delivery_app/pages/current_order.dart';
 import 'package:elaka_delivery_app/pages/setting.dart';
 import 'package:elaka_delivery_app/pages/start_routing.dart';
 import 'package:elaka_delivery_app/pages/wallet.dart';
@@ -6,14 +7,14 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-class CurrentOrder extends StatefulWidget {
-  const CurrentOrder({Key? key}) : super(key: key);
+class NotificationDetailPage extends StatefulWidget {
+  const NotificationDetailPage({Key? key}) : super(key: key);
 
   @override
-  State<CurrentOrder> createState() => _CurrentOrderState();
+  State<NotificationDetailPage> createState() => _NotificationDetailPageState();
 }
 
-class _CurrentOrderState extends State<CurrentOrder> {
+class _NotificationDetailPageState extends State<NotificationDetailPage> {
   int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
@@ -31,7 +32,7 @@ class _CurrentOrderState extends State<CurrentOrder> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: const [
                 Text(
-                  "Current Order",
+                  "Order Detail",
                   style: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
@@ -156,28 +157,28 @@ class _CurrentOrderState extends State<CurrentOrder> {
                       const SizedBox(
                         height: 20,
                       ),
-                      SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.85,
-                          height: 50,
-                          child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                primary:
-                                    const Color.fromARGB(255, 78, 206, 113),
-                              ),
-                              onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            const StartRounting()));
-                              },
-                              child: const Text(
-                                "Start Route",
-                                style: TextStyle(
-                                  fontSize: 22,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ))),
+                      // SizedBox(
+                      //     width: MediaQuery.of(context).size.width * 0.85,
+                      //     height: 50,
+                      //     child: ElevatedButton(
+                      //         style: ElevatedButton.styleFrom(
+                      //           primary:
+                      //               const Color.fromARGB(255, 78, 206, 113),
+                      //         ),
+                      //         onPressed: () {
+                      //           Navigator.push(
+                      //               context,
+                      //               MaterialPageRoute(
+                      //                   builder: (context) =>
+                      //                       const StartRounting()));
+                      //         },
+                      //         child: const Text(
+                      //           "Start Route",
+                      //           style: TextStyle(
+                      //             fontSize: 22,
+                      //             fontWeight: FontWeight.bold,
+                      //           ),
+                      //         ))),
                     ],
                   ),
                 )),

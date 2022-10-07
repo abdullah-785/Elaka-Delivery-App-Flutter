@@ -1,28 +1,27 @@
 import 'package:elaka_delivery_app/pages/current_order_details.dart';
+import 'package:elaka_delivery_app/pages/deliver_order.dart';
+import 'package:elaka_delivery_app/pages/earning.dart';
+import 'package:elaka_delivery_app/pages/language.dart';
+import 'package:elaka_delivery_app/pages/notification_details_page.dart';
+import 'package:elaka_delivery_app/pages/notification_page.dart';
+import 'package:elaka_delivery_app/pages/opt_verification.dart';
+import 'package:elaka_delivery_app/pages/profile.dart';
 import 'package:elaka_delivery_app/pages/progress_bar.dart';
-import 'package:elaka_delivery_app/pages/google_maping.dart';
 import 'package:elaka_delivery_app/pages/login.dart';
-import 'package:elaka_delivery_app/pages/maping.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'package:elaka_delivery_app/pages/wallet.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-
 String? email;
-Future main() async {                                         
+Future main() async {
 
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-
-  runApp( MaterialApp(
+  runApp(MaterialApp(
     theme: ThemeData(fontFamily: 'Releway'),
     debugShowCheckedModeBanner: false,
     title: "Ealaka",
     home: const MyApp(),
-    
   ));
 }
-
 
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -32,8 +31,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-
-
   @override
   void initState() {
     // TODO: implement initState
@@ -41,22 +38,17 @@ class _MyAppState extends State<MyApp> {
     getData();
   }
 
-  getData() async{
+  getData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
       email = prefs.getString('email');
       print(email);
     });
-    
-
   }
-
-
 
   @override
   Widget build(BuildContext context) {
-    return email == "AlreadyLogedIn" ? ProgressBar(): Login();
-    // return const CurrentDetailOrder();
+    return email == "AlreadyLogedIn" ? ProgressBar() : Login();
+    // return Language();
   }
 }
-

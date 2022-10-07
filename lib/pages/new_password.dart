@@ -11,9 +11,20 @@ import 'package:elaka_delivery_app/pages/notification_page.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:elaka_delivery_app/services/Auth.dart';
+import 'package:elaka_delivery_app/models/LoginModel.dart';
+import 'package:elaka_delivery_app/models/userModel.dart';
+import 'package:http/http.dart' as http;
+import 'dart:async';
+import 'dart:convert';
+import 'package:elaka_delivery_app/services/constants.dart';
+import 'dart:convert' as convert;
+
+import 'current_no_order.dart';
 
 class NewPassword extends StatefulWidget {
-  const NewPassword({Key? key}) : super(key: key);
+  final String _email;
+  NewPassword(this._email);
 
   @override
   State<NewPassword> createState() => _NewPasswordState();
@@ -23,10 +34,10 @@ class _NewPasswordState extends State<NewPassword> {
   TextEditingController _newPasswordController = TextEditingController();
   TextEditingController _confirmPasswordController = TextEditingController();
   // FirebaseAuth _auth = FirebaseAuth.instance;
-  final currentUser = FirebaseAuth.instance.currentUser;
-  final FirebaseAuth _auth = FirebaseAuth.instance;
+  // final currentUser = FirebaseAuth.instance.currentUser;
+  // final FirebaseAuth _auth = FirebaseAuth.instance;
   bool oldUser = false;
-
+  bool isLoading = false;
   bool _obscureText = true;
   bool _obscureText2 = true;
   @override
@@ -241,57 +252,69 @@ class _NewPasswordState extends State<NewPassword> {
                     const SizedBox(
                       height: 28,
                     ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.9,
-                      height: 50,
-                      child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            primary: const Color.fromARGB(255, 78, 206, 113),
-                            onPrimary: Colors.white,
+                    (isLoading)
+                        ? const SizedBox(
+                            width: 50,
+                            height: 50,
+                            child: CircularProgressIndicator(
+                              color: Colors.green,
+                              strokeWidth: 2,
+                            ))
+                        : SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.9,
+                            height: 50,
+                            child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  primary:
+                                      const Color.fromARGB(255, 78, 206, 113),
+                                  onPrimary: Colors.white,
+                                ),
+                                onPressed: () async {
+                                  var pass = _newPasswordController.text;
+                                  var conPass = _confirmPasswordController.text;
+                                  if (pass == conPass) {
+                                    setState(() {
+                                      isLoading = true;
+                                    });
+
+                                    changePass(widget._email, pass)
+                                        .then((value) => {apiCall(value)});
+                                  }
+
+                                  // await changePass(widget._email,
+                                  //         _confirmPasswordController.text)
+                                  //     .then((value) => {
+                                  //           if (value!.status == "true")
+                                  //             {
+                                  //               // Fluttertoast.showToast(
+                                  //               ///   msg: "Password Updated Successfully")
+
+                                  //               Navigator.push(
+                                  //                   context,
+                                  //                   MaterialPageRoute(
+                                  //                       builder: (context) =>
+                                  //                           const ProgressBar()))
+                                  //             }
+                                  //         });
+
+                                  // if (resp!.status == "true") {
+                                  //   Fluttertoast.showToast(
+                                  //       msg: "Password Updated Successfully");
+
+                                  //   Navigator.push(
+                                  //       context,
+                                  //       MaterialPageRoute(
+                                  //           builder: (context) =>
+                                  //               const ProgressBar()));
+                                  // }
+                                },
+                                child: const Text(
+                                  "Submit",
+                                  style: TextStyle(
+                                      fontSize: 22,
+                                      fontWeight: FontWeight.bold),
+                                )),
                           ),
-                          onPressed: () async {
-                            try {
-                              if (_newPasswordController.text ==
-                                  _confirmPasswordController.text) {
-                                await currentUser!.updatePassword(
-                                    _newPasswordController.text);
-
-                                FirebaseFirestore firebaseFirestore =
-                                    FirebaseFirestore.instance;
-                                User? user = _auth.currentUser;
-
-                                UserModel userModel = UserModel();
-
-                                // writing all the values
-                                userModel.uid = user!.uid;
-                                userModel.email = user.email;
-                                userModel.password =
-                                    _newPasswordController.text;
-                                userModel.oldUser = true;
-
-                                await firebaseFirestore
-                                    .collection("users")
-                                    .doc(user.uid)
-                                    .set(userModel.toMap());
-
-                                Fluttertoast.showToast(
-                                    msg: "Password Updated Successfully");
-                                
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => const ProgressBar()));
-                              }
-                            } catch (e) {
-                              Fluttertoast.showToast(msg: "Successfully");
-                            }
-                          },
-                          child: const Text(
-                            "Submit",
-                            style: TextStyle(
-                                fontSize: 22, fontWeight: FontWeight.bold),
-                          )),
-                    ),
                   ],
                 ),
               ),
@@ -300,5 +323,21 @@ class _NewPasswordState extends State<NewPassword> {
         ],
       ),
     );
+  }
+
+  void apiCall(LoginUser? user) async {
+    setState(() {
+      isLoading = false;
+    });
+
+    if (user?.status == "true") {
+      //return userRes;
+      var userid = user!.data!.id.toString();
+      SharedPrefUtils.saveStr("userId", userid);
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => CurrentNoOrder(user!.data!.id.toString())));
+    }
   }
 }

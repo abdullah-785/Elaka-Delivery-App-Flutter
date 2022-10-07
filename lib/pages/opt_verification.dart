@@ -1,77 +1,82 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:elaka_delivery_app/models/userModel.dart';
-import 'package:elaka_delivery_app/pages/progress_bar.dart';
 import 'package:elaka_delivery_app/pages/new_password.dart';
+import 'package:elaka_delivery_app/services/Auth.dart';
 import 'package:email_auth/email_auth.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-// import 'package:elaka_delivery_app/widgets/opt.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:pinput/pinput.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../models/LoginModel.dart';
 // import 'package:velocity_x/velocity_x.dart';
 
 class OptVerification extends StatefulWidget {
-  const OptVerification({Key? key}) : super(key: key);
+  final String _email;
+  // const OptVerification({Key? key}) : super(key: key);
+
+  OptVerification(this._email);
 
   @override
   State<OptVerification> createState() => _OptVerificationState();
 }
 
 class _OptVerificationState extends State<OptVerification> {
-  User? user = FirebaseAuth.instance.currentUser;
-  UserModel loggedInUser = UserModel();
   @override
   void initState() {
     super.initState();
-    FirebaseFirestore.instance
-        .collection("users")
-        .doc(user!.uid)
-        .get()
-        .then((value) {
-      loggedInUser = UserModel.fromMap(value.data());
 
-      // OptVerification();
-      setState(() {});
-    });
+    // OptVerification();
   }
 
   late EmailAuth emailAuth;
   bool submitValid = false;
+  bool isLoading = false;
   final TextEditingController _optController = TextEditingController();
 
-  void sendOtp() async {
-    emailAuth = new EmailAuth(
-      sessionName: "Ealaka App",
-    );
-    bool result = (await emailAuth.sendOtp(
-        recipientMail: "${loggedInUser.email}", otpLength: 4));
+  // void sendOtp() async {
+  //   emailAuth = new EmailAuth(
+  //     sessionName: "Ealaka App",
+  //   );
+  //   bool result = (await emailAuth.sendOtp(
+  //       recipientMail: "${loggedInUser.email}", otpLength: 4));
+  //   if (result) {
+  //     setState(() {
+  //       submitValid = true;
+  //     });
+  //   }
+  // }
 
-    if (result) {
-      setState(() {
-        submitValid = true;
-      });
-    }
-  }
+  void verify() async {
+    String email = widget._email;
+    String otp = _optController.text;
+    setState(() {
+      isLoading = true;
+    });
+    await verifyOTPCall(email, otp).then((value) =>
+        // print("done")
+        callApi(value));
 
-  void verify() {
-    bool result = emailAuth.validateOtp(
-        recipientMail: "${loggedInUser.email}", userOtp: _optController.text);
+    //.then((value) => {
+    //       if (value!.status == "false")
+    //         {Fluttertoast.showToast(msg: "OTP incorrect")}
+    //       else
+    //         {
+    //           Navigator.push(context,
+    //               MaterialPageRoute(builder: (context) => const NewPassword()))
+    //         }
+    //     });
 
-    if (result == false) {
-      Fluttertoast.showToast(msg: "OTP incorrect");
-      // Navigator.push(context, MaterialPageRoute(builder: (context) => const OptVerification()));
-    } else if (result == true && loggedInUser.oldUser == true) {
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => ProgressBar()));
-          setPrefranceData();
-      Fluttertoast.showToast(msg: "Login Successfully");
-    } else if (result == true && loggedInUser.oldUser == false) {
-      Navigator.push(context,
-          MaterialPageRoute(builder: (context) => const NewPassword()));
-          setPrefranceData();
-    }
+    // if (result == false) {
+    //   Fluttertoast.showToast(msg: "OTP incorrect");
+    //   // Navigator.push(context, MaterialPageRoute(builder: (context) => const OptVerification()));
+    // } else if (result == true && loggedInUser.oldUser == true) {
+    //   Navigator.push(
+    //       context, MaterialPageRoute(builder: (context) => ProgressBar()));
+    //   setPrefranceData();
+    //   Fluttertoast.showToast(msg: "Login Successfully");
+    // } else if (result == true && loggedInUser.oldUser == false) {
+    //   Navigator.push(context,
+    //       MaterialPageRoute(builder: (context) => const NewPassword()));
+    //   setPrefranceData();
+    // }
   }
 
 //  @override
@@ -83,13 +88,11 @@ class _OptVerificationState extends State<OptVerification> {
 //     );
 
 //   }
-setPrefranceData() async{
+  setPrefranceData() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     pref.setString("email", "AlreadyLogedIn");
     // print( _emailController.text);
-
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -118,9 +121,17 @@ setPrefranceData() async{
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  const SizedBox(
-                    height: 10,
-                  ),
+                  (isLoading)
+                      ? const SizedBox(
+                          width: 50,
+                          height: 50,
+                          child: CircularProgressIndicator(
+                            color: Colors.green,
+                            strokeWidth: 2,
+                          ))
+                      : const SizedBox(
+                          height: 10,
+                        ),
                   // Text("${loggedInUser.phoneNumber}"),
                   const Text(
                     "Enter OTP Code",
@@ -190,7 +201,6 @@ setPrefranceData() async{
                               ),
                             ))),
                   ),
-
                   Row(
                     // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -314,29 +324,29 @@ setPrefranceData() async{
                   const SizedBox(
                     height: 28,
                   ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.9,
-                    height: 50,
-                    child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          primary: const Color.fromARGB(255, 78, 206, 113),
-                          onPrimary: Colors.white,
-                        ),
-                        onPressed: () {
-                          try {
-                            sendOtp();
-                            Fluttertoast.showToast(
-                                msg: "OTP Send Successfully");
-                          } catch (e) {
-                            Fluttertoast.showToast(msg: "${e}");
-                          }
-                        },
-                        child: const Text(
-                          "Send OTP",
-                          style: TextStyle(
-                              fontSize: 22, fontWeight: FontWeight.bold),
-                        )),
-                  ),
+                  // SizedBox(
+                  //   width: MediaQuery.of(context).size.width * 0.9,
+                  //   height: 50,
+                  //   child: ElevatedButton(
+                  //       style: ElevatedButton.styleFrom(
+                  //         primary: const Color.fromARGB(255, 78, 206, 113),
+                  //         onPrimary: Colors.white,
+                  //       ),
+                  //       onPressed: () {
+                  //         try {
+                  //           //  sendOtp();
+                  //           Fluttertoast.showToast(
+                  //               msg: "OTP Send Successfully");
+                  //         } catch (e) {
+                  //           Fluttertoast.showToast(msg: "${e}");
+                  //         }
+                  //       },
+                  //       child: const Text(
+                  //         "Send OTP",
+                  //         style: TextStyle(
+                  //             fontSize: 22, fontWeight: FontWeight.bold),
+                  //       )),
+                  // ),
                   const SizedBox(
                     height: 10,
                   ),
@@ -376,8 +386,8 @@ setPrefranceData() async{
                   ),
                   InkWell(
                     onTap: () {
-                      sendOtp();
-                      Fluttertoast.showToast(msg: "OTP Send Successfully");
+                      // sendOtp();
+                      // Fluttertoast.showToast(msg: "OTP Send Successfully");
                     },
                     child: const Text("Resend OTP",
                         style: TextStyle(
@@ -432,4 +442,14 @@ setPrefranceData() async{
   // super.initState();
   // _verifyPhone();
   // }
+
+  void callApi(LoginUser? user) async {
+    setState(() {
+      isLoading = false;
+    });
+    if (user?.status == "true") {
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => NewPassword(widget._email)));
+    }
+  }
 }

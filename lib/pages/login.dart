@@ -1,6 +1,10 @@
+import 'dart:developer';
+
+import 'package:elaka_delivery_app/models/LoginModel.dart';
 import 'package:elaka_delivery_app/pages/progress_bar.dart';
 import 'package:elaka_delivery_app/pages/opt_verification.dart';
 import 'package:elaka_delivery_app/pages/reset_password.dart';
+import 'package:elaka_delivery_app/pages/wallet.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 // import 'package:elaka_delivery_app/widgets/opt.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +13,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 // import 'package:flutter/services.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:email_auth/email_auth.dart';
+import '/services/Auth.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -21,9 +26,10 @@ class _LoginState extends State<Login> {
   bool _obscureText = true;
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final _auth = FirebaseAuth.instance;
 
+  bool isLoading = false;
 
+  //final _auth = FirebaseAuth.instance;
 
   // getPrefranceData() async{
   //   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
@@ -38,12 +44,11 @@ class _LoginState extends State<Login> {
 
   // }
 
-
   // checkPrefranceData(){
   //   setState(() {
-  //   getPrefranceData() != null ? ProgressBar(): Login();    
+  //   getPrefranceData() != null ? ProgressBar(): Login();
   //   });
-    
+
   // }
 
   // @override
@@ -52,8 +57,6 @@ class _LoginState extends State<Login> {
   //   checkPrefranceData();
 
   // }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -108,9 +111,17 @@ class _LoginState extends State<Login> {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  const SizedBox(
-                    height: 40,
-                  ),
+                  (isLoading)
+                      ? const SizedBox(
+                          width: 50,
+                          height: 50,
+                          child: CircularProgressIndicator(
+                            color: Colors.green,
+                            strokeWidth: 2,
+                          ))
+                      : const SizedBox(
+                          height: 40,
+                        ),
                   // const Padding(
                   //   padding: EdgeInsets.symmetric(horizontal: 16),
                   //   child: Align(
@@ -134,9 +145,12 @@ class _LoginState extends State<Login> {
                           fontSize: 20,
                         ),
                         decoration: InputDecoration(
-                            label: const Text("Email", style: TextStyle(
-                              color: Colors.grey,
-                            ),),
+                            label: const Text(
+                              "Email",
+                              style: TextStyle(
+                                color: Colors.grey,
+                              ),
+                            ),
                             hintText: "Enter Email",
                             focusedBorder: const OutlineInputBorder(
                                 borderSide: BorderSide(
@@ -189,9 +203,12 @@ class _LoginState extends State<Login> {
                         obscureText: _obscureText,
                         keyboardType: TextInputType.text,
                         decoration: InputDecoration(
-                            label: const Text("Passsword", style: TextStyle(
-                              color: Colors.grey,
-                            ),),
+                            label: const Text(
+                              "Passsword",
+                              style: TextStyle(
+                                color: Colors.grey,
+                              ),
+                            ),
                             hintText: "Enter Password",
                             focusedBorder: const OutlineInputBorder(
                                 borderSide: BorderSide(
@@ -234,8 +251,11 @@ class _LoginState extends State<Login> {
                     height: 15,
                   ),
                   GestureDetector(
-                    onTap: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => ResetPassword()));
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ResetPassword()));
                     },
                     child: const Text("Forget Password?",
                         style: TextStyle(
@@ -254,7 +274,6 @@ class _LoginState extends State<Login> {
                   //   // verify();
                   // }, child: Text("verify")),
 
-
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.9,
                     height: 50,
@@ -264,26 +283,25 @@ class _LoginState extends State<Login> {
                           onPrimary: Colors.white,
                         ),
                         onPressed: () async {
-                          _auth
-                              .signInWithEmailAndPassword(
-                                  email: _emailController.text,
-                                  password: _passwordController.text)
-                              .then((uid) => {
-                                    // Fluttertoast.showToast(
-                                    //     msg: ""),
-                                    //  setPrefranceData(),
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                const OptVerification())),
-                                  })
-                              .catchError((e) {
-                            Fluttertoast.showToast(msg: e!.message);
-                          });
-                          
+                          callAPi();
 
-                          
+                          // _auth
+                          //     .signInWithEmailAndPassword(
+                          //         email: _emailController.text,
+                          //         password: _passwordController.text)
+                          //     .then((uid) => {
+                          //           // Fluttertoast.showToast(
+                          //           //     msg: ""),
+                          //           //  setPrefranceData(),
+                          //           Navigator.push(
+                          //               context,
+                          //               MaterialPageRoute(
+                          //                   builder: (context) =>
+                          //                       const OptVerification())),
+                          //         })
+                          //     .catchError((e) {
+                          //   Fluttertoast.showToast(msg: e!.message);
+                          // });
 
                           // final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
                           // sharedPreferences.setString("email", _emailController.text);
@@ -291,10 +309,7 @@ class _LoginState extends State<Login> {
                           //               context,
                           //               MaterialPageRoute(
                           //                   builder: (context) =>
-                          //                       OptVerification()));
-
-                          
-                          
+                          //                       Wallet()));
                         },
                         child: const Text(
                           "Sign In",
@@ -309,5 +324,31 @@ class _LoginState extends State<Login> {
         ],
       ),
     );
+  }
+
+  void callAPi() async {
+    setState(() {
+      isLoading = true;
+    });
+    var res = await login(_emailController.text, _passwordController.text)
+        .then((resp) => {
+              //    print(resp)
+
+              handleResp(resp)
+            });
+  }
+
+  void handleResp(LoginUser? user) {
+    setState(() {
+      isLoading = false;
+    });
+
+    if (user?.status == "true") {
+      Fluttertoast.showToast(msg: user?.message ?? "");
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => OptVerification(_emailController.text)));
+    }
   }
 }

@@ -5,10 +5,16 @@ import 'package:elaka_delivery_app/pages/setting.dart';
 import 'package:elaka_delivery_app/pages/wallet.dart';
 import 'package:elaka_delivery_app/resources/global_variable.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import '/services/Auth.dart';
+
+import '../models/LoginModel.dart';
 
 class EditProfile extends StatefulWidget {
-  const EditProfile({Key? key}) : super(key: key);
+  final LoginUser? user;
+
+  const EditProfile(this.user);
 
   @override
   State<EditProfile> createState() => _EditProfileState();
@@ -16,6 +22,20 @@ class EditProfile extends StatefulWidget {
 
 class _EditProfileState extends State<EditProfile> {
   int currentIndex = 0;
+  bool isLoading = false;
+
+  final TextEditingController _firstNme = TextEditingController();
+  final TextEditingController _lastName = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _driLicinece = TextEditingController();
+  final TextEditingController _vehNumber = TextEditingController();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    setData();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -96,14 +116,16 @@ class _EditProfileState extends State<EditProfile> {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16),
                       child: TextFormField(
-                          // controller: _emailController,
+                          controller: _firstNme,
                           keyboardType: TextInputType.emailAddress,
                           style: const TextStyle(
                             fontSize: 20,
                           ),
                           decoration: InputDecoration(
                               focusedBorder: const OutlineInputBorder(
-                                  borderSide: BorderSide(color: Color.fromARGB(255, 78,206,113))),
+                                  borderSide: BorderSide(
+                                      color:
+                                          Color.fromARGB(255, 78, 206, 113))),
                               border: const OutlineInputBorder(),
                               prefixIcon: Container(
                                 width: 39,
@@ -115,7 +137,7 @@ class _EditProfileState extends State<EditProfile> {
                                   left: 8,
                                 ),
                                 decoration: BoxDecoration(
-                                  color: Color.fromARGB(255, 78,206,113),
+                                  color: Color.fromARGB(255, 78, 206, 113),
                                   borderRadius: BorderRadius.circular(50),
                                 ),
                                 child: const Icon(
@@ -145,14 +167,16 @@ class _EditProfileState extends State<EditProfile> {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16),
                       child: TextFormField(
-                          // controller: _emailController,
+                          controller: _lastName,
                           keyboardType: TextInputType.emailAddress,
                           style: const TextStyle(
                             fontSize: 20,
                           ),
                           decoration: InputDecoration(
                               focusedBorder: const OutlineInputBorder(
-                                  borderSide: BorderSide(color: Color.fromARGB(255, 78,206,113))),
+                                  borderSide: BorderSide(
+                                      color:
+                                          Color.fromARGB(255, 78, 206, 113))),
                               border: const OutlineInputBorder(),
                               prefixIcon: Container(
                                 width: 39,
@@ -164,7 +188,7 @@ class _EditProfileState extends State<EditProfile> {
                                   left: 8,
                                 ),
                                 decoration: BoxDecoration(
-                                  color: Color.fromARGB(255, 78,206,113),
+                                  color: Color.fromARGB(255, 78, 206, 113),
                                   borderRadius: BorderRadius.circular(50),
                                 ),
                                 child: const Icon(
@@ -194,14 +218,16 @@ class _EditProfileState extends State<EditProfile> {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16),
                       child: TextFormField(
-                          // controller: _emailController,
+                          controller: _emailController,
                           keyboardType: TextInputType.emailAddress,
                           style: const TextStyle(
                             fontSize: 20,
                           ),
                           decoration: InputDecoration(
                               focusedBorder: const OutlineInputBorder(
-                                  borderSide: BorderSide(color: Color.fromARGB(255, 78,206,113))),
+                                  borderSide: BorderSide(
+                                      color:
+                                          Color.fromARGB(255, 78, 206, 113))),
                               border: const OutlineInputBorder(),
                               prefixIcon: Container(
                                 width: 39,
@@ -213,7 +239,7 @@ class _EditProfileState extends State<EditProfile> {
                                   left: 8,
                                 ),
                                 decoration: BoxDecoration(
-                                  color: Color.fromARGB(255, 78,206,113),
+                                  color: Color.fromARGB(255, 78, 206, 113),
                                   borderRadius: BorderRadius.circular(50),
                                 ),
                                 child: const Icon(
@@ -243,14 +269,16 @@ class _EditProfileState extends State<EditProfile> {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16),
                       child: TextFormField(
-                          // controller: _emailController,
+                          controller: _driLicinece,
                           keyboardType: TextInputType.emailAddress,
                           style: const TextStyle(
                             fontSize: 20,
                           ),
                           decoration: InputDecoration(
                               focusedBorder: const OutlineInputBorder(
-                                  borderSide: BorderSide(color: Color.fromARGB(255, 78,206,113))),
+                                  borderSide: BorderSide(
+                                      color:
+                                          Color.fromARGB(255, 78, 206, 113))),
                               border: const OutlineInputBorder(),
                               prefixIcon: Container(
                                 width: 39,
@@ -262,7 +290,8 @@ class _EditProfileState extends State<EditProfile> {
                                   left: 8,
                                 ),
                                 decoration: BoxDecoration(
-                                  color: const Color.fromARGB(255, 78,206,113),
+                                  color:
+                                      const Color.fromARGB(255, 78, 206, 113),
                                   borderRadius: BorderRadius.circular(50),
                                 ),
                                 child: const Icon(
@@ -292,14 +321,16 @@ class _EditProfileState extends State<EditProfile> {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16),
                       child: TextFormField(
-                          // controller: _emailController,
+                          controller: _vehNumber,
                           keyboardType: TextInputType.emailAddress,
                           style: const TextStyle(
                             fontSize: 20,
                           ),
                           decoration: InputDecoration(
                               focusedBorder: const OutlineInputBorder(
-                                  borderSide: BorderSide(color: Color.fromARGB(255, 78,206,113))),
+                                  borderSide: BorderSide(
+                                      color:
+                                          Color.fromARGB(255, 78, 206, 113))),
                               border: const OutlineInputBorder(),
                               prefixIcon: Container(
                                 width: 39,
@@ -311,7 +342,8 @@ class _EditProfileState extends State<EditProfile> {
                                   left: 8,
                                 ),
                                 decoration: BoxDecoration(
-                                  color: const Color.fromARGB(255, 78,206,113),
+                                  color:
+                                      const Color.fromARGB(255, 78, 206, 113),
                                   borderRadius: BorderRadius.circular(50),
                                 ),
                                 child: const Icon(
@@ -324,27 +356,38 @@ class _EditProfileState extends State<EditProfile> {
                     const SizedBox(
                       height: 25,
                     ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.93,
-                      height: 50,
-                      child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            primary: const Color.fromARGB(255, 78,206,113),
-                            onPrimary: Colors.white,
+                    (isLoading)
+                        ? const SizedBox(
+                            width: 50,
+                            height: 50,
+                            child: CircularProgressIndicator(
+                              color: Colors.green,
+                              strokeWidth: 2,
+                            ))
+                        : SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.93,
+                            height: 50,
+                            child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  primary:
+                                      const Color.fromARGB(255, 78, 206, 113),
+                                  onPrimary: Colors.white,
+                                ),
+                                onPressed: () {
+                                  callEditProfileAPi();
+                                  // Navigator.push(
+                                  //     context,
+                                  //     MaterialPageRoute(
+                                  //         builder: (context) =>
+                                  //             const OptVerification()));
+                                },
+                                child: const Text(
+                                  "Submit",
+                                  style: TextStyle(
+                                      fontSize: 22,
+                                      fontWeight: FontWeight.bold),
+                                )),
                           ),
-                          onPressed: () {
-                            // Navigator.push(
-                            //     context,
-                            //     MaterialPageRoute(
-                            //         builder: (context) =>
-                            //             const OptVerification()));
-                          },
-                          child: const Text(
-                            "Submit",
-                            style: TextStyle(
-                                fontSize: 22, fontWeight: FontWeight.bold),
-                          )),
-                    ),
                     const SizedBox(
                       height: 5,
                     ),
@@ -376,7 +419,12 @@ class _EditProfileState extends State<EditProfile> {
           BottomNavigationBarItem(
             icon: GestureDetector(
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> orderPage == true ? CurrentOrder(): CurrentNoOrder() ));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => orderPage == true
+                            ? CurrentOrder()
+                            : CurrentNoOrder("")));
               },
               child: const FaIcon(
                 FontAwesomeIcons.gift,
@@ -388,7 +436,8 @@ class _EditProfileState extends State<EditProfile> {
           BottomNavigationBarItem(
             icon: GestureDetector(
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=> Wallet()));
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Wallet()));
                 },
                 child: const Icon(Icons.account_balance_wallet)),
             label: 'Wallet',
@@ -399,5 +448,37 @@ class _EditProfileState extends State<EditProfile> {
         // onTap: _onItemTapped,
       ),
     );
+  }
+
+  void setData() {
+    if (widget.user != null) {
+      LoginUser u = widget.user!;
+
+      _firstNme.text = u.data?.firstName ?? "";
+      _lastName.text = u.data?.lastName ?? "";
+      _emailController.text = u.data?.email ?? "";
+      _driLicinece.text = u.data?.drivingLicense ?? "";
+      _vehNumber.text = u.data?.vehicalNumber ?? "";
+    }
+
+    setState(() {});
+  }
+
+  void callEditProfileAPi() {
+    setState(() {
+      isLoading = true;
+    });
+
+    String id = widget.user!.data!.id!.toString();
+    updateProfile(id, _firstNme.text, _lastName.text, _emailController.text,
+            _driLicinece.text, _vehNumber.text)
+        .then((value) => {handleResp()});
+  }
+
+  void handleResp() {
+    setState(() {
+      isLoading = false;
+    });
+    Fluttertoast.showToast(msg: "Profile Updated");
   }
 }

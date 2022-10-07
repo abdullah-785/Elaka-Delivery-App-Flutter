@@ -54,6 +54,9 @@ dependencies:
   geolocator: ^9.0.1
   shared_preferences: ^2.0.15
   flutter_secure_storage: ^6.0.0
+  http: ^0.13.3
+  expandable: ^5.0.1
+  group_button: ^5.2.2
 
 dev_dependencies:
   flutter_test:

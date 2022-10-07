@@ -1,6 +1,7 @@
 // import 'dart:html';
 
 import 'package:badges/badges.dart';
+import 'package:elaka_delivery_app/models/LoginModel.dart';
 import 'package:elaka_delivery_app/pages/current_no_order.dart';
 import 'package:elaka_delivery_app/pages/progress_bar.dart';
 import 'package:elaka_delivery_app/pages/current_order.dart';
@@ -10,9 +11,11 @@ import 'package:elaka_delivery_app/pages/wallet.dart';
 import 'package:elaka_delivery_app/resources/global_variable.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:elaka_delivery_app/services/Auth.dart';
 
 class Profile extends StatefulWidget {
-  const Profile({Key? key}) : super(key: key);
+  final String userId;
+  Profile(this.userId);
 
   @override
   State<Profile> createState() => _ProfileState();
@@ -20,6 +23,15 @@ class Profile extends StatefulWidget {
 
 class _ProfileState extends State<Profile> {
   int currentIndex = 0;
+  LoginUser? user;
+
+  bool isLoading = false;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getUser();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,8 +71,8 @@ class _ProfileState extends State<Profile> {
                 const SizedBox(
                   width: 20,
                 ),
-                const Text(
-                  "David Johnson",
+                Text(
+                  user?.data?.firstName ?? "",
                   style: TextStyle(
                     fontSize: 25,
                     fontWeight: FontWeight.bold,
@@ -96,38 +108,41 @@ class _ProfileState extends State<Profile> {
                     const SizedBox(
                       height: 30,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(right: 16),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          GestureDetector(
-                            onTap: (){
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => const EditProfile()));
-                            },
-                            child: Container(
-                              width: 44,
-                              height: 44,
-                              decoration: BoxDecoration(
-                                  color: Color.fromARGB(255, 223, 230, 243)
-                                      .withOpacity(0.85),
-                                  borderRadius: BorderRadius.circular(50),
-                                  boxShadow: [
-                                    BoxShadow(
-                                        color: Colors.grey.withOpacity(0.1),
-                                        blurRadius: 35,
-                                        spreadRadius: 30,
-                                        offset: const Offset(3, 3))
-                                  ]),
-                              child: const Icon(
-                                Icons.edit,
-                                color: Colors.blueAccent,
-                              ),
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
+                    // Padding(
+                    //   padding: const EdgeInsets.only(right: 16),
+                    //   child: Row(
+                    //     mainAxisAlignment: MainAxisAlignment.end,
+                    //     children: [
+                    //       GestureDetector(
+                    //         onTap: () {
+                    //           Navigator.push(
+                    //               context,
+                    //               MaterialPageRoute(
+                    //                   builder: (context) => EditProfile(user)));
+                    //         },
+                    //         child: Container(
+                    //           width: 44,
+                    //           height: 44,
+                    //           decoration: BoxDecoration(
+                    //               color: Color.fromARGB(255, 223, 230, 243)
+                    //                   .withOpacity(0.85),
+                    //               borderRadius: BorderRadius.circular(50),
+                    //               boxShadow: [
+                    //                 BoxShadow(
+                    //                     color: Colors.grey.withOpacity(0.1),
+                    //                     blurRadius: 35,
+                    //                     spreadRadius: 30,
+                    //                     offset: const Offset(3, 3))
+                    //               ]),
+                    //           child: const Icon(
+                    //             Icons.edit,
+                    //             color: Colors.blueAccent,
+                    //           ),
+                    //         ),
+                    //       )
+                    //     ],
+                    //   ),
+                    // ),
                     const SizedBox(
                       height: 20,
                     ),
@@ -139,7 +154,7 @@ class _ProfileState extends State<Profile> {
                             children: const [
                               Icon(
                                 Icons.email,
-                                color: Color.fromARGB(255, 78,206,113), 
+                                color: Color.fromARGB(255, 78, 206, 113),
                                 size: 28,
                               ),
                               SizedBox(
@@ -155,12 +170,12 @@ class _ProfileState extends State<Profile> {
                               ),
                             ],
                           ),
-                          const Padding(
+                          Padding(
                             padding: EdgeInsets.only(left: 44),
                             child: Align(
                                 alignment: Alignment.topLeft,
                                 child: Text(
-                                  "abdbutt2001@gmail.com",
+                                  user?.data?.email ?? "",
                                   style: TextStyle(
                                       fontSize: 18,
                                       fontWeight: FontWeight.bold,
@@ -181,7 +196,7 @@ class _ProfileState extends State<Profile> {
                             children: const [
                               Icon(
                                 Icons.phone,
-                                color: Color.fromARGB(255, 78,206,113),
+                                color: Color.fromARGB(255, 78, 206, 113),
                                 size: 28,
                               ),
                               SizedBox(
@@ -197,12 +212,12 @@ class _ProfileState extends State<Profile> {
                               ),
                             ],
                           ),
-                          const Padding(
+                          Padding(
                             padding: EdgeInsets.only(left: 44),
                             child: Align(
                                 alignment: Alignment.topLeft,
                                 child: Text(
-                                  "+34 - 08 000 000",
+                                  user?.data?.phoneNumber ?? "",
                                   style: TextStyle(
                                       fontSize: 18,
                                       fontWeight: FontWeight.bold,
@@ -223,7 +238,7 @@ class _ProfileState extends State<Profile> {
                             children: const [
                               Icon(
                                 Icons.insert_drive_file,
-                                color: Color.fromARGB(255, 78,206,113),
+                                color: Color.fromARGB(255, 78, 206, 113),
                                 size: 28,
                               ),
                               SizedBox(
@@ -239,12 +254,12 @@ class _ProfileState extends State<Profile> {
                               ),
                             ],
                           ),
-                          const Padding(
+                          Padding(
                             padding: EdgeInsets.only(left: 44),
                             child: Align(
                                 alignment: Alignment.topLeft,
                                 child: Text(
-                                  "458",
+                                  user?.data?.drivingLicense ?? "",
                                   style: TextStyle(
                                       fontSize: 18,
                                       fontWeight: FontWeight.bold,
@@ -265,7 +280,7 @@ class _ProfileState extends State<Profile> {
                             children: const [
                               Icon(
                                 Icons.calendar_view_week_rounded,
-                                color: Color.fromARGB(255, 78,206,113),
+                                color: Color.fromARGB(255, 78, 206, 113),
                                 size: 28,
                               ),
                               SizedBox(
@@ -281,12 +296,12 @@ class _ProfileState extends State<Profile> {
                               ),
                             ],
                           ),
-                          const Padding(
+                          Padding(
                             padding: EdgeInsets.only(left: 44),
                             child: Align(
                                 alignment: Alignment.topLeft,
                                 child: Text(
-                                  "465464",
+                                  user?.data?.vehicalNumber ?? "",
                                   style: TextStyle(
                                       fontSize: 18,
                                       fontWeight: FontWeight.bold,
@@ -296,6 +311,15 @@ class _ProfileState extends State<Profile> {
                         ],
                       ),
                     ),
+                    (isLoading)
+                        ? const SizedBox(
+                            width: 50,
+                            height: 50,
+                            child: CircularProgressIndicator(
+                              color: Colors.green,
+                              strokeWidth: 2,
+                            ))
+                        : Text("")
                   ],
                 ),
               ),
@@ -324,7 +348,12 @@ class _ProfileState extends State<Profile> {
           BottomNavigationBarItem(
             icon: GestureDetector(
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> orderPage == true ? CurrentOrder(): CurrentNoOrder()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => orderPage == true
+                            ? CurrentOrder() 
+                            : CurrentNoOrder(widget.userId)));
               },
               child: const FaIcon(
                 FontAwesomeIcons.gift,
@@ -336,7 +365,8 @@ class _ProfileState extends State<Profile> {
           BottomNavigationBarItem(
             icon: GestureDetector(
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=> const Wallet()));
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => const Wallet()));
                 },
                 child: const Icon(Icons.account_balance_wallet)),
             label: 'Wallet',
@@ -347,5 +377,23 @@ class _ProfileState extends State<Profile> {
         // onTap: _onItemTapped,
       ),
     );
+  }
+
+  getUser() async {
+    String id = await SharedPrefUtils.readPrefStr("userId");
+
+    setState(() {
+      isLoading = true;
+    });
+
+    await getUserById(id).then((value) => {
+          if (value!.status == "true")
+            {
+              setState(() {
+                isLoading = false;
+                user = value;
+              })
+            }
+        });
   }
 }
