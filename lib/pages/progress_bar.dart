@@ -25,9 +25,6 @@ class _ProgressBarState extends State<ProgressBar> {
     showDialog(
         context: context,
         builder: (context) {
-          // Future.delayed(Duration(seconds: 40), () {
-          //   Navigator.push(context, MaterialPageRoute(builder: (context) => CurrentNoOrder()));
-          // });
 
           return AlertDialog(
             title: const Align(

@@ -37,7 +37,7 @@ class ListOfOrders extends StatelessWidget {
               ),
             ],
           ),
-          HeightBox(5.0),
+          const HeightBox(5.0),
           const Padding(
             padding: EdgeInsets.only(bottom: 2),
             child: Align(
@@ -58,8 +58,8 @@ class ListOfOrders extends StatelessWidget {
       expanded: Padding(
         padding: const EdgeInsets.only(top: 10),
         child: Column(
-          children: [
-            DetailsOfList(heading: "Supplier  ", name: "Abdullah",),
+          children: const [
+            DetailsOfList(heading: "Supplier   ", name: "Abdullah",),
             HeightBox(5),
             DetailsOfList(heading: "Customer", name: "Mehru",),
             HeightBox(5),
@@ -89,14 +89,14 @@ class DetailsOfList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children:  [
-        Text(heading, style: TextStyle(
-          fontSize: 18,
+        Text(heading, style: const TextStyle(
+          fontSize: 17,
           fontWeight: FontWeight.bold,
           
         ),),
         WidthBox(40),
-        Text(name, style: TextStyle(
-          fontSize: 18,
+        Text(name, style: const TextStyle(
+          fontSize: 17,
           fontWeight: FontWeight.bold,
           
         ),),

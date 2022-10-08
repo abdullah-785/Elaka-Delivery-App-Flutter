@@ -388,6 +388,11 @@ class _OptVerificationState extends State<OptVerification> {
                     onTap: () {
                       // sendOtp();
                       // Fluttertoast.showToast(msg: "OTP Send Successfully");
+                      
+                      const AlertDialog(
+                        title: Text("Email Send Successfully"),
+                        content: Text("Check Your email"),
+                      );
                     },
                     child: const Text("Resend OTP",
                         style: TextStyle(

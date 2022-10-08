@@ -48,7 +48,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return email == "AlreadyLogedIn" ? ProgressBar() : Login();
+    return email == "AlreadyLogedIn" ? const ProgressBar() : const Login();
     // return Language();
   }
 }
