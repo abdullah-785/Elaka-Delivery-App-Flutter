@@ -1,3 +1,4 @@
+import 'package:elaka_delivery_app/pages/completed_order.dart';
 import 'package:elaka_delivery_app/pages/current_order_details.dart';
 import 'package:elaka_delivery_app/pages/deliver_order.dart';
 import 'package:elaka_delivery_app/pages/earning.dart';
@@ -49,6 +50,6 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return email == "AlreadyLogedIn" ? const ProgressBar() : const Login();
-    // return Language();
+    // return CompletedOrder();
   }
 }

@@ -6,6 +6,7 @@ import 'package:elaka_delivery_app/pages/current_order.dart';
 import 'package:elaka_delivery_app/pages/notification_page.dart';
 // import 'package:elaka_delivery_app/pages/profile.dart';
 import 'package:elaka_delivery_app/pages/setting.dart';
+import 'package:elaka_delivery_app/pages/wallet.dart';
 import 'package:elaka_delivery_app/resources/global_variable.dart';
 import 'package:elaka_delivery_app/widgets/recent_order_list.dart';
 import 'package:expandable/expandable.dart';
@@ -127,7 +128,7 @@ class _EarningState extends State<Earning> {
                           ),
                           HeightBox(16),
                           Text(
-                            "-\$1500",
+                            "\$1500",
                             style: TextStyle(
                               fontSize: 40,
                               color: Color.fromARGB(255, 248, 245, 245),
@@ -216,7 +217,7 @@ class _EarningState extends State<Earning> {
           BottomNavigationBarItem(
             icon: GestureDetector(
                 onTap: () {
-                  // Navigator.push(context, MaterialPageRoute(builder: (context)=> const Wallet()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> const Wallet()));
                 },
                 child: const Icon(Icons.account_balance_wallet)),
             label: 'Wallet',

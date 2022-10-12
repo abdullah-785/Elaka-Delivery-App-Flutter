@@ -127,7 +127,7 @@ class _WalletState extends State<Wallet> {
                           ),
                           HeightBox(16),
                           Text(
-                            "\$2000",
+                            "-\$2000",
                             style: TextStyle(
                               fontSize: 40,
                               color: Color.fromARGB(255, 248, 245, 245),

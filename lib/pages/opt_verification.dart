@@ -4,6 +4,7 @@ import 'package:email_auth/email_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:snack/snack.dart';
 
 import '../models/LoginModel.dart';
 // import 'package:velocity_x/velocity_x.dart';
@@ -22,7 +23,7 @@ class _OptVerificationState extends State<OptVerification> {
   @override
   void initState() {
     super.initState();
-
+    // bar.show(context);
     // OptVerification();
   }
 
@@ -54,45 +55,15 @@ class _OptVerificationState extends State<OptVerification> {
         // print("done")
         callApi(value));
 
-    //.then((value) => {
-    //       if (value!.status == "false")
-    //         {Fluttertoast.showToast(msg: "OTP incorrect")}
-    //       else
-    //         {
-    //           Navigator.push(context,
-    //               MaterialPageRoute(builder: (context) => const NewPassword()))
-    //         }
-    //     });
-
-    // if (result == false) {
-    //   Fluttertoast.showToast(msg: "OTP incorrect");
-    //   // Navigator.push(context, MaterialPageRoute(builder: (context) => const OptVerification()));
-    // } else if (result == true && loggedInUser.oldUser == true) {
-    //   Navigator.push(
-    //       context, MaterialPageRoute(builder: (context) => ProgressBar()));
-    //   setPrefranceData();
-    //   Fluttertoast.showToast(msg: "Login Successfully");
-    // } else if (result == true && loggedInUser.oldUser == false) {
-    //   Navigator.push(context,
-    //       MaterialPageRoute(builder: (context) => const NewPassword()));
-    //   setPrefranceData();
-    // }
   }
 
-//  @override
-//   void initState() {
-//     super.initState();
-//     // Initialize the package
-//     emailAuth = new EmailAuth(
-//       sessionName: "Ealaka App",
-//     );
 
-//   }
   setPrefranceData() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     pref.setString("email", "AlreadyLogedIn");
-    // print( _emailController.text);
   }
+
+  final bar = SnackBar(content: Text("OTP Send Successfully"));
 
   @override
   Widget build(BuildContext context) {
@@ -202,151 +173,13 @@ class _OptVerificationState extends State<OptVerification> {
                             ))),
                   ),
                   Row(
-                    // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      // //First One
-                      // SizedBox(
-                      //   width: 50,
-                      //   height: 50,
-                      //   child: TextFormField(
-                      //     keyboardType: TextInputType.number,
-                      //     style: Theme.of(context).textTheme.headline6,
-                      //     textAlign: TextAlign.center,
-                      //     inputFormatters: [
-                      //       LengthLimitingTextInputFormatter(1),
-                      //       FilteringTextInputFormatter.digitsOnly
-                      //     ],
-                      //     onChanged: (value) {
-                      //       if (value.length == 1) {
-                      //         FocusScope.of(context).nextFocus();
-                      //       }
-                      //       if (value.isEmpty) {
-                      //         FocusScope.of(context).previousFocus();
-                      //       }
-                      //     },
-                      //     decoration: const InputDecoration(
-                      //         // hintText: "",
-                      //         border: UnderlineInputBorder(
-                      //             borderSide: BorderSide(
-                      //           color: Colors.green,
-                      //         ))),
-                      //   ),
-                      // ),
-
-                      // //second Input line
-                      // SizedBox(
-                      //   width: 50,
-                      //   height: 50,
-                      //   child: TextFormField(
-                      //     keyboardType: TextInputType.number,
-                      //     style: Theme.of(context).textTheme.headline6,
-                      //     textAlign: TextAlign.center,
-                      //     inputFormatters: [
-                      //       LengthLimitingTextInputFormatter(1),
-                      //       FilteringTextInputFormatter.digitsOnly
-                      //     ],
-                      //     onChanged: (value) {
-                      //       if (value.length == 1) {
-                      //         FocusScope.of(context).nextFocus();
-                      //       }
-                      //       if (value.isEmpty) {
-                      //         FocusScope.of(context).previousFocus();
-                      //       }
-                      //     },
-                      //     decoration: const InputDecoration(
-                      //         // hintText: "0",
-                      //         border: UnderlineInputBorder(
-                      //             borderSide: BorderSide(
-                      //           color: Colors.green,
-                      //         ))),
-                      //   ),
-                      // ),
-
-                      // //Three input line
-                      // SizedBox(
-                      //   width: 50,
-                      //   height: 50,
-                      //   child: TextFormField(
-                      //     keyboardType: TextInputType.number,
-                      //     style: Theme.of(context).textTheme.headline6,
-                      //     textAlign: TextAlign.center,
-                      //     inputFormatters: [
-                      //       LengthLimitingTextInputFormatter(1),
-                      //       FilteringTextInputFormatter.digitsOnly
-                      //     ],
-                      //     onChanged: (value) {
-                      //       if (value.length == 1) {
-                      //         FocusScope.of(context).nextFocus();
-                      //       }
-                      //       if (value.isEmpty) {
-                      //         FocusScope.of(context).previousFocus();
-                      //       }
-                      //     },
-                      //     decoration: const InputDecoration(
-                      //         // hintText: "0",
-                      //         border: UnderlineInputBorder(
-                      //             borderSide: BorderSide(
-                      //           color: Colors.green,
-                      //         ))),
-                      //   ),
-                      // ),
-
-                      // //Fourth input Line
-                      // SizedBox(
-                      //   width: 50,
-                      //   height: 50,
-                      //   child: TextFormField(
-                      //     keyboardType: TextInputType.number,
-                      //     style: Theme.of(context).textTheme.headline6,
-                      //     textAlign: TextAlign.center,
-                      //     inputFormatters: [
-                      //       LengthLimitingTextInputFormatter(1),
-                      //       FilteringTextInputFormatter.digitsOnly
-                      //     ],
-                      //     onChanged: (value) {
-                      //       if (value.length == 1) {
-                      //         FocusScope.of(context).nextFocus();
-                      //       }
-                      //       if (value.isEmpty) {
-                      //         FocusScope.of(context).previousFocus();
-                      //       }
-                      //     },
-                      //     decoration: const InputDecoration(
-                      //         // hintText: "0",
-                      //         border: UnderlineInputBorder(
-                      //             borderSide: BorderSide(
-                      //           color: Colors.green,
-                      //         ))),
-                      //   ),
-                      // ),
-                    ],
+                    
+                    children: const [],
                   ),
                   const SizedBox(
                     height: 28,
                   ),
-                  // SizedBox(
-                  //   width: MediaQuery.of(context).size.width * 0.9,
-                  //   height: 50,
-                  //   child: ElevatedButton(
-                  //       style: ElevatedButton.styleFrom(
-                  //         primary: const Color.fromARGB(255, 78, 206, 113),
-                  //         onPrimary: Colors.white,
-                  //       ),
-                  //       onPressed: () {
-                  //         try {
-                  //           //  sendOtp();
-                  //           Fluttertoast.showToast(
-                  //               msg: "OTP Send Successfully");
-                  //         } catch (e) {
-                  //           Fluttertoast.showToast(msg: "${e}");
-                  //         }
-                  //       },
-                  //       child: const Text(
-                  //         "Send OTP",
-                  //         style: TextStyle(
-                  //             fontSize: 22, fontWeight: FontWeight.bold),
-                  //       )),
-                  // ),
+                  
                   const SizedBox(
                     height: 10,
                   ),
@@ -388,11 +221,7 @@ class _OptVerificationState extends State<OptVerification> {
                     onTap: () {
                       // sendOtp();
                       // Fluttertoast.showToast(msg: "OTP Send Successfully");
-                      
-                      const AlertDialog(
-                        title: Text("Email Send Successfully"),
-                        content: Text("Check Your email"),
-                      );
+                      bar.show(context);
                     },
                     child: const Text("Resend OTP",
                         style: TextStyle(

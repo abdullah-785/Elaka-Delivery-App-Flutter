@@ -1,6 +1,7 @@
 // import 'dart:html';
 
 import 'package:badges/badges.dart';
+import 'package:elaka_delivery_app/pages/completed_order.dart';
 import 'package:elaka_delivery_app/pages/current_no_order.dart';
 import 'package:elaka_delivery_app/pages/current_order.dart';
 import 'package:elaka_delivery_app/pages/earning.dart';
@@ -298,6 +299,42 @@ class _SettingState extends State<Setting> {
                       padding: const EdgeInsets.symmetric(vertical: 8),
                       child: GestureDetector(
                         onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => CompletedOrder()));
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 32),
+                          child: Row(
+                            children: const [
+                              Icon(
+                                Icons.done_all_rounded,
+                                size: 30,
+                                color: Color.fromARGB(255, 78, 206, 113),
+                              ),
+                              SizedBox(
+                                width: 20,
+                              ),
+                              Text(
+                                "Completed Orders",
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.grey),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 8),
+                      child: GestureDetector(
+                        onTap: () {
                           Navigator.push(context, MaterialPageRoute(builder: (context) => Earning()));
                         },
                         child: Padding(
@@ -421,7 +458,7 @@ class _SettingState extends State<Setting> {
     );
   }
 
-//logout Function
+// logout Function
   Future<void> logout(BuildContext context) async {
     await FirebaseAuth.instance.signOut();
     Navigator.of(context)
