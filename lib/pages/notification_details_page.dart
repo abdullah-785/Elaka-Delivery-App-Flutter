@@ -1,5 +1,7 @@
+import 'package:elaka_delivery_app/pages/available_shift.dart';
 import 'package:elaka_delivery_app/pages/current_order.dart';
 import 'package:elaka_delivery_app/pages/setting.dart';
+import 'package:elaka_delivery_app/pages/start_shift.dart';
 import 'package:elaka_delivery_app/pages/start_routing.dart';
 import 'package:elaka_delivery_app/pages/wallet.dart';
 import 'package:elaka_delivery_app/widgets/product_detail_widget.dart';
@@ -226,6 +228,15 @@ class _NotificationDetailPageState extends State<NotificationDetailPage> {
                 },
                 child: const Icon(Icons.account_balance_wallet)),
             label: 'Wallet',
+          ),
+          BottomNavigationBarItem(
+            icon: GestureDetector(
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) =>  AvailableShift()));
+                },
+                child: const Icon(Icons.shuffle)),
+            label: 'Shift',
           ),
         ],
         // currentIndex: _selectedIndex,

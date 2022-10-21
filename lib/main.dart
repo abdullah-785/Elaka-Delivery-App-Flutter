@@ -1,15 +1,20 @@
+import 'package:elaka_delivery_app/pages/available_shift.dart';
 import 'package:elaka_delivery_app/pages/completed_order.dart';
 import 'package:elaka_delivery_app/pages/current_order_details.dart';
 import 'package:elaka_delivery_app/pages/deliver_order.dart';
 import 'package:elaka_delivery_app/pages/earning.dart';
 import 'package:elaka_delivery_app/pages/language.dart';
+import 'package:elaka_delivery_app/pages/next_shift.dart';
 import 'package:elaka_delivery_app/pages/notification_details_page.dart';
 import 'package:elaka_delivery_app/pages/notification_page.dart';
 import 'package:elaka_delivery_app/pages/opt_verification.dart';
 import 'package:elaka_delivery_app/pages/profile.dart';
 import 'package:elaka_delivery_app/pages/progress_bar.dart';
 import 'package:elaka_delivery_app/pages/login.dart';
+import 'package:elaka_delivery_app/pages/start_shift.dart';
+import 'package:elaka_delivery_app/pages/upcoming_shift.dart';
 import 'package:elaka_delivery_app/pages/wallet.dart';
+import 'package:elaka_delivery_app/widgets/calender.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -50,6 +55,6 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return email == "AlreadyLogedIn" ? const ProgressBar() : const Login();
-    // return CompletedOrder();
+    // return AvailableShift();
   }
 }

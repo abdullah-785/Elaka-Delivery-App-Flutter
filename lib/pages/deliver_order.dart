@@ -1,9 +1,11 @@
 import 'package:badges/badges.dart';
+import 'package:elaka_delivery_app/pages/available_shift.dart';
 import 'package:elaka_delivery_app/pages/current_no_order.dart';
 import 'package:elaka_delivery_app/pages/current_order.dart';
 import 'package:elaka_delivery_app/pages/notification_page.dart';
 import 'package:elaka_delivery_app/pages/profile.dart';
 import 'package:elaka_delivery_app/pages/setting.dart';
+import 'package:elaka_delivery_app/pages/start_shift.dart';
 import 'package:elaka_delivery_app/pages/wallet.dart';
 import 'package:elaka_delivery_app/resources/global_variable.dart';
 import 'package:flutter/material.dart';
@@ -226,6 +228,15 @@ class _DeliveryOrderState extends State<DeliveryOrder> {
                 },
                 child: const Icon(Icons.account_balance_wallet)),
             label: 'Wallet',
+          ),
+          BottomNavigationBarItem(
+            icon: GestureDetector(
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) =>  AvailableShift()));
+                },
+                child: const Icon(Icons.shuffle)),
+            label: 'Shift',
           ),
         ],
       ),

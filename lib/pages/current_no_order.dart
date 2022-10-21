@@ -1,4 +1,6 @@
+import 'package:elaka_delivery_app/pages/available_shift.dart';
 import 'package:elaka_delivery_app/pages/setting.dart';
+import 'package:elaka_delivery_app/pages/start_shift.dart';
 import 'package:elaka_delivery_app/pages/wallet.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -110,6 +112,15 @@ class _CurrentNoOrderState extends State<CurrentNoOrder> {
                 },
                 child: const Icon(Icons.account_balance_wallet)),
             label: 'Wallet',
+          ),
+          BottomNavigationBarItem(
+            icon: GestureDetector(
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) =>  AvailableShift()));
+                },
+                child: const Icon(Icons.shuffle)),
+            label: 'Shift',
           ),
         ],
         // currentIndex: _selectedIndex,
