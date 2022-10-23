@@ -72,20 +72,22 @@ class _LoginState extends State<Login> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(
-                        width: MediaQuery.of(context).size.width * 0.4,
-                        // height: 30,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(150),
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Colors.grey.withOpacity(0.1),
-                                  blurRadius: 35,
-                                  spreadRadius: 30,
-                                  offset: const Offset(3, 3))
-                            ]),
-                        child:
-                            const Image(image: AssetImage("images/logo.png"))),
+                      width: MediaQuery.of(context).size.width * 0.4,
+                      // height: 30,
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(150),
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.grey.withOpacity(0.1),
+                                blurRadius: 35,
+                                spreadRadius: 30,
+                                offset: const Offset(3, 3))
+                          ]),
+                      child: const Image(
+                        image: AssetImage("images/logo.png"),
+                      ),
+                    ),
                   ],
                 )
               ],

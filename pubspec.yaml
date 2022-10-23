@@ -58,10 +58,20 @@ dependencies:
   expandable: ^5.0.1
   snack: ^2.0.0
   table_calendar: ^3.0.7
+  
+
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+  flutter_launcher_icons: ^0.10.0
+
+flutter_icons:
+  image_path: "images/logo.png"
+  android: true
+  ios: true
+
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

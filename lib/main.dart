@@ -4,6 +4,7 @@ import 'package:elaka_delivery_app/pages/current_order_details.dart';
 import 'package:elaka_delivery_app/pages/deliver_order.dart';
 import 'package:elaka_delivery_app/pages/earning.dart';
 import 'package:elaka_delivery_app/pages/language.dart';
+import 'package:elaka_delivery_app/pages/splash_screen.dart';
 import 'package:elaka_delivery_app/pages/next_shift.dart';
 import 'package:elaka_delivery_app/pages/notification_details_page.dart';
 import 'package:elaka_delivery_app/pages/notification_page.dart';
@@ -25,7 +26,7 @@ Future main() async {
     theme: ThemeData(fontFamily: 'Releway'),
     debugShowCheckedModeBanner: false,
     title: "Ealaka",
-    home: const MyApp(),
+    home: const SplashScreen(),
   ));
 }
 
@@ -55,6 +56,6 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return email == "AlreadyLogedIn" ? const ProgressBar() : const Login();
-    // return AvailableShift();
+    // return LunchingApp();
   }
 }
