@@ -1,27 +1,15 @@
-import 'package:elaka_delivery_app/pages/available_shift.dart';
-import 'package:elaka_delivery_app/pages/completed_order.dart';
-import 'package:elaka_delivery_app/pages/current_order_details.dart';
-import 'package:elaka_delivery_app/pages/deliver_order.dart';
-import 'package:elaka_delivery_app/pages/earning.dart';
-import 'package:elaka_delivery_app/pages/language.dart';
 import 'package:elaka_delivery_app/pages/splash_screen.dart';
-import 'package:elaka_delivery_app/pages/next_shift.dart';
-import 'package:elaka_delivery_app/pages/notification_details_page.dart';
-import 'package:elaka_delivery_app/pages/notification_page.dart';
-import 'package:elaka_delivery_app/pages/opt_verification.dart';
-import 'package:elaka_delivery_app/pages/profile.dart';
 import 'package:elaka_delivery_app/pages/progress_bar.dart';
+import 'package:elaka_delivery_app/pages/current_order.dart';
 import 'package:elaka_delivery_app/pages/login.dart';
-import 'package:elaka_delivery_app/pages/start_shift.dart';
-import 'package:elaka_delivery_app/pages/upcoming_shift.dart';
-import 'package:elaka_delivery_app/pages/wallet.dart';
-import 'package:elaka_delivery_app/widgets/calender.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:elaka_delivery_app/services/constants.dart';
+import 'package:elaka_delivery_app/pages/current_no_order.dart';
 
 String? email;
+int? id = 0;
 Future main() async {
-
   runApp(MaterialApp(
     theme: ThemeData(fontFamily: 'Releway'),
     debugShowCheckedModeBanner: false,
@@ -48,14 +36,14 @@ class _MyAppState extends State<MyApp> {
   getData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
-      email = prefs.getString('email');
+      id = prefs.getInt(userId);
       print(email);
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return email == "AlreadyLogedIn" ? const ProgressBar() : const Login();
-    // return LunchingApp();
+    // return id == 0 ? const Login() : CurrentNoOrder(id.toString());
+    return CurrentOrder();
   }
 }

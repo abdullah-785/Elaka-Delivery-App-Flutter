@@ -351,6 +351,8 @@ class _LoginState extends State<Login> {
           context,
           MaterialPageRoute(
               builder: (context) => OptVerification(_emailController.text)));
+    } else {
+      Fluttertoast.showToast(msg: user?.message ?? "");
     }
   }
 }

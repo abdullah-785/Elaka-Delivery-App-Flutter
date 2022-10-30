@@ -1,5 +1,7 @@
 import 'package:elaka_delivery_app/models/LoginModel.dart';
 import 'package:elaka_delivery_app/models/userModel.dart';
+import 'package:elaka_delivery_app/models/ordermodel.dart';
+
 import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:convert';
@@ -208,14 +210,55 @@ Future<LoginUser?> updateProfile(
   }
 }
 
+Future<Order?> getOrders(String userid) async {
+  final _authority = "falconskintools.com";
+  final _path = "/alaka/api/orders/deliveryboy";
+  // final _params = {"email": email, "password": password};
+  final _uri = Uri.https(_authority, _path);
+  // var url = Uri.https(loginUrl);
+  final http.Response response = await http.post(
+    _uri,
+    headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+    },
+    body: jsonEncode(<String, dynamic>{"delivery_id": userid}),
+  );
+
+  if (response.statusCode == 200) {
+    var jsonResponse = convert.jsonDecode(response.body);
+    var status = jsonResponse['status'];
+
+    if (status == "true") {
+      Order userRes = Order.fromJson(json.decode(response.body));
+      return userRes;
+    }
+    return null;
+  } else {
+    // If the server did not return a 201 CREATED response,
+    // then throw an exception.
+    return null;
+    throw Exception('Failed to signin');
+  }
+}
+
 class SharedPrefUtils {
   static saveStr(String key, String message) async {
     final SharedPreferences pref = await SharedPreferences.getInstance();
     pref.setString(key, message);
   }
 
+  static saveInt(String key, int message) async {
+    final SharedPreferences pref = await SharedPreferences.getInstance();
+    pref.setInt(key, message);
+  }
+
   static readPrefStr(String key) async {
     final SharedPreferences pref = await SharedPreferences.getInstance();
     return pref.getString(key);
+  }
+
+  static readPrefInt(String key) async {
+    final SharedPreferences pref = await SharedPreferences.getInstance();
+    return pref.getInt(key);
   }
 }

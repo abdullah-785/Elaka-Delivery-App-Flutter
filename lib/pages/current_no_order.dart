@@ -3,7 +3,11 @@ import 'package:elaka_delivery_app/pages/setting.dart';
 import 'package:elaka_delivery_app/pages/start_shift.dart';
 import 'package:elaka_delivery_app/pages/wallet.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:elaka_delivery_app/services/Auth.dart';
+
+import '../models/ordermodel.dart';
 
 class CurrentNoOrder extends StatefulWidget {
   final String userId;
@@ -15,6 +19,15 @@ class CurrentNoOrder extends StatefulWidget {
 
 class _CurrentNoOrderState extends State<CurrentNoOrder> {
   int currentIndex = 0;
+  bool isLoading = false;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    callAPi(widget.userId);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -116,8 +129,10 @@ class _CurrentNoOrderState extends State<CurrentNoOrder> {
           BottomNavigationBarItem(
             icon: GestureDetector(
                 onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) =>  AvailableShift()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => AvailableShift()));
                 },
                 child: const Icon(Icons.shuffle)),
             label: 'Shift',
@@ -128,5 +143,28 @@ class _CurrentNoOrderState extends State<CurrentNoOrder> {
         // onTap: _onItemTapped,
       ),
     );
+  }
+
+  void callAPi(String id) async {
+    setState(() {
+      isLoading = true;
+    });
+    var res = await getOrders("21").then((resp) => {
+          //    print(resp)
+
+          handleResp(resp)
+        });
+  }
+
+  void handleResp(Order? user) {
+    setState(() {
+      isLoading = false;
+    });
+
+    if (user?.status == "true") {
+      Fluttertoast.showToast(msg: user?.message ?? "");
+    } else {
+      Fluttertoast.showToast(msg: user?.message ?? "");
+    }
   }
 }

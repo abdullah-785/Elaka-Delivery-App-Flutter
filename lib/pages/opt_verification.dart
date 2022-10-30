@@ -5,8 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:snack/snack.dart';
+import 'package:elaka_delivery_app/services/constants.dart';
 
 import '../models/LoginModel.dart';
+import 'current_no_order.dart';
 // import 'package:velocity_x/velocity_x.dart';
 
 class OptVerification extends StatefulWidget {
@@ -54,9 +56,7 @@ class _OptVerificationState extends State<OptVerification> {
     await verifyOTPCall(email, otp).then((value) =>
         // print("done")
         callApi(value));
-
   }
-
 
   setPrefranceData() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
@@ -173,13 +173,12 @@ class _OptVerificationState extends State<OptVerification> {
                             ))),
                   ),
                   Row(
-                    
                     children: const [],
                   ),
                   const SizedBox(
                     height: 28,
                   ),
-                  
+
                   const SizedBox(
                     height: 10,
                   ),
@@ -281,9 +280,17 @@ class _OptVerificationState extends State<OptVerification> {
     setState(() {
       isLoading = false;
     });
+
     if (user?.status == "true") {
-      Navigator.push(context,
-          MaterialPageRoute(builder: (context) => NewPassword(widget._email)));
+      SharedPrefUtils.saveInt(userId, user?.data?.id ?? 0);
+      SharedPrefUtils.saveStr("userEmail", user?.data?.email ?? "");
+
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => CurrentNoOrder(user!.data!.id.toString())));
+      // Navigator.push(context,
+      //     MaterialPageRoute(builder: (context) => NewPassword(widget._email)));
     }
   }
 }

@@ -1,10 +1,13 @@
+import 'package:elaka_delivery_app/models/ordermodel.dart';
 import 'package:elaka_delivery_app/pages/available_shift.dart';
 import 'package:elaka_delivery_app/pages/setting.dart';
 import 'package:elaka_delivery_app/pages/start_shift.dart';
 import 'package:elaka_delivery_app/pages/start_routing.dart';
 import 'package:elaka_delivery_app/pages/wallet.dart';
+import 'package:elaka_delivery_app/services/Auth.dart';
 import 'package:elaka_delivery_app/widgets/product_detail_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -17,6 +20,14 @@ class CurrentOrder extends StatefulWidget {
 
 class _CurrentOrderState extends State<CurrentOrder> {
   int currentIndex = 0;
+  bool isLoading = false;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -142,8 +153,9 @@ class _CurrentOrderState extends State<CurrentOrder> {
                           color: Color.fromARGB(255, 12, 21, 100),
                         ),
                       ),
+
                       ProductDetailWidget(),
-                      ProductDetailWidget(),
+
                       Container(
                         width: MediaQuery.of(context).size.width * 0.9,
                         height: 38,
@@ -152,7 +164,6 @@ class _CurrentOrderState extends State<CurrentOrder> {
                           color: Color.fromARGB(255, 12, 21, 100),
                         ),
                       ),
-                      ProductDetailWidget(),
                       ProductDetailWidget(),
                       ProductDetailWidget(),
                       const SizedBox(
@@ -231,8 +242,10 @@ class _CurrentOrderState extends State<CurrentOrder> {
           BottomNavigationBarItem(
             icon: GestureDetector(
                 onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) =>  AvailableShift()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => AvailableShift()));
                 },
                 child: const Icon(Icons.shuffle)),
             label: 'Shift',

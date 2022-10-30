@@ -10,3 +10,6 @@ const String forgotPassword = "/alaka/api/forgot/passowrd";
 const String updateProfileUrl = "/alaka/api/user/edit";
 const String changePAssword = "/alaka/api/user/changepassword";
 const String getUser = "/alaka/api/user/";
+
+const String userId = "userId";
+const String userEmail = "userEmail";
