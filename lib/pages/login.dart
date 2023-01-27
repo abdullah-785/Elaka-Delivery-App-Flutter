@@ -5,7 +5,7 @@ import 'package:elaka_delivery_app/pages/progress_bar.dart';
 import 'package:elaka_delivery_app/pages/opt_verification.dart';
 import 'package:elaka_delivery_app/pages/reset_password.dart';
 import 'package:elaka_delivery_app/pages/wallet.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+//import 'package:firebase_auth/firebase_auth.dart';
 // import 'package:elaka_delivery_app/widgets/opt.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';

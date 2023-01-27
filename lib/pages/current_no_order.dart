@@ -1,3 +1,4 @@
+import 'package:elaka_delivery_app/main.dart';
 import 'package:elaka_delivery_app/pages/available_shift.dart';
 import 'package:elaka_delivery_app/pages/setting.dart';
 import 'package:elaka_delivery_app/pages/start_shift.dart';
@@ -25,7 +26,7 @@ class _CurrentNoOrderState extends State<CurrentNoOrder> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    callAPi(widget.userId);
+    //callAPi(widget.userId);
   }
 
   @override
@@ -149,9 +150,8 @@ class _CurrentNoOrderState extends State<CurrentNoOrder> {
     setState(() {
       isLoading = true;
     });
-    var res = await getOrders("21").then((resp) => {
+    var res = await getOrders(int.parse(id)).then((resp) => {
           //    print(resp)
-
           handleResp(resp)
         });
   }

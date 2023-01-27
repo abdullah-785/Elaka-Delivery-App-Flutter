@@ -9,6 +9,8 @@ import 'package:elaka_delivery_app/services/constants.dart';
 
 import '../models/LoginModel.dart';
 import 'current_no_order.dart';
+import 'dart:io' show Platform;
+
 // import 'package:velocity_x/velocity_x.dart';
 
 class OptVerification extends StatefulWidget {
@@ -22,9 +24,12 @@ class OptVerification extends StatefulWidget {
 }
 
 class _OptVerificationState extends State<OptVerification> {
+  String? fcm;
+  String? os;
   @override
   void initState() {
     super.initState();
+    getFCM();
     // bar.show(context);
     // OptVerification();
   }
@@ -53,7 +58,7 @@ class _OptVerificationState extends State<OptVerification> {
     setState(() {
       isLoading = true;
     });
-    await verifyOTPCall(email, otp).then((value) =>
+    await verifyOTPCall(email, otp, fcm ?? "", os ?? "").then((value) =>
         // print("done")
         callApi(value));
   }
@@ -292,5 +297,10 @@ class _OptVerificationState extends State<OptVerification> {
       // Navigator.push(context,
       //     MaterialPageRoute(builder: (context) => NewPassword(widget._email)));
     }
+  }
+
+  void getFCM() async {
+    fcm = await SharedPrefUtils.readPrefStr("fcm");
+    os = Platform.operatingSystem;
   }
 }

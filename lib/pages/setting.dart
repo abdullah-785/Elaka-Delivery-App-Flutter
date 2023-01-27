@@ -16,7 +16,7 @@ import 'package:elaka_delivery_app/pages/start_shift.dart';
 import 'package:elaka_delivery_app/pages/term_and_condition.dart';
 import 'package:elaka_delivery_app/pages/wallet.dart';
 import 'package:elaka_delivery_app/resources/global_variable.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+//import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -121,7 +121,7 @@ class _SettingState extends State<Setting> {
                         onTap: () {
                           Navigator.push(
                               context,
-                              MaterialPageRoute(              
+                              MaterialPageRoute(
                                   builder: (context) => Profile("")));
                         },
                         child: Padding(
@@ -337,7 +337,10 @@ class _SettingState extends State<Setting> {
                       padding: const EdgeInsets.symmetric(vertical: 8),
                       child: GestureDetector(
                         onTap: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => Earning()));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Earning()));
                         },
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 32),
@@ -455,8 +458,10 @@ class _SettingState extends State<Setting> {
           BottomNavigationBarItem(
             icon: GestureDetector(
                 onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) =>  AvailableShift()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => AvailableShift()));
                 },
                 child: const Icon(Icons.shuffle)),
             label: 'Shift',
@@ -471,7 +476,7 @@ class _SettingState extends State<Setting> {
 
 // logout Function
   Future<void> logout(BuildContext context) async {
-    await FirebaseAuth.instance.signOut();
+    // await FirebaseAuth.instance.signOut();
     Navigator.of(context)
         .pushReplacement(MaterialPageRoute(builder: (context) => Login()));
   }

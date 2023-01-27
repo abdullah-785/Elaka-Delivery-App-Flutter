@@ -1,4 +1,5 @@
 import 'package:elaka_delivery_app/models/LoginModel.dart';
+import 'package:elaka_delivery_app/models/submit.dart';
 import 'package:elaka_delivery_app/models/userModel.dart';
 import 'package:elaka_delivery_app/models/ordermodel.dart';
 
@@ -10,7 +11,7 @@ import 'dart:convert' as convert;
 import 'package:shared_preferences/shared_preferences.dart';
 
 Future<LoginUser?> login(String email, String password) async {
-  final _authority = "falconskintools.com";
+  final _authority = "https://ealaka.com";
   final _path = "/alaka/api/login";
   // final _params = {"email": email, "password": password};
   final _uri = Uri.https(_authority, _path);
@@ -40,7 +41,8 @@ Future<LoginUser?> login(String email, String password) async {
   }
 }
 
-Future<LoginUser?> verifyOTPCall(String email, String otp) async {
+Future<LoginUser?> verifyOTPCall(
+    String email, String otp, String fcm, String os) async {
   final _authority = baseURl;
   final _path = verifyOtp;
   //final _params = {"q": "dart"};
@@ -51,7 +53,12 @@ Future<LoginUser?> verifyOTPCall(String email, String otp) async {
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
-    body: jsonEncode(<String, dynamic>{"email": email, "otp": otp}),
+    body: jsonEncode(<String, dynamic>{
+      "email": email,
+      "otp": otp,
+      "device_token": fcm,
+      "os": os
+    }),
   );
 
   if (response.statusCode == 200) {
@@ -210,8 +217,8 @@ Future<LoginUser?> updateProfile(
   }
 }
 
-Future<Order?> getOrders(String userid) async {
-  final _authority = "falconskintools.com";
+Future<Order?> getOrders(int userid) async {
+  final _authority = "https://ealaka.com";
   final _path = "/alaka/api/orders/deliveryboy";
   // final _params = {"email": email, "password": password};
   final _uri = Uri.https(_authority, _path);
@@ -241,6 +248,105 @@ Future<Order?> getOrders(String userid) async {
   }
 }
 
+Future<SubmitOrder?> updateLocationApi(
+    int userid, double lat, double lng) async {
+  final _authority = "https://ealaka.com";
+  final _path = "/alaka/api/user/updatelocation";
+  // final _params = {"email": email, "password": password};
+  final _uri = Uri.https(_authority, _path);
+  // var url = Uri.https(loginUrl);
+  final http.Response response = await http.post(
+    _uri,
+    headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+    },
+    body: jsonEncode(<String, dynamic>{"id": userid, "lat": lat, "lng": lng}),
+  );
+
+  if (response.statusCode == 200) {
+    var jsonResponse = convert.jsonDecode(response.body);
+    var status = jsonResponse['status'];
+
+    if (status == "true") {
+      // SubmitOrder userRes = SubmitOrder.fromJson(json.decode(response.body));
+
+      return null;
+    }
+    return null;
+  } else {
+    // If the server did not return a 201 CREATED response,
+    // then throw an exception.
+    return null;
+    throw Exception('Failed to signin');
+  }
+}
+
+Future<Order?> getCurrentOrders(int userid) async {
+  final _authority = "https://ealaka.com";
+  final _path = "/alaka/api/orders/current/deliveryboy";
+  // final _params = {"email": email, "password": password};
+  final _uri = Uri.https(_authority, _path);
+  // var url = Uri.https(loginUrl);
+  final http.Response response = await http.post(
+    _uri,
+    headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+    },
+    body: jsonEncode(<String, dynamic>{"delivery_id": userid}),
+  );
+
+  if (response.statusCode == 200) {
+    var jsonResponse = convert.jsonDecode(response.body);
+    var status = jsonResponse['status'];
+
+    if (status == "true") {
+      Order userRes = Order.fromJson(json.decode(response.body));
+      return userRes;
+    }
+    return null;
+  } else {
+    // If the server did not return a 201 CREATED response,
+    // then throw an exception.
+    return null;
+    throw Exception('Failed to signin');
+  }
+}
+
+Future<SubmitOrder?> submitOrder(int orderId, String amount) async {
+  final _authority = "https://ealaka.com";
+  final _path = "/alaka/api/orders/deliveryboycollect/amount";
+  // final _params = {"email": email, "password": password};
+  final _uri = Uri.https(_authority, _path);
+  // var url = Uri.https(loginUrl);
+  final http.Response response = await http.post(
+    _uri,
+    headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+    },
+    body: jsonEncode(<String, dynamic>{
+      "order_id": orderId,
+      "deliveryboy_amt_collected": amount,
+      "status": "5"
+    }),
+  );
+
+  if (response.statusCode == 200) {
+    var jsonResponse = convert.jsonDecode(response.body);
+    var status = jsonResponse['status'];
+
+    if (status == "tue") {
+      SubmitOrder userRes = SubmitOrder.fromJson(json.decode(response.body));
+      return userRes;
+    }
+    return null;
+  } else {
+    // If the server did not return a 201 CREATED response,
+    // then throw an exception.
+    return null;
+    throw Exception('Failed to signin');
+  }
+}
+
 class SharedPrefUtils {
   static saveStr(String key, String message) async {
     final SharedPreferences pref = await SharedPreferences.getInstance();
@@ -259,6 +365,7 @@ class SharedPrefUtils {
 
   static readPrefInt(String key) async {
     final SharedPreferences pref = await SharedPreferences.getInstance();
+
     return pref.getInt(key);
   }
 }

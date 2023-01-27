@@ -58,30 +58,28 @@ class Datum {
     required this.orderItems,
   });
 
-  int id;
+  int? id;
   String orderNumber;
-  DateTime? orderDate;
-  String customerId;
-  String amount;
-  dynamic zoneId;
+  String? orderDate;
+  String? customerId;
+  String? amount;
+  dynamic? zoneId;
   DateTime? deliveryDate;
-  String supplierId;
-  String deliveryId;
-  String status;
-  String ratting;
+  String? supplierId;
+  String? deliveryId;
+  String? status;
+  String? ratting;
   dynamic? createdAt;
   dynamic? updatedAt;
-  String prodname;
+  String? prodname;
   ErData? customerData;
   ErData? supplierData;
   List<OrderItem>? orderItems;
 
   factory Datum.fromJson(Map<String, dynamic> json) => Datum(
-        id: json["id"] == null ? null : json["id"],
-        orderNumber: json["order_number"] == null ? null : json["order_number"],
-        orderDate: json["order_date"] == null
-            ? null
-            : DateTime.parse(json["order_date"]),
+        id: json["id"],
+        orderNumber: json["order_number"],
+        orderDate: json["order_date"] == null ? null : json["order_date"],
         customerId: json["customer_id"] == null ? null : json["customer_id"],
         amount: json["amount"] == null ? null : json["amount"],
         zoneId: json["zone_id"],
@@ -91,7 +89,7 @@ class Datum {
         supplierId: json["supplier_id"] == null ? null : json["supplier_id"],
         deliveryId: json["delivery_id"] == null ? null : json["delivery_id"],
         status: json["status"] == null ? null : json["status"],
-        ratting: json["ratting"] == null ? null : json["ratting"],
+        ratting: json["ratting"] == "" ? "" : json["ratting"],
         createdAt: json["created_at"],
         updatedAt: json["updated_at"],
         prodname: json["prodname"] == null ? null : json["prodname"],
@@ -110,15 +108,16 @@ class Datum {
   Map<String, dynamic> toJson() => {
         "id": id == null ? null : id,
         "order_number": orderNumber == null ? null : orderNumber,
-        "order_date": orderDate == null
-            ? null
-            : "${orderDate!.year.toString().padLeft(4, '0')}-${orderDate!.month.toString().padLeft(2, '0')}-${orderDate!.day.toString().padLeft(2, '0')}",
+        "order_date": orderDate == null ? null : amount,
         "customer_id": customerId == null ? null : customerId,
         "amount": amount == null ? null : amount,
         "zone_id": zoneId,
-        "delivery_date": deliveryDate == null
-            ? null
-            : "${deliveryDate!.year.toString().padLeft(4, '0')}-${deliveryDate!.month.toString().padLeft(2, '0')}-${deliveryDate!.day.toString().padLeft(2, '0')}",
+        "delivery_date": deliveryDate == null ? null : deliveryDate,
+        "order_date": orderDate == null ? null : orderDate,
+        "customer_id": customerId == null ? null : customerId,
+        "amount": amount == null ? null : amount,
+        "zone_id": zoneId,
+        "delivery_date": deliveryDate == null ? null : deliveryDate,
         "supplier_id": supplierId == null ? null : supplierId,
         "delivery_id": deliveryId == null ? null : deliveryId,
         "status": status == null ? null : status,
@@ -126,6 +125,8 @@ class Datum {
         "created_at": createdAt,
         "updated_at": updatedAt,
         "prodname": prodname == null ? null : prodname,
+        "customer_data": customerData == null ? null : customerData?.toJson(),
+        "supplier_data": supplierData == null ? null : supplierData?.toJson(),
         "customer_data": customerData == null ? null : customerData!.toJson(),
         "supplier_data": supplierData == null ? null : supplierData!.toJson(),
         "order_items": orderItems == null
@@ -164,6 +165,8 @@ class ErData {
     @required this.contractType,
     @required this.drivingLicencesImage,
     @required this.location,
+    @required this.lat,
+    @required this.lng,
     @required this.percentage,
     @required this.amount,
     @required this.parentId,
@@ -171,7 +174,7 @@ class ErData {
     @required this.updatedAt,
   });
 
-  int id;
+  int? id;
   String? firstName;
   String? lastName;
   String? drivingLicense;
@@ -199,6 +202,8 @@ class ErData {
   dynamic? contractType;
   dynamic? drivingLicencesImage;
   dynamic? location;
+  String? lat;
+  String? lng;
   dynamic? percentage;
   dynamic? amount;
   dynamic? parentId;
@@ -239,6 +244,8 @@ class ErData {
         contractType: json["contract_type"],
         drivingLicencesImage: json["driving_licences_image"],
         location: json["location"],
+        lat: json["lat"],
+        lng: json["lng"],
         percentage: json["percentage"],
         amount: json["amount"],
         parentId: json["parent_id"],
@@ -283,6 +290,8 @@ class ErData {
         "percentage": percentage,
         "amount": amount,
         "parent_id": parentId,
+        "created_at": createdAt == null ? null : createdAt?.toIso8601String(),
+        "updated_at": updatedAt == null ? null : updatedAt?.toIso8601String(),
         "created_at": createdAt == null ? null : createdAt!.toIso8601String(),
         "updated_at": updatedAt == null ? null : updatedAt!.toIso8601String(),
       };
@@ -305,8 +314,9 @@ class OrderItem {
   String? productId;
   String? qty;
   String? basePrice;
-  dynamic createdAt;
-  dynamic updatedAt;
+  dynamic? createdAt;
+  dynamic? updatedAt;
+
   ProductData? productData;
 
   factory OrderItem.fromJson(Map<String, dynamic> json) => OrderItem(
@@ -330,27 +340,27 @@ class OrderItem {
         "base_price": basePrice == null ? null : basePrice,
         "created_at": createdAt,
         "updated_at": updatedAt,
-        "product_data": productData == null ? null : productData!.toJson(),
+        "product_data": productData == null ? null : productData?.toJson(),
       };
 }
 
 class ProductData {
   ProductData({
-    required this.id,
-    required this.supplierId,
-    required this.image,
-    required this.proTitle,
+    @required this.id,
+    @required this.supplierId,
+    @required this.image,
+    @required this.proTitle,
     @required this.zone,
-    required this.price,
+    @required this.price,
     @required this.sku,
     @required this.catId,
-    required this.weight,
+    @required this.weight,
     @required this.size,
     @required this.promoCode,
     @required this.shop,
-    required this.description,
-    required this.isStock,
-    required this.addPromotions,
+    @required this.description,
+    @required this.isStock,
+    @required this.addPromotions,
     @required this.isFeatured,
     @required this.featuredStartDate,
     @required this.featuredEndDate,
@@ -358,26 +368,26 @@ class ProductData {
     @required this.updatedAt,
   });
 
-  int id;
-  String supplierId;
-  String image;
-  String proTitle;
-  dynamic zone;
-  String price;
-  dynamic sku;
-  dynamic catId;
-  String weight;
-  dynamic size;
-  dynamic promoCode;
-  dynamic shop;
-  String description;
-  dynamic isStock;
-  String addPromotions;
-  dynamic isFeatured;
-  dynamic featuredStartDate;
-  dynamic featuredEndDate;
-  dynamic createdAt;
-  dynamic updatedAt;
+  int? id;
+  String? supplierId;
+  String? image;
+  String? proTitle;
+  dynamic? zone;
+  String? price;
+  dynamic? sku;
+  dynamic? catId;
+  String? weight;
+  dynamic? size;
+  dynamic? promoCode;
+  dynamic? shop;
+  String? description;
+  dynamic? isStock;
+  String? addPromotions;
+  dynamic? isFeatured;
+  dynamic? featuredStartDate;
+  dynamic? featuredEndDate;
+  dynamic? createdAt;
+  dynamic? updatedAt;
 
   factory ProductData.fromJson(Map<String, dynamic> json) => ProductData(
         id: json["id"] == null ? null : json["id"],

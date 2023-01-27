@@ -4,7 +4,6 @@ import 'package:elaka_delivery_app/pages/deliver_order.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-
 class Maping extends StatefulWidget {
   const Maping({Key? key}) : super(key: key);
 
@@ -13,26 +12,28 @@ class Maping extends StatefulWidget {
 }
 
 class _MapingState extends State<Maping> {
-  final Completer<GoogleMapController> _controller =  Completer();
+  final Completer<GoogleMapController> _controller = Completer();
 
   static const LatLng sourceLocation = LatLng(37.33500926, -122.03272188);
   static const LatLng destination = LatLng(37.33429383, -122.06600055);
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 78,206,113),
+        backgroundColor: Color.fromARGB(255, 78, 206, 113),
         actions: [
-          TextButton(onPressed: (){
-            
-            Navigator.push(context, MaterialPageRoute(
-              builder: (context) => DeliveryOrder() ));
-          }, child: Text("Delivered", style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ))),
+          TextButton(
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => DeliveryOrder(2)));
+              },
+              child: Text("Delivered",
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ))),
         ],
       ),
       body: MapSample(),
@@ -42,10 +43,6 @@ class _MapingState extends State<Maping> {
     );
   }
 }
-
-
-
-
 
 class MapSample extends StatefulWidget {
   @override

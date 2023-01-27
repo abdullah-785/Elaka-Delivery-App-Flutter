@@ -1,7 +1,7 @@
 // import 'dart:html';
 
 import 'package:badges/badges.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+//import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:elaka_delivery_app/models/userModel.dart';
 import 'package:elaka_delivery_app/pages/progress_bar.dart';
 // import 'package:elaka_delivery_app/pages/circularProgress.dart';
@@ -9,7 +9,7 @@ import 'package:elaka_delivery_app/pages/login.dart';
 import 'package:elaka_delivery_app/pages/notification_page.dart';
 // import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+//import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:elaka_delivery_app/services/Auth.dart';
 import 'package:elaka_delivery_app/models/LoginModel.dart';

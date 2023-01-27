@@ -143,8 +143,8 @@ class _NotificationDetailPageState extends State<NotificationDetailPage> {
                           color: Color.fromARGB(255, 12, 21, 100),
                         ),
                       ),
-                      ProductDetailWidget(),
-                      ProductDetailWidget(),
+                      ProductDetailWidget(null),
+                      ProductDetailWidget(null),
                       Container(
                         width: MediaQuery.of(context).size.width * 0.9,
                         height: 38,
@@ -153,9 +153,9 @@ class _NotificationDetailPageState extends State<NotificationDetailPage> {
                           color: Color.fromARGB(255, 12, 21, 100),
                         ),
                       ),
-                      ProductDetailWidget(),
-                      ProductDetailWidget(),
-                      ProductDetailWidget(),
+                      ProductDetailWidget(null),
+                      ProductDetailWidget(null),
+                      ProductDetailWidget(null),
                       const SizedBox(
                         height: 20,
                       ),
@@ -232,8 +232,10 @@ class _NotificationDetailPageState extends State<NotificationDetailPage> {
           BottomNavigationBarItem(
             icon: GestureDetector(
                 onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) =>  AvailableShift()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => AvailableShift()));
                 },
                 child: const Icon(Icons.shuffle)),
             label: 'Shift',

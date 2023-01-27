@@ -1,4 +1,5 @@
 import 'package:badges/badges.dart';
+import 'package:elaka_delivery_app/models/submit.dart';
 import 'package:elaka_delivery_app/pages/available_shift.dart';
 import 'package:elaka_delivery_app/pages/current_no_order.dart';
 import 'package:elaka_delivery_app/pages/current_order.dart';
@@ -6,13 +7,16 @@ import 'package:elaka_delivery_app/pages/notification_page.dart';
 import 'package:elaka_delivery_app/pages/setting.dart';
 import 'package:elaka_delivery_app/pages/wallet.dart';
 import 'package:elaka_delivery_app/resources/global_variable.dart';
+import 'package:elaka_delivery_app/services/Auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class DeliveryOrder extends StatefulWidget {
-  const DeliveryOrder({Key? key}) : super(key: key);
+  int? orderID;
+
+  DeliveryOrder(this.orderID);
 
   @override
   State<DeliveryOrder> createState() => _DeliveryOrderState();
@@ -21,7 +25,8 @@ class DeliveryOrder extends StatefulWidget {
 class _DeliveryOrderState extends State<DeliveryOrder> {
   int currentIndex = 0;
   // bool isChecked = false;
-
+  final TextEditingController _amountController = TextEditingController();
+  bool isLoading = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -123,6 +128,7 @@ class _DeliveryOrderState extends State<DeliveryOrder> {
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: TextFormField(
                         keyboardType: TextInputType.number,
+                        controller: _amountController,
                         style: const TextStyle(
                           fontSize: 20,
                         ),
@@ -154,29 +160,43 @@ class _DeliveryOrderState extends State<DeliveryOrder> {
                       ),
                     ),
                     const HeightBox(40),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.9,
-                      height: 50,
-                      child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            primary: const Color.fromARGB(255, 78, 206, 113),
-                            onPrimary: Colors.white,
+                    isLoading
+                        ? const SizedBox(
+                            width: 50,
+                            height: 50,
+                            child: CircularProgressIndicator(
+                              color: Colors.green,
+                              strokeWidth: 2,
+                            ))
+                        : SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.9,
+                            height: 50,
+                            child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  primary:
+                                      const Color.fromARGB(255, 78, 206, 113),
+                                  onPrimary: Colors.white,
+                                ),
+                                onPressed: () {
+                                  if (_amountController.text != "") {
+                                    submitOrderApi();
+                                  }
+
+                                  // orderPage = false;
+                                  // Fluttertoast.showToast(
+                                  //     msg: "Sumitted Successfully");
+                                  // Navigator.push(
+                                  //     context,
+                                  //     MaterialPageRoute(
+                                  //         builder: (context) => CurrentNoOrder("")));
+                                },
+                                child: const Text(
+                                  "Submit",
+                                  style: TextStyle(
+                                      fontSize: 22,
+                                      fontWeight: FontWeight.bold),
+                                )),
                           ),
-                          onPressed: () {
-                            orderPage = false;
-                            Fluttertoast.showToast(
-                                msg: "Sumitted Successfully");
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => CurrentNoOrder("")));
-                          },
-                          child: const Text(
-                            "Submit",
-                            style: TextStyle(
-                                fontSize: 22, fontWeight: FontWeight.bold),
-                          )),
-                    ),
                   ],
                 ),
               ),
@@ -230,8 +250,10 @@ class _DeliveryOrderState extends State<DeliveryOrder> {
           BottomNavigationBarItem(
             icon: GestureDetector(
                 onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) =>  AvailableShift()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => AvailableShift()));
                 },
                 child: const Icon(Icons.shuffle)),
             label: 'Shift',
@@ -239,5 +261,31 @@ class _DeliveryOrderState extends State<DeliveryOrder> {
         ],
       ),
     );
+  }
+
+  void submitOrderApi() async {
+    setState(() {
+      isLoading = true;
+    });
+    var res = await submitOrder(widget.orderID ?? 0, _amountController.text)
+        .then((resp) => {
+              //    print(resp)
+
+              handleResp(resp)
+            });
+  }
+
+  void handleResp(SubmitOrder? user) {
+    setState(() {
+      isLoading = false;
+    });
+
+    if (user?.status == "tue") {
+      Fluttertoast.showToast(msg: user?.message ?? "");
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => CurrentOrder()));
+    } else {
+      Fluttertoast.showToast(msg: user?.message ?? "");
+    }
   }
 }
