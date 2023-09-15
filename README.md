@@ -1,6 +1,6 @@
 # elaka_delivery_app
 
-A new Flutter project.
+A new Flutter project. This App is only use for delivery boys that get the order and delivery the products. 
 
 ## Getting Started
 
